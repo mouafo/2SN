@@ -9,12 +9,12 @@ etna-alternance.net - Software Engineerers - March 2017 promotion
 	we decided it would be in the best for this project to use Symfony2. 
 
 ## Team
-Project manager: Gatien
+**Project manager:** Gatien
 
-Model: Thimothee & Ibrahima
+**Model:** Thimothee & Ibrahima
 
-View: Priscillia & Manel
+**View:** Priscillia & Manel
 
-Controller: Feriel & Jean-Baptiste (+ SysAdmin)
+**Controller:** Feriel & Jean-Baptiste (+ SysAdmin)
 
 	More infos coming this month, stay tuned.
