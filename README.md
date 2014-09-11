@@ -10,8 +10,11 @@ etna-alternance.net - Software Engineerers - March 2017 promotion
 
 ## Team
 Project manager: Gatien
+
 Model: Thimothee & Ibrahima
+
 View: Priscillia & Manel
+
 Controller: Feriel & Jean-Baptiste (+ SysAdmin)
 
 	More infos coming this month, stay tuned.
