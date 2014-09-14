@@ -7,6 +7,9 @@ etna-alternance.net - Software Engineerers - March 2017 promotion
 	After a study of the differents available PHP frameworks on the market
 	and due to the current knowledge of some of our members,
 	we decided it would be in the best for this project to use Symfony2. 
+	
+## Infos
+	Supplementary informations concerning the project  Standard declaration QUELP_WIKI.php
 
 ## Team
 **Project manager:** Gatien
