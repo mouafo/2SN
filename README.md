@@ -17,6 +17,7 @@ etna-alternance.net - Software Engineerers - March 2017 promotion
 **Thimothee:** Model & View
 
 **Priscillia:** View
+
 **Manel:** View
 
 **Feriel:** Controller
