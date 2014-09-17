@@ -1,0 +1,7 @@
+parameters:
+#    d_bdb.example.class: DB\Bundle\dbBundle\Example
+
+services:
+#    d_bdb.example:
+#        class: %d_bdb.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

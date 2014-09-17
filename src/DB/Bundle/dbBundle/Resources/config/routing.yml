@@ -1,0 +1,3 @@
+d_bdb_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DBdbBundle:Default:index }

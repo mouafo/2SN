@@ -1,0 +1,4 @@
+d_bdb:
+    resource: "@DBdbBundle/Resources/config/routing.yml"
+    prefix:   /
+
