@@ -12,14 +12,15 @@ etna-alternance.net - Software Engineerers - March 2017 promotion
 	Supplementary informations concerning the project  Standard declaration QUELP_WIKI.php
 
 ## Team
-**Project manager:** Gatien
+**Gatien:** Project Manager & Model
 
-**Model:** Thimothee & Gatien
+**Thimothee:** Model & View
 
-**View:** Priscillia & Manel
+**Priscillia:** View
+**Manel:** View
 
-**Controller:** Feriel & Jean-Baptiste
+**Feriel:** Controller
 
-**SysAdmin:** Jean-Baptiste
+**Jean-Baptiste:** Controller & SysAdmin
 
 	More infos coming this month, stay tuned.
