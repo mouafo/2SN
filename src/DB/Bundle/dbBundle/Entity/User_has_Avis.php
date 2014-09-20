@@ -49,6 +49,16 @@ class User_has_Avis
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Avis")
+     * @ORM\JoinColumn(nullable=false) */
+    private $avis;
+
 
     /**
      * Get id
@@ -150,5 +160,49 @@ class User_has_Avis
     public function getEditDate()
     {
         return $this->editDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user
+     */
+    public function setUser(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set avis
+     *
+     * @param DB\Bundle\dbBundle\Entity\Avis $avis
+     */
+    public function setAvis(\DB\Bundle\dbBundle\Entity\Avis $avis)
+    {
+        $this->avis = $avis;
+        
+        return $this;
+    }
+
+    /**
+     * Get avis
+     *
+     * @return DB\Bundle\dbBundle\Entity\Avis
+     */
+    public function getAvis()
+    {
+        return $this->avis;
     }
 }

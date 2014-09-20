@@ -29,17 +29,13 @@ class Message
     private $subject;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="sender", type="string", length=160)
-     */
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
     private $sender;
-
+     
     /**
-     * @var string
-     *
-     * @ORM\Column(name="receiver", type="string", length=160)
-     */
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
     private $receiver;
 
     /**
@@ -93,8 +89,7 @@ class Message
     /**
      * Set sender
      *
-     * @param string $sender
-     * @return Message
+     * @param DB\Bundle\dbBundle\Entity\User $user
      */
     public function setSender($sender)
     {
@@ -106,7 +101,7 @@ class Message
     /**
      * Get sender
      *
-     * @return string 
+     * @return DB\Bundle\dbBundle\Entity\User
      */
     public function getSender()
     {
@@ -116,8 +111,7 @@ class Message
     /**
      * Set receiver
      *
-     * @param string $receiver
-     * @return Message
+     * @param DB\Bundle\dbBundle\Entity\User $user
      */
     public function setReceiver($receiver)
     {
@@ -129,7 +123,7 @@ class Message
     /**
      * Get receiver
      *
-     * @return string 
+     * @return DB\Bundle\dbBundle\Entity\User
      */
     public function getReceiver()
     {

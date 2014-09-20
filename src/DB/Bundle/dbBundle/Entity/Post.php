@@ -42,6 +42,12 @@ class Post
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user;
+     
+
 
     /**
      * Get id
@@ -120,5 +126,27 @@ class Post
     public function getEditDate()
     {
         return $this->editDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user
+     */
+    public function setUser(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user = $user;
+        
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

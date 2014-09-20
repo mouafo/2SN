@@ -35,6 +35,16 @@ class Group_Member
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Groups")
+     * @ORM\JoinColumn(nullable=false) */
+    private $groups;
+
 
     /**
      * Get id
@@ -90,5 +100,49 @@ class Group_Member
     public function getEditDate()
     {
         return $this->editDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user
+     */
+    public function setUser(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Set groups
+     *
+     * @param DB\Bundle\dbBundle\Entity\Groups $groups
+     */
+    public function setGroups(\DB\Bundle\dbBundle\Entity\Groups $groups)
+    {
+        $this->groups = $groups;
+        
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Get groups
+     *
+     * @return DB\Bundle\dbBundle\Entity\Groups
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

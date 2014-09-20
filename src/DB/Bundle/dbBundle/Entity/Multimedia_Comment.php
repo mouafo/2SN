@@ -42,6 +42,22 @@ class Multimedia_Comment
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user_create;
+     
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user_comment;
+     
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Multimedia")
+     * @ORM\JoinColumn(nullable=false) */
+    private $multimedia;
+     
+
 
     /**
      * Get id
@@ -120,5 +136,71 @@ class Multimedia_Comment
     public function getEditDate()
     {
         return $this->editDate;
+    }
+
+    /**
+     * Set user_create
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user_create
+     */
+    public function setUser_create(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user_create = $user;
+
+        return $this;
+    }
+
+    /**
+     * Set user_comment
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user_comment
+     */
+    public function setUser_comment(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user_comment = $user;
+
+        return $this;
+    }
+
+    /**
+     * Set multimedia
+     *
+     * @param DB\Bundle\dbBundle\Entity\Multimedia $multimedia
+     */
+    public function setMultimedia(\DB\Bundle\dbBundle\Entity\Multimedia $multimedia)
+    {
+        $this->multimedia = $multimedia;
+        
+        return $this;
+    }
+
+    /**
+     * Get user_create
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser_create()
+    {
+        return $this->user_create;
+    }
+
+    /**
+     * Get user_comment
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser_comment()
+    {
+        return $this->user_comment;
+    }
+
+    /**
+     * Get multimedia
+     *
+     * @return DB\Bundle\dbBundle\Entity\Multimedia
+     */
+    public function getMultimedia()
+    {
+        return $this->multimedia;
     }
 }

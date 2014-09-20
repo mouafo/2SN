@@ -49,6 +49,16 @@ class Post_Solution
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user;
+     
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Post")
+     * @ORM\JoinColumn(nullable=false) */
+    private $post;
+
 
     /**
      * Get id
@@ -150,5 +160,49 @@ class Post_Solution
     public function getEditDate()
     {
         return $this->editDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user
+     */
+    public function setUser(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user = $user;
+        
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set post
+     *
+     * @param DB\Bundle\dbBundle\Entity\Post $post
+     */
+    public function setPost(\DB\Bundle\dbBundle\Entity\Post $post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return DB\Bundle\dbBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
     }
 }

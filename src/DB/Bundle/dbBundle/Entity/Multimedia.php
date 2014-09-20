@@ -56,6 +56,17 @@ class Multimedia
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false) */
+    private $user;
+     
+    /**
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Album")
+     * @ORM\JoinColumn(nullable=false) */
+    private $album;
+     
+
 
     /**
      * Get id
@@ -180,5 +191,49 @@ class Multimedia
     public function getEditDate()
     {
         return $this->editDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param DB\Bundle\dbBundle\Entity\User $user
+     */
+    public function setUser(\DB\Bundle\dbBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return DB\Bundle\dbBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set album
+     *
+     * @param DB\Bundle\dbBundle\Entity\Album $album
+     */
+    public function setAlbum(\DB\Bundle\dbBundle\Entity\Album $album)
+    {
+        $this->album = $album;
+        
+        return $this;
+    }
+
+    /**
+     * Get album
+     *
+     * @return DB\Bundle\dbBundle\Entity\Album
+     */
+    public function getAlbum()
+    {
+        return $this->album;
     }
 }
