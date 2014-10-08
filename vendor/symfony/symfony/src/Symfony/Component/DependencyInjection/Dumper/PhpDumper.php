@@ -202,7 +202,7 @@ class PhpDumper extends Dumper
         $code = '';
 
         foreach ($definitions as $definition) {
-            $code .= "\n" . $this->getProxyDumper()->getProxyCode($definition);
+            $code .= "\n".$this->getProxyDumper()->getProxyCode($definition);
         }
 
         return $code;
@@ -521,7 +521,7 @@ class PhpDumper extends Dumper
         if ($definition->isSynthetic()) {
             $return[] = '@throws RuntimeException always since this service is expected to be injected dynamically';
         } elseif ($class = $definition->getClass()) {
-            $return[] = sprintf("@return %s A %s instance.", 0 === strpos($class, '%') ? 'object' : $class, $class);
+            $return[] = sprintf("@return %s A %s instance.", 0 === strpos($class, '%') ? 'object' : "\\".$class, $class);
         } elseif ($definition->getFactoryClass()) {
             $return[] = sprintf('@return object An instance returned by %s::%s().', $definition->getFactoryClass(), $definition->getFactoryMethod());
         } elseif ($definition->getFactoryService()) {
@@ -868,7 +868,7 @@ EOF;
             $code .= '            '.var_export($id, true).' => '.var_export('get'.$this->camelize($id).'Service', true).",\n";
         }
 
-        return $code . "        );\n";
+        return $code."        );\n";
     }
 
     /**
@@ -896,7 +896,7 @@ EOF;
             $code .= '            '.var_export($alias, true).' => '.var_export($id, true).",\n";
         }
 
-        return $code . "        );\n";
+        return $code."        );\n";
     }
 
     /**
@@ -1230,7 +1230,7 @@ EOF;
 
             return $this->getServiceCall((string) $value, $value);
         } elseif ($value instanceof Expression) {
-            return $this->getExpressionLanguage()->compile((string) $value, array('container'));
+            return $this->getExpressionLanguage()->compile((string) $value, array('this' => 'container'));
         } elseif ($value instanceof Parameter) {
             return $this->dumpParameter($value);
         } elseif (true === $interpolate && is_string($value)) {
@@ -1264,7 +1264,7 @@ EOF;
      */
     private function dumpLiteralClass($class)
     {
-         return '\\'.substr(str_replace('\\\\', '\\', $class), 1, -1);
+        return '\\'.substr(str_replace('\\\\', '\\', $class), 1, -1);
     }
 
     /**

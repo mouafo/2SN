@@ -13,10 +13,10 @@ namespace Symfony\Component\Validator\Tests;
 
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ExecutionContext;
-use Symfony\Component\Validator\LegacyConstraintValidatorFactory;
 use Symfony\Component\Validator\Tests\Fixtures\ConstraintA;
 use Symfony\Component\Validator\ValidationVisitor;
 
@@ -285,11 +285,11 @@ class ExecutionContextTest extends \PHPUnit_Framework_TestCase
                 new Collection(array(
                     'name'  => new ConstraintA(),
                     'books' => new All(array('constraints' => array(
-                        new ConstraintA()
-                    )))
-                ))
+                        new ConstraintA(),
+                    ))),
+                )),
             ))),
-            'name' => new ConstraintA()
+            'name' => new ConstraintA(),
         ));
         $data = array(
             'shelves' => array(
@@ -310,10 +310,10 @@ class ExecutionContextTest extends \PHPUnit_Framework_TestCase
             '[shelves][0][books][1]',
             '[shelves][1][books][0]',
             '[shelves][1][books][2]',
-            '[name]'
+            '[name]',
         );
 
-        $visitor = new ValidationVisitor('Root', $this->metadataFactory, new LegacyConstraintValidatorFactory(), $this->translator);
+        $visitor = new ValidationVisitor('Root', $this->metadataFactory, new ConstraintValidatorFactory(), $this->translator);
         $context = new ExecutionContext($visitor, $this->translator, self::TRANS_DOMAIN);
         $context->validateValue($data, $constraints);
 
