@@ -14,6 +14,7 @@ namespace Symfony\Bundle\FrameworkBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
+use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\Resource\FileResource;
@@ -102,6 +103,10 @@ class FrameworkExtension extends Extension
             $this->formConfigEnabled = true;
             $this->registerFormConfiguration($config, $container, $loader);
             $config['validation']['enabled'] = true;
+
+            if (!class_exists('Symfony\Component\Validator\Validator')) {
+                throw new LogicException('The Validator component is required to use the Form component.');
+            }
 
             if ($this->isConfigEnabled($container, $config['form']['csrf_protection'])) {
                 $config['csrf_protection']['enabled'] = true;
@@ -714,22 +719,23 @@ class FrameworkExtension extends Extension
             $validatorBuilder->addMethodCall('setMetadataCache', array(new Reference('validator.mapping.cache.'.$config['cache'])));
         }
 
-        if ('auto' !== $config['api']) {
-            switch ($config['api']) {
-                case '2.4':
-                    $api = Validation::API_VERSION_2_4;
-                    $container->setParameter('validator.validator_factory.class', $container->getParameter('validator.legacy_validator_factory.class'));
-                    break;
-                case '2.5':
-                    $api = Validation::API_VERSION_2_5;
-                    break;
-                default:
-                    $api = Validation::API_VERSION_2_5_BC;
-                    break;
-            }
-
-            $validatorBuilder->addMethodCall('setApiVersion', array($api));
+        switch ($config['api']) {
+            case '2.4':
+                $api = Validation::API_VERSION_2_4;
+                break;
+            case '2.5':
+                $api = Validation::API_VERSION_2_5;
+                break;
+            default:
+                $api = Validation::API_VERSION_2_5_BC;
+                break;
         }
+
+        $validatorBuilder->addMethodCall('setApiVersion', array($api));
+
+        // You can use this parameter to check the API version in your own
+        // bundle extension classes
+        $container->setParameter('validator.api', $api);
     }
 
     private function getValidatorXmlMappingFiles(ContainerBuilder $container)
