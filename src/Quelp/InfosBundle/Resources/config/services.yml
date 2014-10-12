@@ -1,0 +1,7 @@
+parameters:
+#    quelp_infos.example.class: Quelp\InfosBundle\Example
+
+services:
+#    quelp_infos.example:
+#        class: %quelp_infos.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

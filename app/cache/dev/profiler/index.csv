@@ -15,3 +15,5 @@ dba3cd,127.0.0.1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/,1410729755,
 c9db53,127.0.0.1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/secured/login,1410729757,
 dcf798,127.0.0.1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/,1410729761,
 63d4e6,127.0.0.1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/,1410729776,
+72cb17,::1,GET,http://localhost:8888/2SN/web/app_dev.php/register,1413112481,3f0ee7
+3f0ee7,::1,GET,http://localhost:8888/2SN/web/app_dev.php/register,1413112481,
