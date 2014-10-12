@@ -1,5 +1,6 @@
 security:
     encoders:
+        DB\Bundle\dbBundle\Entity\User: sha512
         Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
@@ -7,6 +8,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        main:
+            id: fos_user.user_provider.username
         in_memory:
             memory:
                 users:
@@ -14,6 +17,18 @@ security:
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
+        main:
+            pattern: ^/
+            anonymous: true
+            provider: main
+            form_login:
+                login_path: login
+                check_path: login_check
+            logout:
+                path: logout
+                target: /blog
+            remember_me:
+                key: %secret% # %secret% est un paramè tre de parameters.yml
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

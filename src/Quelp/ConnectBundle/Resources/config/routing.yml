@@ -1,0 +1,3 @@
+quelp_connect_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: QuelpConnectBundle:Default:index }
