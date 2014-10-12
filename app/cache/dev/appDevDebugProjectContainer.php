@@ -390,8 +390,7 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('kernel');
         $b = $this->get('templating.filename_parser');
 
-
-        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/Users/ferielabachi/Desktop/dev-web/2sn/2SN/app/Resources');
+        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/Applications/MAMP/htdocs/2SN/app/Resources');
 
         return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine'))));
     }
@@ -644,17 +643,16 @@ class appDevDebugProjectContainer extends Container
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
         $a = new \Doctrine\Common\Cache\ArrayCache();
-
-        $a->setNamespace('sf2orm_default_70aa7556bc4da73bc4551a01e0622a75f1fde59e8989c2f32100870023c2a0ed');
+        $a->setNamespace('sf2orm_default_52d688b49c4864b3e89812faf308bb0383b8f9eee1c9e1f592ba6ea24e496289');
 
         $b = new \Doctrine\Common\Cache\ArrayCache();
-        $b->setNamespace('sf2orm_default_70aa7556bc4da73bc4551a01e0622a75f1fde59e8989c2f32100870023c2a0ed');
+        $b->setNamespace('sf2orm_default_52d688b49c4864b3e89812faf308bb0383b8f9eee1c9e1f592ba6ea24e496289');
 
         $c = new \Doctrine\Common\Cache\ArrayCache();
-        $c->setNamespace('sf2orm_default_70aa7556bc4da73bc4551a01e0622a75f1fde59e8989c2f32100870023c2a0ed');
+        $c->setNamespace('sf2orm_default_52d688b49c4864b3e89812faf308bb0383b8f9eee1c9e1f592ba6ea24e496289');
 
         $d = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => '/Users/ferielabachi/Desktop/dev-web/2sn/2SN/src/DB/Bundle/dbBundle/Entity')), 'DB\\Bundle\\dbBundle\\Entity');
+        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => '/Applications/MAMP/htdocs/2SN/src/DB/Bundle/dbBundle/Entity')), 'DB\\Bundle\\dbBundle\\Entity');
 
         $e = new \Doctrine\ORM\Configuration();
         $e->setEntityNamespaces(array('DBdbBundle' => 'DB\\Bundle\\dbBundle\\Entity'));
@@ -662,9 +660,7 @@ class appDevDebugProjectContainer extends Container
         $e->setQueryCacheImpl($b);
         $e->setResultCacheImpl($c);
         $e->setMetadataDriverImpl($d);
-
         $e->setProxyDir('/Applications/MAMP/htdocs/2SN/app/cache/dev/doctrine/orm/Proxies');
-
         $e->setProxyNamespace('Proxies');
         $e->setAutoGenerateProxyClasses(true);
         $e->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
@@ -727,7 +723,6 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFileLocatorService()
     {
-
         return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/Applications/MAMP/htdocs/2SN/app/Resources');
     }
 
@@ -793,7 +788,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getForm_ResolvedTypeFactoryService()
     {
-        return $this->services['form.resolved_type_factory'] = new \Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy($this->get('9d508afd5330c89df4ac43ae875f29c4f6a7f708ca950a944e94f11cf7ebb6be_1'), $this->get('data_collector.form'));
+        return $this->services['form.resolved_type_factory'] = new \Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy(new \Symfony\Component\Form\ResolvedFormTypeFactory(), $this->get('data_collector.form'));
     }
 
     /**
@@ -2318,7 +2313,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSwiftmailer_Mailer_Default_Transport_RealService()
     {
-        $a = new \Swift_Transport_Esmtp_AuthHandler(array(0 => $this->get('2af90cb99696683760ff16f93bb11abe944953594c7d29f6404753f81d894ea9_1'), 1 => $this->get('2af90cb99696683760ff16f93bb11abe944953594c7d29f6404753f81d894ea9_2'), 2 => $this->get('2af90cb99696683760ff16f93bb11abe944953594c7d29f6404753f81d894ea9_3')));
+        $a = new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()));
         $a->setUsername(NULL);
         $a->setPassword(NULL);
         $a->setAuthMode(NULL);
@@ -2965,7 +2960,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTranslator_DefaultService()
     {
-        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini'), 'translation.loader.json' => array(0 => 'json')), array('cache_dir' => '/Applications/MAMP/htdocs/app/cache/dev/translations', 'debug' => true));
+        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini'), 'translation.loader.json' => array(0 => 'json')), array('cache_dir' => '/Applications/MAMP/htdocs/2SN/app/cache/dev/translations', 'debug' => true));
     }
 
     /**
@@ -3051,6 +3046,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/Applications/MAMP/htdocs/2SN/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('/Applications/MAMP/htdocs/2SN/app/Resources/views');
         $instance->addPath('/Applications/MAMP/htdocs/2SN/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
+
         return $instance;
     }
 
@@ -3537,7 +3533,7 @@ class appDevDebugProjectContainer extends Container
             'kernel.root_dir' => '/Applications/MAMP/htdocs/2SN/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
-            'kernel.name' => 'app',
+            'kernel.name' => 'ap_',
             'kernel.cache_dir' => '/Applications/MAMP/htdocs/2SN/app/cache/dev',
             'kernel.logs_dir' => '/Applications/MAMP/htdocs/2SN/app/logs',
             'kernel.bundles' => array(
