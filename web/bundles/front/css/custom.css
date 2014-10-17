@@ -1,0 +1,59 @@
+/*
+
+    Custom.css
+    All right reserved @HealthyLife
+
+    Summary :
+
+    -- 1.0 - Width Screen Use
+    -- 2.0 - Nav
+    -- 3.0 - Default CSS
+    -- 4.0 - Slider
+    -- 5.0 - ProgressBar
+*/
+
+
+/************************
+** 1.0 WIDTH SCREEN USE
+*************************/
+
+@media screen and (min-width:320px)     and (max-width: 481px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+@media screen and (min-width:481px)     and (max-width: 641px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media screen and (min-width:641px)     and (max-width: 961px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media screen and (min-width:961px)     and (max-width: 1024px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media screen and (min-width:1024px)    and (max-width: 1281px) { /* big landscape tablets, laptops, and desktops */ }
+@media screen and (min-width:1281px)                            { /* hi-res laptops and desktops */ }
+
+/************************
+** 2.0 DEFAULT CSS
+*************************/
+
+/*------ PAGE ACCUEIL/INSCRIPTION/CONNEXION --------*/
+
+html, body
+{
+    background: url('../img/background_accueil.png');
+    background-size: cover;
+}
+
+.header
+{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo
+{
+   color: #ffffff;
+   margin-top: 5px;
+   margin-left: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .form-connexion label
+    {
+        display: none;
+    }
+}
+
+
