@@ -1,3 +1,10 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
 fos_user:
     db_driver: orm # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
     firewall_name: main # Le nom du firewall derrière lequel on utilisera ces utilisateurs
@@ -6,10 +13,11 @@ fos_user:
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @BackendAdminBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"

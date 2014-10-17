@@ -2873,12 +2873,12 @@ if (!is_file($metadata)) {
 return false;
 }
 $time = filemtime($this->file);
-//$meta = unserialize(file_get_contents($metadata));
-//foreach ($meta as $resource) {
-//if (!$resource->isFresh($time)) {
-//return false;
-//}
-//}
+$meta = unserialize(file_get_contents($metadata));
+foreach ($meta as $resource) {
+if (!$resource->isFresh($time)) {
+return false;
+}
+}
 return true;
 }
 public function write($content, array $metadata = null)

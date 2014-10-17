@@ -72,14 +72,6 @@ class User extends BaseUser
     private $editDate;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_login_date", type="datetime")
-     */
-    private $lastLoginDate;
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -294,28 +286,5 @@ class User extends BaseUser
     public function getEditDate()
     {
         return $this->editDate;
-    }
-
-    /**
-     * Set lastLoginDate
-     *
-     * @param \DateTime $lastLoginDate
-     * @return User
-     */
-    public function setLastLoginDate($lastLoginDate)
-    {
-        $this->lastLoginDate = $lastLoginDate;
-
-        return $this;
-    }
-
-    /**
-     * Get lastLoginDate
-     *
-     * @return \DateTime 
-     */
-    public function getLastLoginDate()
-    {
-        return $this->lastLoginDate;
     }
 }

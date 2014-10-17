@@ -1,3 +1,16 @@
+backend_admin:
+    resource: "@BackendAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
 quelp_connect:
     resource: "@QuelpConnectBundle/Resources/config/routing.yml"
     prefix:   /

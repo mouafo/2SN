@@ -1,0 +1,3 @@
+backend_admin_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BackendAdminBundle:Default:index }
