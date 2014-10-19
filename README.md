@@ -23,5 +23,3 @@ etna-alternance.net - Software Engineerers - March 2017 promotion
 **Feriel:** Back-end
 
 **Jean-Baptiste:** Back-end & SysAdmin
-
-	More infos coming this month, stay tuned.
