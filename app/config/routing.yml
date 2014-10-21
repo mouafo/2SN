@@ -1,3 +1,7 @@
+quelp_image:
+    resource: "@QuelpImageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 backend_admin:
     resource: "@BackendAdminBundle/Resources/config/routing.yml"
     prefix:   /

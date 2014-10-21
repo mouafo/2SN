@@ -25,6 +25,7 @@ class AppKernel extends Kernel
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Backend\AdminBundle\BackendAdminBundle(),
+            new Quelp\ImageBundle\QuelpImageBundle(),
 	  );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
