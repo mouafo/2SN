@@ -37,13 +37,6 @@ class User extends BaseUser
     private $surname;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="state", type="smallint")
-     */
-    private $state;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="born_date", type="datetime")

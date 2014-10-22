@@ -1,11 +1,22 @@
 services:
-    sonata.admin.post:
+    sonata.admin.Accounts:
         class: Backend\AdminBundle\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+            - { name: sonata.admin, manager_type: orm, group: "Accounts", label: "Account Manager" }
         arguments:
             - ~
             - DB\Bundle\dbBundle\Entity\User
             - ~
         calls:
-            - [ setTranslationDomain, [AcmeDemoBundle]]
+            - [ setTranslationDomain, [BackendAdminBundle]]
+
+    sonata.admin.Partners:
+        class: Backend\AdminBundle\Admin\PartnerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Accounts", label: "PartnerShip Manager" }
+        arguments:
+            - ~
+            - DB\Bundle\dbBundle\Entity\Partner
+            - ~
+        calls:
+            - [ setTranslationDomain, [BackendAdminBundle]]

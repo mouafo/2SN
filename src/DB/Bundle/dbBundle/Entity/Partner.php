@@ -116,7 +116,7 @@ class Partner
      *
      * @param DB\Bundle\dbBundle\Entity\User $user_partner
      */
-    public function setUser_partner(\DB\Bundle\dbBundle\Entity\User $user)
+    public function setUserPartner(\DB\Bundle\dbBundle\Entity\User $user)
     {
         $this->user_partner = $user;
     }
@@ -138,7 +138,7 @@ class Partner
      *
      * @return DB\Bundle\dbBundle\Entity\User
      */
-    public function getUser_partner()
+    public function getUserPartner()
     {
         return $this->user_partner;
         

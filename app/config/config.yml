@@ -1,3 +1,9 @@
+sonata_admin:
+    title:      Quelp Administration
+    title_logo: bundles/sonataadmin/logo_title.png
+#    security:
+#        handler: sonata.admin.security.handler.role
+
 sonata_block:
     default_contexts: [cms]
     blocks:

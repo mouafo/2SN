@@ -135,7 +135,6 @@ abstract class User implements UserInterface, GroupableInterface
         $this->credentialsExpired = false;
         $this->setName('');
         $this->setSurname('');
-        $this->setState(0);
         $this->setBornDate(new \Datetime());
         $this->setJob('');
         $this->setCreateDate(new \Datetime());
