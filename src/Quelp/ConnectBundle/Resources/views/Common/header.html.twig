@@ -1,38 +1,77 @@
-
+<!-- style="background-color: rgba(240, 255, 255, 0.7)" -->
+<!-- style="background: url('../../../../../web/bundles/front/img/background-login.jpeg');background-size: 100% 100%;background-repeat: no-repeat;"> -->
 <header>
     <div class="row header">
-        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-11">
-            <h1 class="logo">Quelp</h1>
+        <div class="col-sm-11"><!--col-xs-12 col-sm-6 col-md-8 col-lg-11-->
+            <a href="{{ path('quelp_connect_registerpage') }}" style="text-decoration: none"><h1 class="logo">Quelp</h1></a>
             <div class="pull-right" style="margin-top: -45px">
-                <button data-toggle="modal" class="btn btn-default" data-target=".bs-example-modal-lg"  style="height: 35px;font-size: 15px;background-color: #66afe9;color: #ffffff"><a href="#" style="color: #ffffff;text-decoration: none">Se connecter</a></button>
-                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content" style="margin-top: 200px">
-                            <form class="form-horizontal" role="form" style="margin-top: 30px">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label" style="margin-left: 50px">Utilisateur <span style="color: red; font-size: 10px">*</span></label>
-                                    <div class="col-sm-8">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Utilisateur">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label" style="margin-left: 50px">Mot de passe <span style="color: red; font-size: 10px">*</span></label>
-                                    <div class="col-sm-8">
-                                        <input type="password" class="form-control" id="inputPassword3" placeholder="Mot de passe">
-                                    </div>
+
+                <!-- Redirection vers la page connection -->
+                <a data-toggle="modal" href="{{ path('quelp_connect_connectpage') }}" data-target="#myModal">
+                    <button  class="btn btn-default" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');color: #f5f5f5">Se connecter</button>
+                </a>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: rgba(255, 255, 255, 0.9)">
+                            <div class="modal-header" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg')">
+                                <button type="button" class="close" data-dismiss="modal" style="color: white"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel" style="color: white">Connection</h4>
+                            </div>
+                            <div class="modal-body">
+                                {% trans_default_domain 'FOSUserBundle' %}
+
+                                {% block fos_user_content %}
+
+
+                                    <form action="{{ path("fos_user_security_check") }}" class="form-horizontal log-in" method="post" style="margin-top: 30px">
+                                        <input type="hidden" name="_csrf_token" />
+
+                                        <div class="form-group">
+                                            <label for="username" class="col-sm-3 control-label" class="custom-label-login" style="color:dimgray;font-weight: 200">{{ 'security.login.username'|trans }}<span style="color: red; font-size: 10px"> &nbsp;*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="username" name="_username" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password" class="col-sm-3 control-label" class="custom-label-login" style="color:dimgray;font-weight: 200">{{ 'security.login.password'|trans }}<span style="color: red; font-size: 10px"> &nbsp;*</span></label>
+                                            <div class="col-sm-8">
+                                                <input type="password" class="form-control" id="password" name="_password" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" >
+                                            <div class="col-sm-8 col-sm-offset-3">
+                                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                                <label for="remember_me" class="custom-label-login">{{ 'security.login.remember_me'|trans }}</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-8">
+                                                <button type="submit" class="btn btn-default" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');color: #f5f5f5;border: 1px solid rgba(255, 255, 255, 0.5)">Envoyer</button>
+                                                <span style="font-size: 9px;color: dimgray" class="pull-right">Champs obligatoires</span><span class="pull-right" style="color: red; font-size: 10px"> &nbsp;*&nbsp;&nbsp;</span>
+                                            </div>
+                                        </div>
+
+
+
+                                    </form>
+
+                                {% endblock fos_user_content %}
+
+                                <div class="col-sm-offset-8 ">
+                                    <span style="font-size: 10px;">Mot de passe oublié ? <a href="{{ path("quelp_connect_passwordpage") }}">Cliquez-ici</a></span>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-default" style="margin-left: 50px">Envoyer</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <span style="font-size: 10px;margin-left: 610px;">Pas encore de compte ? <a href="#">Cliquez-ici</a></span>
+                            </div>
+                            <div class="modal-footer" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg')">
+                                <span style="font-size: 10px;color: white">Pas encore de compte ? &nbsp;&nbsp;</span><button type="button" class="btn btn-default" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');border: 1px solid rgba(255, 255, 255, 0.5)"><a href="{{ path("quelp_connect_passwordpage") }}" style="text-decoration: none;color: #f5f5f5"><span class="glyphicon glyphicon-cloud" style="color: white">&nbsp;</span>Cliquez-ici</a></button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');border: 1px solid rgba(255, 255, 255, 0.5);color: #f5f5f5">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

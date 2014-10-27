@@ -1,20 +1,21 @@
 /*
 
     Custom.css
-    All right reserved @HealthyLife
+    All right reserved @Quelp
 
     Summary :
 
     -- 1.0 - Width Screen Use
-    -- 2.0 - Nav
-    -- 3.0 - Default CSS
-    -- 4.0 - Slider
-    -- 5.0 - ProgressBar
+    -- 2.0 - Default CSS
+    -- 3.0 - Formulaire
+
 */
 
 
 /************************
+
 ** 1.0 WIDTH SCREEN USE
+
 *************************/
 
 @media screen and (min-width:320px)     and (max-width: 481px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
@@ -25,8 +26,11 @@
 @media screen and (min-width:1281px)                            { /* hi-res laptops and desktops */ }
 
 /************************
+
 ** 2.0 DEFAULT CSS
+
 *************************/
+
 
 /*------ PAGE ACCUEIL/INSCRIPTION/CONNEXION --------*/
 
@@ -43,9 +47,9 @@ html, body
 
 .logo
 {
-   color: #ffffff;
-   margin-top: 5px;
-   margin-left: 100px;
+    color: #ffffff;
+    margin-top: 5px;
+    margin-left: 100px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -56,4 +60,115 @@ html, body
     }
 }
 
+/************************
 
+** 3.0 Formulaire
+
+*************************/
+
+/* ----- BEGIN REGISTER ----- */
+
+.label-from-form
+{
+    color: white;
+}
+
+.label-from-form label
+{
+    font-family: "Helvetica Neue" sans-serif;
+    font-weight: 300;
+}
+
+.input-from-form input
+{
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-style: normal; !important
+line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+}
+
+
+.input-from-form input:-moz-placeholder, textarea:-moz-placeholder {
+    padding: 2px 0 0 10px;
+    font-style: italic;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.input-from-form input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    padding: 2px 0 0 10px;
+    font-style: italic;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.input-from-form input.placeholder, textarea.placeholder {
+    padding: 2px 0 0 10px;
+    font-style: italic;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.error-from-form ul li
+{
+    padding: 50px 0 0 130px;
+    list-style: none;
+    color: darkred;
+}
+
+/* ----- END REGISTER ----- */
+
+
+/* ----- BEGIN LOGIN ----- */
+
+.log-in input
+{
+    cursor: pointer;
+}
+
+.log-in input:-moz-placeholder, textarea:-moz-placeholder {
+    padding: 2px 0 0 5px;
+    font-style: italic;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.log-in input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    padding: 2px 0 0 5px;
+    font-style: italic;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.log-in input.placeholder, textarea.placeholder
+{
+    padding: 2px 0 0 5px;
+    font-style: italic;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.custom-label-login
+{
+    font-family: "Helvetica Neue" sans-serif;
+    font-weight: 200;
+    color: dimgray;
+}
+
+
+/* ----- END LOGIN ----- */
