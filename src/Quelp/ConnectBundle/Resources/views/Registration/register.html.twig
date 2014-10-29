@@ -94,6 +94,15 @@
                                 </div>
                                 <span class="error-from-form">{{ form_errors(form.plainPassword.second) }}</span>
                             </div>
+                               {#job#}
+                            <div class="form-group">
+                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.job, "Job") }}</span>
+                                <div class="col-sm-9">
+                                    <span class="input-from-form">{{ form_widget(form.job, {'attr': {'placeholder': 'entrez votre job'}}) }}</span>
+                                </div>
+                                <span class="error-from-form">{{ form_errors(form.job) }}</span>
+                            </div>
+                            {{ form_rest(form) }}
                             {# Inscription #}
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-10">

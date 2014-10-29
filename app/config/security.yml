@@ -40,11 +40,10 @@ security:
             anonymous: true
             provider: main
             form_login:
-                login_path: login
-                check_path: login_check
-            logout:
-                path: logout
-                target: /blog
+                login_path: /login
+                check_path: /login_check
+            logout: true
+
             remember_me:
                 key: %secret% # %secret% est un paramè tre de parameters.yml
         dev:
