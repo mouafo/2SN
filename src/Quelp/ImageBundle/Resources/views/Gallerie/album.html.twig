@@ -1,0 +1,425 @@
+{% extends "QuelpImageBundle::layout.html.twig" %}
+
+{% block title %} Gallerie {% endblock %}
+
+{% block content %}
+<!-- Contenu header -->
+
+
+<!-- Fin Contenu header -->
+
+<!-- Contenu gallerie -->
+
+<div class="col-xs-12 col-md-10" style="margin-top: 20px">
+
+<!-- Debut du contenu titre + nav -->
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-12 col-md-2" align="center">
+                <h2>Titre1</h2>
+            </div>
+            <ul>
+                <li class="dropdown">
+                    <div class="pull-right" style="margin-right:50px; margin-top:20px">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ajouter</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="delete-control">Supprimer</a></li>
+                        </ul>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Fin du contenu titre + nav -->
+
+    <!-- Début Gallerie -->
+    <div class="col-xs-12 col-md-12" style="background-color: rgba(255, 255, 255, 0.8)">
+
+        <!-- Image de l'album avec possibilité de suppression et ajout -->
+        <div class="col-md-4">
+
+            <!-- Lien vers image modal -->
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+
+                <!-- Image -->
+                <img src="{{asset('bundles/front/img/gallerie/sky22.jpg')}}">
+
+
+                <!-- Titre de la photo -->
+                <span class="hide-title">Titre 1</span>
+            </a>
+
+            <!-- Suppression -->
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <!-- Fin d'affichage d'une image -->
+
+        <div class="col-md-4">
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img1.jpg')}}">
+                <span class="hide-title">Photo du mur</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+            <a href="#img2" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img2.jpg')}}">
+                <span class="hide-title">Photo du mur</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img2.jpg')}}">
+                <span class="hide-title">Photo du mur</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img4.jpg')}}">
+                <span class="hide-title">Photo de profil</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img5.jpg')}}">
+                <span class="hide-title">Photo du mur</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img6.jpg')}}">
+                <span class="hide-title">Photo du mur</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img7.jpg')}}">
+                <span class="hide-title">Photo du mur</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
+                <img src="{{asset('bundles/front/img/gallerie/img8.jpg')}}">
+                <span class="hide-title">Photo de profil</span>
+            </a>
+            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+        </div>
+    </div>
+    <br>
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%">SUPPRIMER</button>
+            </td>
+            <td>
+                <ul class="pager">
+                    <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4></a></li>
+                    <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4></a></li>
+                </ul>
+            </td>
+            <td>
+                <button type="reset" class="btn btn-info confirm-delete-pictures">ANNULER</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="row">
+    <!-- Image Modal -->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" id="modal-gallery">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h4 class="modal-title" style="text-align: center">Titre1</h4>
+                </div>
+
+                <div class="modal-body">
+
+
+                    <!-- Carousel -->
+
+                    <div id="carousel-example-manel" class=" slide img-responsive carousel-manel " style="border: 1px solid #f5f5f5;border-radius: 10px">
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="{{asset('bundles/front/img/gallerie/img1.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img2.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img3.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img4.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img5.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img6.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img7.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <img src="{{asset('bundles/front/img/gallerie/img8.jpg')}}">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <img src="gallerie/img3.jpg" alt="...">
+                                <div class="carousel-caption">
+                                    ...
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-manel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-manel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                    <!-- Commentaires -->
+                    <div class="media bloc-comments">
+
+                        <table>
+                            <tr>
+                                <td style="padding: 5px 10px 5px 50px">
+                                    <a href="#"><img class="media-object img-circle" src="img/user.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
+                                </td>
+                                <td style="padding: 0 20px 5px 10px;">
+                                    <h4>Prénom NOM</h4>
+                                    <span style="font-size: 10px;color: grey">Posté le 28 octobre</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
+                                <td style="padding: 0 20px 0 10px;">
+                                    <p>Ceci est un commentaire, ceci est un comment. Ceci est un commentaire</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td style="padding: 5px 10px 5px 50px">
+                                    <a href="#"><img class="media-object img-circle" src="img/avatarmanel.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
+                                </td>
+                                <td style="padding: 0 20px 0 10px;">
+                                    <h4>Prénom NOM</h4>
+                                    <span style="font-size: 10px;color: grey">Posté le 28 octobre</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
+                                <td style="padding: 0 20px 0 10px;">
+                                    <p>Hae duae provinciae bello quondam piratico catervis mixtae praedonum a Servilio pro consule missae sub iugum factae sunt vectigales. et hae quidem regiones velut.  bello quondam piratico catervis mixtae praedonum a Servilio pro consule missae sub iugum factae sunt vectigales. et hae quidem regiones velut</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td style="padding: 5px 10px 5px 50px">
+                                    <a href="#"><img class="media-object img-circle" src="img/avatarmanel.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
+                                </td>
+                                <td style="padding: 0 20px 0 10px;">
+                                    <h4>Prénom NOM</h4>
+                                    <span style="font-size: 10px;color: grey">Posté le 28 octobre</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
+                                <td style="padding: 0 20px 0 10px;">
+                                    <p>Ceci est un commentaire, ceci est un comment. Ceci est un commentaire</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="media-body">
+                            <div class="col-sm-12">
+                                <div class="col-sm-1" style="margin-left: 22px">
+                                    <a href="#"><img class="media-object img-circle" src="img/avatarmanel.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
+                                </div>
+                                <div class="col-sm-10">
+                                    <h4>Prénom MOI</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-8" style="margin-left: 100px">
+                                    <input type="text" class="form-control" placeholder="Laisser un commentaire" >
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn" style="color: #ffffff;background-color: lightskyblue">Commenter</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Fin Contenu gallerie -->
+
+
+<!-- Contenu Ami en ligne -->
+<div class="col-xs-12 col-md-2" style="margin-top: 20px">
+    <div class="panel panel-primary" style="padding: 30px 0 30px 0;text-align: center">
+        <div class="friend-connect-title">
+            <span style="color:green"><i class="glyphicon glyphicon-off" style="font-size:17px;"></i></span>
+            <strong> Amis&nbsp;Actifs </strong>
+        </div>
+
+        <ul>
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami1</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami2</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami3</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami4</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami5</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami6</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami7</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami8</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami9</h5>
+                    </div>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}

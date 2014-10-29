@@ -1,3 +1,6 @@
-quelp_image_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: QuelpImageBundle:Default:index }
+quelp_image_albumpage:
+    path:     /album
+    defaults: { _controller: QuelpImageBundle:Album:index }
+quelp_image_albumspage:
+    path:     /albums
+    defaults: { _controller: QuelpImageBundle:Albums:index }

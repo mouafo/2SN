@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="row-fluid">
+  <div style="background: rgba(255, 255, 255, 0.5);height: 165px" >
+  <table class="table table-striped">
+  <tr class="info">
+  <div class="" style="padding-top: 0px;padding-bottom: 5px;background: rgba(255, 255, 255, 0.8); height: 18px">
+    <div class="pull-left" style ="margin-top: -15px">
+       </div>
+   <div class="alert alert-info" role="alert" height= "10px">
+    <div class="pull-right" style="margin-top: -10px">
+    <a class="brand " href="#" style="padding-right: 15px" ><strong>PROFIL</strong></a>
+    <a class="brand " href="#" style="padding-right: 15px" ><strong>MESSAGES</strong></a>
+    <a class="brand" href="#" style="padding-right: 30px"><strong>CERCLES</strong></a>
+    
+    <a class="brand" href="#" style="margin-right:50px"></a>
+    
+    <a class="glyphicon glyphicon-cog" font-size></a>
+    </div></div>
+    </div></div>
+        </tr></table>
+        
+           <div class="col-xs-12 col-md-12" style="margin-top: 9px">
+   <div class="" style="padding-left:50px">&nbsp;&nbsp;
+   <img src="img/Quel.png" height="15%" width="15%" style="margin-top: -20px; font-size: 12px"></div>
+ 
+   <div class="" style="padding-left:140px">
+   <a href="#"><img src="img/1413006542_home.png" height="3.3%" width="3.5%" ></a></div>
+       
+   <div class="" align="center">
+   <br>
+        <p class="text"><h3 style="margin-top: -150px; color:white">Besoin de quelque chose ?
+        </p>
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;Trouvez la ici </h3></p>
+        
+	    <form class="form-search" style="padding-left: 40px ">
+	      <input type="text" placeholder="Entrez un mot clef">
+	      <button class="btn btn-small btn btn-info" type="button"> YES !</button>
+	    </form>
+	  
+      </div>
+   
+      
+      </div>
+                <div class="pull-right" style ="margin-top: -70px;">
+       			
+        <div class="icone_m" style="padding-right: 150px">  
+             <i class="glyphicon glyphicon-user"  ></i>   
+                           
+          <i class="glyphicon glyphicon-tag"></i>   
+                               
+        <i class="glyphicon glyphicon-bell" ></i>   </div> 
+</div>
+                    </div>
+                    
+                    </div>
+
+	
+  </div>
+</div> 
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
