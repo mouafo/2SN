@@ -63,13 +63,25 @@
                         <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal form-connexion">
 
                             {# Nom d'utilisateur #}
-                            <div class="form-group">
-                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.username, "Prénom ") }}</span>
-                                <div class="col-sm-9">
-                                    <span class="input-from-form">{{ form_widget(form.username, {'attr': {'placeholder': 'Entrez votre prénom'}}) }}</span>
-                                </div>
+                            <div class=" form-for-user">
+                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.username, "Utilisateur ") }}</span>
+                                    <div class="col-sm-4  inline-user" style="width: 40%;margin-left: -10px">
+                                        <span class="input-from-form">{{ form_widget(form.username, {'attr': {'placeholder': 'Entrez votre prénom'}}) }}</span>
+                                    </div>
+                                    <div class="col-sm-4" style="margin-left: -20px;width: 41%">
+                                        <span class="input-from-form">{{ form_widget(form.name, {'attr': {'placeholder': 'Entrez votre nom'}}) }}</span>
+                                    </div>
                                 <span class="error-from-form">{{ form_errors(form.username) }}</span>
                             </div>
+
+                            <div class="form-group">
+                                <span class="label-from-form col-sm-3 control-label"></span>
+                                <div class="col-sm-9">
+                                    <span class="input-from-form">{{ form_widget(form.name, {'attr': {'placeholder': 'Entrez votre nom'}}) }}</span>
+                                </div>
+                                <span class="error-from-form">{{ form_errors(form.name) }}</span>
+                            </div>
+
                             {# Adresse mail #}
                             <div class="form-group">
                                 <span class="label-from-form col-sm-3 control-label">{{ form_label(form.email, "E-mail ") }}</span>
@@ -98,22 +110,17 @@
                             <div class="form-group">
                                 <span class="label-from-form col-sm-3 control-label">{{ form_label(form.job, "Job") }}</span>
                                 <div class="col-sm-9">
-                                    <span class="input-from-form">{{ form_widget(form.job, {'attr': {'placeholder': 'entrez votre job'}}) }}</span>
+                                    <span class="input-from-form">{{ form_widget(form.job, {'attr': {'placeholder': 'Entrez votre job'}}) }}</span>
                                 </div>
                                 <span class="error-from-form">{{ form_errors(form.job) }}</span>
                             </div>
                             {#born date#}
-                            <div class="form-group">
-                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.name, "Name") }}</span>
+
+                            <div class="form-group birthday-date">
+                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.bornDate, "Date de Naissance") }}</span>
                                 <div class="col-sm-9">
-                                    <span class="input-from-form">{{ form_widget(form.name, {'attr': {'placeholder': 'entrez votre Name'}}) }}</span>
-                                </div>
-                                <span class="error-from-form">{{ form_errors(form.name) }}</span>
-                            </div>
-                            <div class="form-group">
-                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.bornDate, "Name") }}</span>
-                                <div class="col-sm-9">
-                                    <span class="input-from-form">{{ form_widget(form.bornDate, {'attr': {'placeholder': 'entrez votre bornDate'}}) }}</span>
+<!--                                    <input type="date" name="birthDate" required>-->
+                                    <span class="input-from-form selectpicker">{{ form_widget(form.bornDate, {'attr': {'placeholder': 'Entrez votre bornDate'}}) }}</span>
                                 </div>
                                 <span class="error-from-form">{{ form_errors(form.bornDate) }}</span>
                             </div>

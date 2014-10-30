@@ -17,9 +17,8 @@
     </div>
 
     <!-- Content -->
-    <form action="{{ path("fos_user_security_check") }}" class="form-horizontal log-in" method="post" style="margin-top: 30px">
     <div class="modal-body">
-
+        <form action="{{ path("fos_user_security_check") }}" class="form-horizontal log-in" method="post" style="margin-top: 30px">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
             <!-- Nom d'utilisateur -->
@@ -47,6 +46,7 @@
                 </div>
             </div>
 
+
             <!-- Validation du formulaire + Mot de passe oublié -->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-8">
@@ -57,15 +57,14 @@
 
             {## <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" /> --> ##}
 
-
+        </form>
     </div>
-
 
     <!-- Footer -->
     <div class="modal-footer" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg')">
         <span style="font-size: 10px;color: white">Pas encore de compte ? &nbsp;&nbsp;</span><a href="{{ path("quelp_connect_registerpage") }}" style="text-decoration: none;color: #f5f5f5"><button type="button" class="btn btn-default" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');border: 1px solid rgba(255, 255, 255, 0.5)"><span class="glyphicon glyphicon-cloud" style="color: white">&nbsp;</span><span style="color: rgba(0,0,0,0.5)">Cliquez-ici</span></button></a>
         <button type="button" class="btn btn-default" data-dismiss="modal" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');border: 1px solid rgba(255, 255, 255, 0.5);color: #f5f5f5">Close</button>
     </div>
-    </form>
+
 
 {% endblock fos_user_content %}
