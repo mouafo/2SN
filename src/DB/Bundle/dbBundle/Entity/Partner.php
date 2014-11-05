@@ -29,6 +29,13 @@ class Partner
     private $createDate;
 
     /**
+     * @var \Boolean
+     *
+     * @ORM\Column(name="Active", type="boolean")
+     */
+    private $active;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="edit_date", type="datetime")
@@ -45,6 +52,13 @@ class Partner
 	 * @ORM\JoinColumn(nullable=false) */
 	private $user_partner;
      
+
+    public function __construct() {
+        $this->createDate = new \Datetime();
+        $this->editDate = new \Datetime();
+        $this->active = false; 
+    }
+
     /**
      * Get id
      *
@@ -56,16 +70,37 @@ class Partner
      }
     
     /**
+     * Set active
+     *
+     * @param \Boolean $active
+     *
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return \Boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
      * Set createDate
      *
      * @param \DateTime $createDate
-     * @return Lessons
+     *
      */
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
-
-        return $this;
     }
 
     /**
@@ -77,18 +112,15 @@ class Partner
     {
         return $this->createDate;
     }
-
     /**
      * Set editDate
      *
      * @param \DateTime $editDate
-     * @return Lessons
+     * 
      */
     public function setEditDate($editDate)
     {
         $this->editDate = $editDate;
-
-        return $this;
     }
 
     /**
