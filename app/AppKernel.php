@@ -27,8 +27,6 @@ class AppKernel extends Kernel
             new Backend\AdminBundle\BackendAdminBundle(),
             new Quelp\ImageBundle\QuelpImageBundle(),
             new Quelp\StatusBundle\StatusBundle(),
-            new Quelp\MessageBundle\QuelpMessageBundle(),
-            new Quelp\RelationBundle\QuelpRelationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

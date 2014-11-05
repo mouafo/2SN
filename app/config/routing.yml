@@ -2,14 +2,6 @@ status:
     resource: "@StatusBundle/Resources/config/routing.yml"
     prefix:   /
 
-quelp_relation:
-    resource: "@QuelpRelationBundle/Resources/config/routing.yml"
-    prefix:   /
-
-quelp_message:
-    resource: "@QuelpMessageBundle/Resources/config/routing.yml"
-    prefix:   /
-
 quelp_image:
     resource: "@QuelpImageBundle/Resources/config/routing.yml"
     prefix:   /
