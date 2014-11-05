@@ -1,0 +1,43 @@
+{% extends "QuelpConnectBundle::layout.html.twig" %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12" style="margin-top: 50px;margin-bottom: 30px">
+
+        {% block fos_user_content %}
+            <h1 style="text-align: center;color: white;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Quelp vous souhaite la bienvenue <span>{{ ' %username%'|trans({'%username%': user.username}) }}</span></h1>
+
+            <p style="color: white;text-align: center;font-size: 20px;font-weight: 300;margin-top: 50px">Vous pouvez dès à présent bénéficier de toutes les fonctionnalités de Quelp !</p>
+            <div style="display: inline-block;position: relative;left: 30%;top: 50px;">
+
+<!--            <div class="complete-profil-button" style="border-radius: 10px;border: 2px solid #f5f5f5;position: relative;width: 250px;height:50px;padding: 10px 10px 10px 40px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');margin-right: 20px">
+                <a href="#" class="link-complete-profil" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Complétez votre profil</a>
+                <span class="glyphicon glyphicon-plus img-complete-profil" style="color: #f5f5f5;font-size: 20px;font-weight: 300;"></span>
+            </div>
+            <div class="complete-profil-button" style="margin-top: 50px;display: inline-block;border-radius: 10px;border: 2px solid #f5f5f5;position: relative;width: 250px;height:50px;padding: 10px 10px 10px 40px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');margin-right: 20px">
+                <a href="#" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Voir votre profil</a>
+            </div> -->
+                <button class="btn complete-profil-button" style="position: relative;padding: 10px 30px 10px 30px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');margin-right: 20px">
+                    <a href="#" class="link-complete-profil" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Complétez votre profil</a>
+                    <span class="glyphicon glyphicon-plus img-complete-profil" style="color: #f5f5f5;font-size: 20px;font-weight: 300;"></span>
+                </button>
+                <button class="btn" style="padding: 10px 50px 10px 50px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg')">
+                    <a href="#" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Voir votre profil</a>
+                </button>
+
+            </div>
+            <button  class="btn" style="padding: 10px 50px 10px 50px;display: block;position: relative;left: 43%;top: 100px;margin-bottom: 150px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');">
+                <a href="#" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300;letter-spacing: 1px">Accueil</a>
+            </button>
+            {% if app.session is not empty %}
+                {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+            {% endif %}
+        {% endblock fos_user_content %}
+        </div>
+    </div>
+
+{% endblock %}

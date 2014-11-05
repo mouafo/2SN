@@ -22,3 +22,11 @@ quelp_connect_registerpage:
 quelp_connect_passwordpage:
     path:     /request
     defaults: { _controller: FOSUserBundle:Resetting:request }
+
+################################################################################################
+#####################################   PROFIL   ###############################################
+################################################################################################
+
+quelp_connect_profilepage:
+    path:     /profile
+    defaults: { _controller: FOSUserBundle:Profile:show }

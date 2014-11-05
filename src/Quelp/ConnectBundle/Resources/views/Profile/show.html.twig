@@ -1,0 +1,205 @@
+{# Cette page est la page home des pages connections d'inscription #}
+
+{% extends "QuelpConnectBundle::layout.html.twig" %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block content %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+    {% block fos_user_content %}
+        <!-- Page Content -->
+        <div class="container-fluid fos_user_user_show" style="margin-top: 20px;">
+
+        <div class="col-xs-12 row-fluid" style="margin-bottom: 20px">
+            <div class="col-md-2">
+                <div class="boder">
+                    <span class="glyphicon glyphicon-picture" style="color: white;font-size: 20px"></span> <a href="#" class="lien" style="color: white;font-size: 17px; font-weight: 300">&nbsp;Photos</a>
+                    <a href="#" ><img src="{{ asset('bundles/front/img/bg_Foto.jpg') }}" width="115" alt="" class="img-border img-rounded" style="border: 3px solid rgba(255, 255, 255, 0.3);margin-top: 10px"></a>
+                    <span class="glyphicon glyphicon-calendar" style="color: white;font-size: 20px;margin-top: 20px"></span> <a href="#" class="lien" style="color: white;font-size: 16px; font-weight: 300">Événements</a>
+                    <a href="#" ><img src="{{ asset('bundles/front/img/symfony.png') }}" width="115" alt="" class="img-border img-rounded" style="margin-top: 10px;border: 3px solid rgba(255, 255, 255, 0.3)"></a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-7">
+                <div class="boder">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img src="{{ asset('bundles/front/img/avatarmanel.jpg') }}"  height="160" width="160" alt="" class="img-thumbnail" >
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p class="firstname-profil" style="color: rgba(0, 0, 0, 0.5);font-size: 22px;font-weight: 400">{{ user.username }}&nbsp;</p>
+                                        </td>
+                                        <td>
+                                            <p class="surname-profil" style="color: rgba(0, 0, 0, 0.5);font-size: 22px;font-weight: 400">{{user.name}}</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h4>
+                            <div class="edit-profil">
+                                <a href="#"><span class="glyphicon glyphicon-cog" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Modifier Profil</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <tr>
+                            <td><a href="followers.html" class="lien">Follower (8)</a></td>
+                            <td><a href="following.html" class="lien">Following (8)</a></td>
+                            <td><a href="" class="lien">Notes des Quelpers (3)</a></td>
+                        </tr>
+
+                    </table>
+                    <div class="news"><h4>Mon Actualité</h4></div>
+
+                    <div style="float: left">
+                        <a href="#"><img class="media-object img-rounded" src="{{ asset('bundles/front/img/avatarmanel.jpg') }}" width="90" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
+                    </div>
+                    <div style="display: inline-block">
+                    <table>
+                        <tr>
+                            <td style="padding: 5px 10px 5px 0px">
+
+                            </td>
+                            <td style="padding: 0 20px 0 10px;vertical-align: top">
+                                <h4 style="float: left">Prénom NOM</h4>
+                                <div class="pull-right" style="display: inline-block">
+                                    <span class="glyphicon glyphicon-time"></span><small>&nbsp;12 mins ago</small>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr style="vertical-align: top">
+                            <td style="vertical-align: top"><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
+                            <td style="padding: -150px 20px 0 10px;">
+                                <p>Hae duae provinciae bello quondam piratico catervis mixtae praedonum a Servilio pro consule missae sub iugum factae sunt vectigales. et hae quidem regiones velut.  bello quondam piratico catervis mixtae</p>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+
+
+                    <div class="news">
+
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right text-muted">
+                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                <h4 class="media-heading">Billy Perrot</h4>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                <br><br/><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                                    <a href="#" class="lien"> <span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="news">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right text-muted">
+                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                <h4 class="media-heading">Billy Perrot</h4>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                                    <a href="#" class="lien"><span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news">
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                            </a>
+                            <div class="media-body">
+                                <small class="pull-right text-muted">
+                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                <h4 class="media-heading">Billy Perrot</h4>
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                                vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>  <a href="#" class="lien"><span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-group" id="accordion">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
+                                <p class="text-center">Suite</p>
+                            </a>
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-3">
+                <div class="boder">
+                    <input type="text" class="form-control" placeholder="chat with  ..."></br>
+                    <div class="panel-group" id="accordion">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <p class="text-center">En ligne (5)  <span class="glyphicon glyphicon-chevron-down"></span></p>
+                            </a>
+                        </h4>
+
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <br>
+                                <table class="table">
+                                    <tr>
+                                        <td><a href=""><img src="image/icone-marvel.png" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Thomas</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><img src="image/avatar2.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Damien</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><img src="image/black-widow-icon.png" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Anne</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #eea236 "></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><img src="image/naruto.png" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Julien</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><img src="image/rosa.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Sophie</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+
+
+            {% endblock %}
+
+
+
+{% endblock %}

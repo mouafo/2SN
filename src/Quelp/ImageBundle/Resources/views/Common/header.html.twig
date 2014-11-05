@@ -1,12 +1,22 @@
 <div class="row">
 
     <div class="col-sm-12" style="background: rgba(255, 255, 255, 0.5);padding-right: 120px">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
+                <a class="link-deconnect brand" href="{{ path('fos_user_security_logout') }}" style="margin-left: 130px">
+                    Déconnection
+                </a>
+
+        {% else %}
+            <a data-toggle="modal" href="{{ path('quelp_connect_connectpage') }}" data-target="#myModal">
+                <button  class="btn btn-default connect-button" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');color: #f5f5f5">Se connecter</button>
+            </a>
+        {% endif %}
         <a class="glyphicon glyphicon-cog pull-right" style="padding-top: 3px"></a>
         <a class="brand pull-right" href="#" style="padding-right: 30px"><strong>CERCLES</strong></a>
         <a class="brand pull-right" href="#" style="padding-right: 15px" ><strong>MESSAGES</strong></a>
-        <a class="brand pull-right" href="#" style="padding-right: 15px" ><strong>PROFIL</strong></a>
-
+<!--        <a class="brand pull-right" href="#" style="padding-right: 15px" ><strong>PROFIL</strong></a>-->
+        <a class="brand pull-right" href="#"><span class="know-status" style="background-color: rgba(255, 255, 255, 0.2);border-left: 1px solid rgba(255, 255, 255, 0.5);border-right: 1px solid rgba(255, 255, 255, 0.5);padding: 0 10px 0 10px;font-weight: bold">{{ app.user.username }}&nbsp;{{ app.user.name }}&nbsp;</span></a>
     </div>
 </div>
 
