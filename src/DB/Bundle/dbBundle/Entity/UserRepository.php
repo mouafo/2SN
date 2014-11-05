@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+	public function findByNameOrSurname($name) {
+		$qb = $this->createQueryBuilder('u');
+		$qb->where('u.name like :name') ->setParameter('name', '%'.$name.'%')
+			->orWhere('u.surname like :name') ->setParameter('name', '%'.$name.'%')
+			->orWhere('u.username like :name') ->setParameter('name', '%'.$name.'%')
+			->orderBy('u.username', 'ASC'); 
+		return $qb->getQuery()->getResult();
+	}
 }

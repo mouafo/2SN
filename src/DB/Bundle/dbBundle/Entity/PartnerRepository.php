@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartnerRepository extends EntityRepository
 {
+	public function findByNameOrSurname($name) {
+		$qb = $this->createQueryBuilder('u');
+		$qb->where('u.name like :name') ->setParameter('name', '%'.$name.'%')
+			->orWhere('u.surname like :name') ->setParameter('name', '%'.$name.'%')
+			->orWhere('u.username like :name') ->setParameter('name', '%'.$name.'%')
+			->orderBy('u.username', 'ASC'); 
+		return $qb->getQuery()->getResult();
+	}
+/*
+	public function findUserPartners($user) {
+		$qb = $this->createQueryBuilder('p');
+		$qb->where('p.user like :user') ->setParameter('user', '%'.$user.'%')
+			->orWhere('u.surname like :name') ->setParameter('name', '%'.$name.'%')
+			->orWhere('u.username like :name') ->setParameter('name', '%'.$name.'%')
+			->orderBy('u.username', 'ASC'); 
+		return $qb->getQuery()->getResult();
+	}*/
 }
