@@ -4,3 +4,6 @@ quelp_image_albumpage:
 quelp_image_albumspage:
     path:     /albums
     defaults: { _controller: QuelpImageBundle:Albums:index }
+quelp_image_murpage:
+     path:     /mur
+     defaults: { _controller: QuelpImageBundle:Mur:index }
