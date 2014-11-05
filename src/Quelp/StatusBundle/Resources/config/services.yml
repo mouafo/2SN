@@ -1,0 +1,7 @@
+parameters:
+#    status.example.class: Quelp\StatusBundle\Example
+
+services:
+#    status.example:
+#        class: %status.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

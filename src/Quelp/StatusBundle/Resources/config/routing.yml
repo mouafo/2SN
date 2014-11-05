@@ -1,0 +1,4 @@
+
+status_homepage:
+    path:     /status
+    defaults: { _controller: StatusBundle:Default:index }
