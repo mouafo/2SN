@@ -3,3 +3,5 @@ app/cache/*
 .DS_Store
 .idea
 .svn
+app/logs/dev.log
+app/logs/*

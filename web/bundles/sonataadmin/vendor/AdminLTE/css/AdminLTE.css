@@ -1010,6 +1010,7 @@ body > .header .logo .icon {
   -moz-border-radius: 0px !important;
   border-radius: 0px !important;
   box-shadow: none;
+  width: 25%;
 }
 .form-control:focus {
   border-color: #3c8dbc !important;
@@ -1274,7 +1275,7 @@ body > .header .logo .icon {
   border-top-color: #f39c12;
 }
 .box.box-success {
-  border-top-color: #00a65a;
+  border-top-color: #06A5FC;
 }
 .box.height-control .box-body {
   max-height: 300px;

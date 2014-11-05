@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>My Quelp</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 70px;
+            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+            background-image: url("image/bg_foto.jpg");
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Colorbox Core JavaScript -->
+    <script src="js/jquery.colorbox.js"></script>
+    <script>
+        $(document).ready(function(){
+            //Examples of how to assign the Colorbox event to elements
+            $(".group1").colorbox({rel:'group1'});
+            $(".ajax").colorbox();
+            $(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+            $(".vimeo").colorbox({iframe:true, innerWidth:500, innerHeight:409});
+            $(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+            $(".inline").colorbox({inline:true, width:"50%"});
+            $(".callbacks").colorbox({
+                onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+                onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+                onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+                onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+                onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+            });
+
+            //Example of preserving a JavaScript event for inline calls.
+            $("#click").click(function(){
+                $('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+                return false;
+            });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+    <div class="col-xs-12 row-fluid">
+        <div class="col-md-2">
+            <div class="boder">
+                <br><span class="glyphicon glyphicon-picture"></span> <a href="#" class="lien">Mes photo</a></br>
+                <a href="#" ><image src="#image/img3.jpg" height="125" width="125" alt="" class="img-border"></a></br>
+                <br><span class="glyphicon glyphicon-calendar"></span> <a href="#" class="lien">Événement</a></br>
+                <a href="#" ><image src="#image/calendar.png" height="125" width="125" alt="" class="img-border"></a></br>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-7">
+            <div class="boder">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img src="image/my-avatar.jpg" height="160" width="160" alt="" class="img-thumbnail" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Billy Perrot</h4>
+                        <a href="modifier.html"><button type="button" class="bouton bouton-default btn-sm"> <span class="glyphicon glyphicon-cog"></span> Modifier Profil</button></a>
+                    </div>
+                </div>
+                <table class="table table-hover">
+                    <tr>
+                        <td><a href="followers.html" class="lien">Follower (8)</a></td>
+                        <td><a href="following.html" class="lien">Following (8)</a></td>
+                        <td><a href="" class="lien">Notes des Quelpers (3)</a></td>
+                    </tr>
+
+                </table>
+                <div class="news"><h4>Mon Actualité</h4></div>
+
+                <div class="news">
+
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <small class="pull-right text-muted">
+                                <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            <h4 class="media-heading">Billy Perrot</h4>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                                <a href="#" class="lien"> <span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="news">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <small class="pull-right text-muted">
+                                <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            <h4 class="media-heading">Billy Perrot</h4>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                                <a href="#" class="lien"><span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="news">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <small class="pull-right text-muted">
+                                <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            <h4 class="media-heading">Billy Perrot</h4>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                            vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>  <a href="#" class="lien"><span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-group" id="accordion">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
+                            <p class="text-center">Suite</p>
+                        </a>
+                    </h4>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-3">
+            <div class="boder">
+                <input type="text" class="form-control" placeholder="chat with  ..."></br>
+                <div class="panel-group" id="accordion">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <p class="text-center">En ligne (5)  <span class="glyphicon glyphicon-chevron-down"></span></p>
+                        </a>
+                    </h4>
+
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <br>
+                            <table class="table">
+                                <tr>
+                                    <td><a href=""><img src="image/icone-marvel.png" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Thomas</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/avatar2.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Damien</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/black-widow-icon.png" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Anne</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #eea236 "></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/naruto.png" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Julien</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/rosa.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Sophie</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script  src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>
