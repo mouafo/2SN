@@ -1,0 +1,163 @@
+{# Cette page est la page modification du user profil #}
+
+{% extends "QuelpConnectBundle::layout.html.twig" %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block content %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+    {% block fos_user_content %}
+
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="col-xs-12 col-md-2">
+            <div class="boder">
+                <h4 class="text-center">QUELPER</h4>
+                <p class="text-center"><span class="glyphicon glyphicon-star-empty"></span>100%</p>
+                <a href="profil.html" ><img src="image/my-avatar.jpg" height="125" width="125" alt="" class="img-rounded"></a></br>
+                <br><p class="text-center">Ludo Lebon</p>
+                <p class="text-center">22 ans</p>
+
+
+                <br><span class="glyphicon glyphicon-user"> </span> <a href="#" >Follower</a></br>
+                <br><span class="glyphicon glyphicon-picture"></span> <a href="#" >Photo</a></br>
+                <br><span class="glyphicon glyphicon-calendar"></span> <a href="#" >Événement</a></br>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-7">
+            <div class="boder">
+                <h2>Informations générales</h2>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                        60%
+                    </div>
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="exampleInputFile" class="col-sm-2 control-label">Image</label>
+                        <div class="col-sm-10">
+                            <input type="file" id="exampleInputFile">
+                        </div>
+                        <p class="help-block">Télécharger une image de profil depuis votre ordinateur.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Pseudo</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="Pseudo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Résidence</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPassword3" placeholder="Résidence">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Biographie</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <h2>Mes super compétences</h2>
+                    <h5>First compétences</h5>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super pouvoir"><br>
+                    <p>Niveau de compétence</p>
+                    <select class="form-control">
+                        <option>Débutant</option>
+                        <option>Internédiaire</option>
+                        <option>Avancé</option>
+                        <option>Expert</option>
+                    </select>
+                    <h5>Second compétences</h5>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super pouvoir"><br>
+                    <p>Niveau de compétence</p>
+                    <select class="form-control">
+                        <option>Débutant</option>
+                        <option>Internédiaire</option>
+                        <option>Avancé</option>
+                        <option>Expert</option>
+                    </select>
+                    <h5>Third compétences</h5>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super pouvoir"><br>
+                    <p>Niveau de compétence</p>
+                    <select class="form-control">
+                        <option>Débutant</option>
+                        <option>Internédiaire</option>
+                        <option>Avancé</option>
+                        <option>Expert</option>
+                    </select>
+                    <br>
+                    <div class="form-group">
+                        <div class="col-md-5 col-md-offset-4"><button type="submit" class="btn btn-primary">Enregistrer les modifications</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="boder">
+                <input type="text" class="form-control" placeholder="chat with  ..."></br>
+                <div class="panel-group" id="accordion">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <p class="text-center">En ligne (5)  <span class="glyphicon glyphicon-chevron-down"></span></p>
+                        </a>
+                    </h4>
+
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <br>
+                            <table class="table">
+                                <tr>
+                                    <td><a href=""><img src="image/icone-marvel.png" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Thomas</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/avatar2.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Damien</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/black-widow-icon.png" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Anne</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #eea236 "></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/naruto.png" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Julien</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href=""><img src="image/rosa.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                    <td><a href="" class="lien">Sophie</a></td>
+                                    <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    {% endblock %}
+
+
+
+{% endblock %}

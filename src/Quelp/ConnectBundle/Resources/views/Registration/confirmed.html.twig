@@ -20,18 +20,20 @@
             <div class="complete-profil-button" style="margin-top: 50px;display: inline-block;border-radius: 10px;border: 2px solid #f5f5f5;position: relative;width: 250px;height:50px;padding: 10px 10px 10px 40px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');margin-right: 20px">
                 <a href="#" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Voir votre profil</a>
             </div> -->
+
+                <a href="{{ path('quelp_connect_editprofile') }}" class="link-complete-profil" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Complétez votre profil</a>
                 <button class="btn complete-profil-button" style="position: relative;padding: 10px 30px 10px 30px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');margin-right: 20px">
-                    <a href="#" class="link-complete-profil" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Complétez votre profil</a>
-                    <span class="glyphicon glyphicon-plus img-complete-profil" style="color: #f5f5f5;font-size: 20px;font-weight: 300;"></span>
+
                 </button>
-                <button class="btn" style="padding: 10px 50px 10px 50px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg')">
-                    <a href="#" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Voir votre profil</a>
+                <span class="glyphicon glyphicon-plus img-complete-profil" style="color: #f5f5f5;font-size: 20px;font-weight: 300;"></span>
+                <a href="{{ path('fos_user_profile_show') }}" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300">Voir votre profil</a>
+                <button class="btn complete-profil-button" style="position: relative;padding: 10px 30px 10px 30px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');margin-right: 20px">
+
                 </button>
+                <a href="{{ path('quelp_image_murpage') }}" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300;letter-spacing: 1px">Accueil</a>
 
             </div>
-            <button  class="btn" style="padding: 10px 50px 10px 50px;display: block;position: relative;left: 43%;top: 100px;margin-bottom: 150px;background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');">
-                <a href="#" style="color: white;font-size: 18px;font-family: 'Helvetica Neue' sans-serif;font-weight: 300;letter-spacing: 1px">Accueil</a>
-            </button>
+
             {% if app.session is not empty %}
                 {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
                 {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
