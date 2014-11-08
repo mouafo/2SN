@@ -1,0 +1,174 @@
+
+
+{% extends "QuelpImageBundle::layout.html.twig" %}
+
+{% block title %} Search result {% endblock %}
+
+{% block content %}
+
+<br><br>
+<div class="col-xs-12 col-md-3" >
+
+    <div class="panel panel-primary"  align="center"  >
+
+
+
+        <img src="{{asset('bundles/front/img/manel.jpg')}}"  height="35%" width="35%" class="img-thumbnail" >
+        <p><strong>Nom&Prenom</strong></p>
+        <br><br><br><br><br><br>
+        <div class="" align ="left">
+            &nbsp;&nbsp;
+            <span class="glyphicon glyphicon-camera"></span> <strong>TELECHARGER</strong>
+        </div>
+        <br>
+        <div class="form-group">
+
+            <input type="file" id="exampleInputFile">
+
+        </div>
+        <br>
+        <button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
+        <br><br><br><br>
+
+        <div class="" align ="left" >
+            &nbsp;&nbsp;
+            <span class="glyphicon glyphicon-pencil"></span> <strong>ECRIRE</strong></div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <textarea class="form-control" rows="3" placeholder="Exprimer-vous" style=" width: 98%"></textarea>
+        <div class="col-sm-offset-9 col-sm-3">
+            <button type="submit" class="btn btn-default"><strong>&nbsp;&nbsp;OK&nbsp;&nbsp;</strong></button>
+        </div>
+        <br><br><br><br>
+        <br>
+        <br>
+
+    </div></div>
+
+
+<div class="col-xs-12 col-md-7">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4>Search result</h4> </a>
+        </div>
+
+        <div class="col-md-8">    <br><br>
+				<!-- Resultat de la recherche -->
+				
+				{% for key, row in users_found %}
+				<ul>
+				   	  <li>{{ row.name }}</li>
+				   	  <li>{{ row.surname }}</li>
+				   	  <li>{{ row.email }}</li>
+				   	  <li>{{ row.username }}</li>
+				   	  <li><a href="{{ path('quelp_relation_demande', {'id': row.id}) }}">demande d'amis</a></li>
+				</ul>
+				<br>
+				{% endfor %}
+           
+		</div>      <br><br>
+
+		<div class="row">
+		</li>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<!-- Contenu Ami en ligne -->
+<div class="col-xs-12 col-md-2" style="margin-top: 20px">
+    <div class="panel panel-primary" style="padding: 30px 0 30px 0;text-align: center">
+        <div class="friend-connect-title">
+            <span style="color:green"><i class="glyphicon glyphicon-off" style="font-size:17px;"></i></span>
+            <strong> Amis&nbsp;Actifs </strong>
+        </div>
+
+        <ul>
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami1</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami2</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami3</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami4</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami5</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami6</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami7</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami8</h5>
+                    </div>
+                </a>
+            </li>
+
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                    <div class="media-body">
+                        <h5 class="media-heading">Ami9</h5>
+                    </div>
+                </a>
+            </li>
+
+
+
+
+        </ul>
+    </div> </div>
+
+{% endblock %}

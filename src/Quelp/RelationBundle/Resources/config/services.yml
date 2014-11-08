@@ -1,0 +1,7 @@
+parameters:
+#    quelp_relation.example.class: Quelp\RelationBundle\Example
+
+services:
+#    quelp_relation.example:
+#        class: %quelp_relation.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

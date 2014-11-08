@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Quelp\ImageBundle\QuelpImageBundle(),
             new Quelp\StatusBundle\StatusBundle(),
             new Quelp\InfosBundle\QuelpInfosBundle(),
+            new Quelp\RelationBundle\QuelpRelationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

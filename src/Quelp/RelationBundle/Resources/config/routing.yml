@@ -1,0 +1,12 @@
+quelp_relation_show:
+    path:     /find
+    defaults: { _controller: QuelpRelationBundle:Search:index }
+
+quelp_relation_demande:
+    path:     /sendfriendRequest
+    defaults: { _controller: QuelpRelationBundle:Search:demand }
+
+
+quelp_relation_showall:
+    path:     /partner
+    defaults: { _controller: QuelpRelationBundle:Search:show }
