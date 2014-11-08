@@ -26,25 +26,18 @@
     <div class="col-sm-12 table-responsive">
         <table style="background-color: rgba(255, 255, 255, 0.2);width: 100%">
             <tr>
-                <td class="col-sm-4" style="text-align: center">
+                <td class="col-sm-3" style="text-align: center">
                     <a href="{{ path('quelp_image_murpage') }}"></a><img src="{{asset('bundles/front/img/Quel.png')}}" style="width: 200px;height: 80px;"/>
                 </td>
-                <td class="col-sm-4" style="text-align: center;color: #ffffff;padding-bottom: 10px">
+                <td class="col-sm-6" style="text-align: center;color: #ffffff;padding-bottom: 10px">
                     <h2 style="font-size: 25px">Besoin de quelque chose ?</h2>
                     <h4>Trouvez-la ici</h4>
-                    <form class="form-search" style="padding-left: 40px">
-                        <table style="border-collapse: collapse">
-                            <tr>
-                                <td> <input class="form-control" type="text" placeholder="Entrez un mot clé" style="margin-left: 60px;color: dimgrey;width: 80%;float: left"></td>
-                                <td> <button class="btn btn-small btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button></td>
-                            </tr>
-                        </table>
-                    </form>
+                    {% include "QuelpRelationBundle:Default:index.html.twig"  %}
                 </td>
-                <td class="col-sm-4 icone_m" style="text-align: center;color: powderblue;font-size: 20px;">
-                    <i class="glyphicon glyphicon-user"></i>
-                    <i class="glyphicon glyphicon-tag"></i>
-                    <i class="glyphicon glyphicon-bell" ></i>
+                <td class="col-sm-3 icone_m" style="text-align: center;color: powderblue;font-size: 20px;">
+                    <a class="brand pull-right" href="{{ path('quelp_relation_showall') }}"><i class="glyphicon glyphicon-user"></i></a>
+                    <a class="brand pull-right" href="#"><i class="glyphicon glyphicon-tag"></i></a>
+                    <a class="brand pull-right" href="#"><i class="glyphicon glyphicon-bell" ></i></a>
                 </td>
             </tr>
         </table>

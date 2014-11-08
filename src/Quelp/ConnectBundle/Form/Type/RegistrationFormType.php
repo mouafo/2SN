@@ -27,10 +27,10 @@ class RegistrationFormType extends AbstractType
         // add your custom field
         $builder->add('job');
         $builder->add('name');
-        
+        $builder->add('surname');
         $builder->add('bornDate', 'date', array('input'  => "datetime",
                         'widget' => 'choice',
-                        'years' => range(1900,2015),
+                        'years' => range(1950,2015),
                         'format' => 'dd  /  MM  /  yyyy',
                         'empty_value' => '',
                         'label'=>'Date of Birth:'));

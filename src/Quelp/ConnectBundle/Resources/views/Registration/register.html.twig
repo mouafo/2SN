@@ -63,23 +63,23 @@
                         <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal form-connexion">
 
                             {# Nom d'utilisateur #}
-                            <div class=" form-for-user">
-                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.username, "Utilisateur ") }}</span>
-                                    <div class="col-sm-4  inline-user" style="width: 40%;margin-left: -10px">
-                                        <span class="input-from-form">{{ form_widget(form.username, {'attr': {'placeholder': 'Entrez votre prénom'}}) }}</span>
+                            <div class=" form-group">
+                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.username, "Identifiant ") }}</span>
+                                    <div class="col-sm-9">
+                                        <span class="input-from-form">{{ form_widget(form.username, {'attr': {'placeholder': 'Entrez votre identifiant'}}) }}</span>
                                     </div>
-                                    <div class="col-sm-4" style="margin-left: -20px;width: 41%">
-                                        <span class="input-from-form">{{ form_widget(form.name, {'attr': {'placeholder': 'Entrez votre nom'}}) }}</span>
-                                    </div>
-                                <span class="error-from-form">{{ form_errors(form.username) }}</span>
+                                    <span class="error-from-form">{{ form_errors(form.username) }}</span>
                             </div>
 
                             <div class="form-group">
-                                <span class="label-from-form col-sm-3 control-label"></span>
-                                <div class="col-sm-9">
+                                <span class="label-from-form col-sm-3 control-label">{{ form_label(form.name, "Nom ") }}</span>
+                                <div class="col-sm-4 inline-user" style="width: 37%">
                                     <span class="input-from-form">{{ form_widget(form.name, {'attr': {'placeholder': 'Entrez votre nom'}}) }}</span>
                                 </div>
-                                <span class="error-from-form">{{ form_errors(form.name) }}</span>
+                                <div class="col-sm-4" style="margin-left: -20px;width: 41%">
+                                    <span class="input-from-form">{{ form_widget(form.surname, {'attr': {'placeholder': 'Entrez votre prenom'}}) }}</span>
+                                </div>
+                                <span class="error-from-form">{{ form_errors(form.surname) }}</span>
                             </div>
 
                             {# Adresse mail #}

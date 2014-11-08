@@ -16,7 +16,7 @@ class PartnerRepository extends EntityRepository
 		$qb = $this->createQueryBuilder('p');
 		$qb ->where('p.user = :user') ->setParameter('user', $user)
 			->orWhere('p.user_partner = :user') ->setParameter('user', $user)
-			->andWhere('p.active = :actif') ->setParameter('actif', FALSE)
+			->andWhere('p.active = :actif') ->setParameter('actif', TRUE)
 			->orderBy('p.createDate', 'ASC'); 
 		return $qb->getQuery()->getResult();
 	}
