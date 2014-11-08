@@ -24,16 +24,16 @@ class Multimedia
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=200)
+     * @ORM\Column(name="name", type="string", length=200, nullable=true)
      */
-    private $name;
+    private $name = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ext", type="string", length=5)
+     * @ORM\Column(name="ext", type="string", length=5, nullable=true)
      */
-    private $ext;
+    private $ext = null;
 
     /**
      * @var string
@@ -57,16 +57,20 @@ class Multimedia
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Album")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Album", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $album;
      
-
+    
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
 
     /**
      * Get id

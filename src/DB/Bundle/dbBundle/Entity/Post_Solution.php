@@ -39,6 +39,7 @@ class Post_Solution
      * @var \DateTime
      *
      * @ORM\Column(name="create_date", type="datetime")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $createDate;
 
@@ -50,16 +51,21 @@ class Post_Solution
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Post")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Post", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $post;
 
 
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
+    
     /**
      * Get id
      *

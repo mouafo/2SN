@@ -24,23 +24,23 @@ class Lessons
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=160)
+     * @ORM\Column(name="title", type="string", length=160, nullable=true)
      */
-    private $title;
+    private $title = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="subject", type="text")
+     * @ORM\Column(name="subject", type="text", nullable=true)
      */
-    private $subject;
+    private $subject = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="string", length=255)
+     * @ORM\Column(name="file", type="string", length=255, nullable=true)
      */
-    private $file;
+    private $file = null;
 
     /**
      * @var \DateTime
@@ -57,11 +57,16 @@ class Lessons
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user;
      
 
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
+    
     /**
      * Get id
      *

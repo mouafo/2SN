@@ -24,9 +24,9 @@ class Lesson_Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="subject", type="string", length=200)
+     * @ORM\Column(name="subject", type="string", length=200, nullable=true)
      */
-    private $subject;
+    private $subject = null;
     
     /**
      * @var \DateTime
@@ -43,21 +43,26 @@ class Lesson_Comment
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user_create;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user_comment;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Lessons")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Lessons", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $lessons;
      
 
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
+    
     /**
      * Get id
      *

@@ -135,10 +135,9 @@ abstract class User implements UserInterface, GroupableInterface
         $this->credentialsExpired = false;
         $this->setName('');
         $this->setSurname('');
-        $this->setBornDate(new \Datetime());
         $this->setJob('');
         $this->setCreateDate(new \Datetime());
-        $this->setEditDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
     }
 
     public function addRole($role)

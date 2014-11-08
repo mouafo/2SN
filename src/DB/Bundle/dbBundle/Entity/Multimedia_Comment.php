@@ -43,21 +43,25 @@ class Multimedia_Comment
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user_create;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user_comment;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Multimedia")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Multimedia", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $multimedia;
      
-
+    
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
 
     /**
      * Get id

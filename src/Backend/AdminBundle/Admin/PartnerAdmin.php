@@ -32,8 +32,9 @@ class PartnerAdmin extends Admin
   protected function configureListFields(ListMapper $listMapper)
   {
         $listMapper
-          ->add('user')
-          ->add('user_partner')
+          ->add('user', 'text', array('label' => 'User', 'required' => false))
+          ->add('user_partner', 'text', array('label' => 'Partner', 'required' => false))
+          ->add('active', 'boolean', array('label' => 'PartnerShip Activated', 'required' => false))
           ->add('createDate')
 	  ;
   }

@@ -24,17 +24,17 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="subject", type="text")
+     * @ORM\Column(name="subject", type="text", nullable=true)
      */
-    private $subject;
+    private $subject = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $sender;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $receiver;
 
@@ -53,6 +53,11 @@ class Message
     private $editDate;
 
 
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
+    
     /**
      * Get id
      *

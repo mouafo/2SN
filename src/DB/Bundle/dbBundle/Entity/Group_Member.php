@@ -36,16 +36,21 @@ class Group_Member
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Groups")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Groups", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false) */
     private $groups;
 
 
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
+    
     /**
      * Get id
      *

@@ -50,6 +50,11 @@ class Avis
     private $editDate;
 
 
+    public function __construct() {
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
+    }
+
     /**
      * Get id
      *

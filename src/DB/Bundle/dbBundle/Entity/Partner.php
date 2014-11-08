@@ -43,19 +43,19 @@ class Partner
     private $editDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
 	 * @ORM\JoinColumn(nullable=false) */
 	private $user;
      
     /**
-     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
 	 * @ORM\JoinColumn(nullable=false) */
 	private $user_partner;
      
 
     public function __construct() {
-        $this->createDate = new \Datetime();
-        $this->editDate = new \Datetime();
+        $this->setCreateDate(new \Datetime());
+        $this->setEditDate($this->getCreateDate());
         $this->active = false; 
     }
 

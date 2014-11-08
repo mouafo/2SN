@@ -20,3 +20,14 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [BackendAdminBundle]]
+
+    sonata.admin.Status:
+        class: Backend\AdminBundle\Admin\StatusAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Contents", label: "Content Manager" }
+        arguments:
+            - ~
+            - DB\Bundle\dbBundle\Entity\Lessons
+            - ~
+        calls:
+            - [ setTranslationDomain, [BackendAdminBundle]]

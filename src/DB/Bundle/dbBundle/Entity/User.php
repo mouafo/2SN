@@ -25,30 +25,30 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=150)
+     * @ORM\Column(name="name", type="string", length=150, nullable=true)
      */
-    private $name;
+    private $name = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="surname", type="string", length=150)
+     * @ORM\Column(name="surname", type="string", length=150, nullable=true)
      */
-    private $surname;
+    private $surname = null;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="born_date", type="datetime")
+     * @ORM\Column(name="born_date", type="date", nullable=true)
      */
-    private $bornDate;
+    private $bornDate = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="job", type="string", length=150)
+     * @ORM\Column(name="job", type="string", length=150, nullable=true)
      */
-    private $job;
+    private $job = null;
 
     /**
      * @var \DateTime
@@ -78,13 +78,11 @@ class User extends BaseUser
      * Set email
      *
      * @param string $email
-     * @return User
+     * 
      */
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -101,13 +99,11 @@ class User extends BaseUser
      * Set password
      *
      * @param string $password
-     * @return User
+     * 
      */
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**

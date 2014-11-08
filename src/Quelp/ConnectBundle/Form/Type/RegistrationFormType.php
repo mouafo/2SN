@@ -28,7 +28,12 @@ class RegistrationFormType extends AbstractType
         $builder->add('job');
         $builder->add('name');
         
-        $builder->add('bornDate', 'datetime', array('input'  => 'datetime','label'=>'Date of Birth:'));
+        $builder->add('bornDate', 'date', array('input'  => "datetime",
+                        'widget' => 'choice',
+                        'years' => range(1900,2015),
+                        'format' => 'dd  /  MM  /  yyyy',
+                        'empty_value' => '',
+                        'label'=>'Date of Birth:'));
     }
 
    public function getParent()
