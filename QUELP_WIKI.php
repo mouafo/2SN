@@ -124,6 +124,9 @@ appercu de la config fonctionnel du projet
 		database_name: bd_2sn, 
 		database_user: root, 
 		database_password: root, 
+		mailer_user: Compte_gmail_denvoi@gmail.com #inserer un compte gmail valide
+                #inserer le mot de passe du compte gmail precedent
+                mailer_password: mot_de_passe
 		etc...
 	}
 		  		
