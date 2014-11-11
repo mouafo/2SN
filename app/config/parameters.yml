@@ -2,10 +2,10 @@
 parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
-    database_port: 8889
-    database_name: bd_2sn
+    database_port: 3306
+    database_name: 2sn
     database_user: root
-    database_password: root
+    database_password: toor
     # mailer_transport: smtp
     mailer_transport: gmail
     # mailer_host: 127.0.0.1
