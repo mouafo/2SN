@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Quelp\StatusBundle\StatusBundle(),
             new Quelp\InfosBundle\QuelpInfosBundle(),
             new Quelp\RelationBundle\QuelpRelationBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
