@@ -426,8 +426,8 @@ class FrameworkExtension extends Extension
         $links = array(
             'textmate' => 'txmt://open?url=file://%%f&line=%%l',
             'macvim'   => 'mvim://open?url=file://%%f&line=%%l',
-            'emacs'    => 'emacs://open?url=file://%file&line=%line',
-            'sublime'  => 'subl://open?url=file://%file&line=%line',
+            'emacs'    => 'emacs://open?url=file://%%f&line=%%l',
+            'sublime'  => 'subl://open?url=file://%%f&line=%%l',
         );
 
         $container->setParameter('templating.helper.code.file_link_format', isset($links[$ide]) ? $links[$ide] : $ide);
@@ -725,6 +725,9 @@ class FrameworkExtension extends Extension
                 break;
             case '2.5':
                 $api = Validation::API_VERSION_2_5;
+                // the validation class needs to be changed only for the 2.5 api since the deprecated interface is
+                // set as the default interface
+                $container->setParameter('validator.class', 'Symfony\Component\Validator\Validator\ValidatorInterface');
                 break;
             default:
                 $api = Validation::API_VERSION_2_5_BC;
