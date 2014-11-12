@@ -809,17 +809,9 @@ class SQLServerPlatform extends AbstractPlatform
         $query   = preg_replace('/\s+ORDER\s+BY\s+([^\)]*)/', '', $query); //Remove ORDER BY from $query
         $format  = 'SELECT * FROM (%s) AS doctrine_tbl WHERE doctrine_rownum BETWEEN %d AND %d';
 
-        // Pattern to match "main" SELECT ... FROM clause (including nested parentheses in select list).
-        $selectFromPattern = '/^(\s*SELECT\s+(?:\((?>[^()]+)|(?:R)*\)|[^(])+)\sFROM\s/i';
-
         if ( ! $orderBy) {
-            //Replace only "main" FROM with OVER to prevent changing FROM also in subqueries.
-            $query = preg_replace(
-                $selectFromPattern,
-                '$1, ROW_NUMBER() OVER (ORDER BY (SELECT 0)) AS doctrine_rownum FROM ',
-                $query,
-                1
-            );
+            //Replace only first occurrence of FROM with OVER to prevent changing FROM also in subqueries.
+            $query = preg_replace('/\sFROM\s/i', ', ROW_NUMBER() OVER (ORDER BY (SELECT 0)) AS doctrine_rownum FROM ', $query, 1);
 
             return sprintf($format, $query, $start, $end);
         }
@@ -861,7 +853,7 @@ class SQLServerPlatform extends AbstractPlatform
 
         //Replace only first occurrence of FROM with $over to prevent changing FROM also in subqueries.
         $over  = 'ORDER BY ' . implode(', ', $overColumns);
-        $query = preg_replace($selectFromPattern, "$1, ROW_NUMBER() OVER ($over) AS doctrine_rownum FROM ", $query, 1);
+        $query = preg_replace('/\sFROM\s/i', ", ROW_NUMBER() OVER ($over) AS doctrine_rownum FROM ", $query, 1);
 
         return sprintf($format, $query, $start, $end);
     }
@@ -1012,19 +1004,21 @@ class SQLServerPlatform extends AbstractPlatform
      */
     public function appendLockHint($fromClause, $lockMode)
     {
-        switch (true) {
-            case LockMode::NONE === $lockMode:
-                return $fromClause . ' WITH (NOLOCK)';
-
-            case LockMode::PESSIMISTIC_READ === $lockMode:
-                return $fromClause . ' WITH (HOLDLOCK, ROWLOCK)';
-
-            case LockMode::PESSIMISTIC_WRITE === $lockMode:
-                return $fromClause . ' WITH (UPDLOCK, ROWLOCK)';
-
+        switch ($lockMode) {
+            case LockMode::NONE:
+                $lockClause = ' WITH (NOLOCK)';
+                break;
+            case LockMode::PESSIMISTIC_READ:
+                $lockClause = ' WITH (HOLDLOCK, ROWLOCK)';
+                break;
+            case LockMode::PESSIMISTIC_WRITE:
+                $lockClause = ' WITH (UPDLOCK, ROWLOCK)';
+                break;
             default:
-                return $fromClause;
+                $lockClause = '';
         }
+
+        return $fromClause . $lockClause;
     }
 
     /**

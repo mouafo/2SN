@@ -11,6 +11,8 @@
 /**
  * MIME Message Signer used to apply S/MIME Signature/Encryption to a message.
  *
+ * @package    Swift
+ * @subpackage Signatures
  *
  * @author     Romain-Geissler
  * @author     Sebastiaan Stok <s.stok@rollerscapes.net>
@@ -93,14 +95,14 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
      */
     public function setSignCertificate($certificate, $privateKey = null, $signOptions = PKCS7_DETACHED)
     {
-        $this->signCertificate = 'file://'.str_replace('\\', '/', realpath($certificate));
+        $this->signCertificate = 'file://' . str_replace('\\', '/', realpath($certificate));
 
         if (null !== $privateKey) {
             if (is_array($privateKey)) {
                 $this->signPrivateKey = $privateKey;
-                $this->signPrivateKey[0] = 'file://'.str_replace('\\', '/', realpath($privateKey[0]));
+                $this->signPrivateKey[0] = 'file://' . str_replace('\\', '/', realpath($privateKey[0]));
             } else {
-                $this->signPrivateKey = 'file://'.str_replace('\\', '/', realpath($privateKey));
+                $this->signPrivateKey = 'file://' . str_replace('\\', '/', realpath($privateKey));
             }
         }
 
@@ -126,10 +128,10 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
             $this->encryptCert = array();
 
             foreach ($recipientCerts as $cert) {
-                $this->encryptCert[] = 'file://'.str_replace('\\', '/', realpath($cert));
+                $this->encryptCert[] = 'file://' . str_replace('\\', '/', realpath($cert));
             }
         } else {
-            $this->encryptCert = 'file://'.str_replace('\\', '/', realpath($recipientCerts));
+            $this->encryptCert = 'file://' . str_replace('\\', '/', realpath($recipientCerts));
         }
 
         if (null !== $cipher) {
@@ -215,6 +217,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
 
         $message->setChildren(array());
         $this->streamToMime($messageStream, $message);
+
     }
 
     /**
@@ -368,7 +371,7 @@ class Swift_Signers_SMimeSigner implements Swift_Signers_BodySigner
         foreach ($headerLines as $headerLine) {
             // Line separated
             if (ctype_space($headerLines[0]) || false === strpos($headerLine, ':')) {
-                $headers[$currentHeaderName] .= ' '.trim($headerLine);
+                $headers[$currentHeaderName] .= ' ' . trim($headerLine);
                 continue;
             }
 

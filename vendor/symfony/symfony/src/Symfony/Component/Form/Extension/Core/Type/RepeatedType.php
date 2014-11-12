@@ -55,12 +55,6 @@ class RepeatedType extends AbstractType
             'second_name'    => 'second',
             'error_bubbling' => false,
         ));
-
-        $resolver->setAllowedTypes(array(
-            'options'        => 'array',
-            'first_options'  => 'array',
-            'second_options' => 'array',
-        ));
     }
 
     /**

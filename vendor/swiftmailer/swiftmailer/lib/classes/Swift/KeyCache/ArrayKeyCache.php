@@ -11,6 +11,8 @@
 /**
  * A basic KeyCache backed by an array.
  *
+ * @package    Swift
+ * @subpackage KeyCache
  * @author     Chris Corbyn
  */
 class Swift_KeyCache_ArrayKeyCache implements Swift_KeyCache
@@ -65,8 +67,8 @@ class Swift_KeyCache_ArrayKeyCache implements Swift_KeyCache
                 break;
             default:
                 throw new Swift_SwiftException(
-                    'Invalid mode ['.$mode.'] used to set nsKey='.
-                    $nsKey.', itemKey='.$itemKey
+                    'Invalid mode [' . $mode . '] used to set nsKey='.
+                    $nsKey . ', itemKey=' . $itemKey
                     );
         }
     }
@@ -97,8 +99,8 @@ class Swift_KeyCache_ArrayKeyCache implements Swift_KeyCache
                 break;
             default:
                 throw new Swift_SwiftException(
-                    'Invalid mode ['.$mode.'] used to set nsKey='.
-                    $nsKey.', itemKey='.$itemKey
+                    'Invalid mode [' . $mode . '] used to set nsKey='.
+                    $nsKey . ', itemKey=' . $itemKey
                     );
         }
     }
@@ -191,6 +193,8 @@ class Swift_KeyCache_ArrayKeyCache implements Swift_KeyCache
     {
         unset($this->_contents[$nsKey]);
     }
+
+    // -- Private methods
 
     /**
      * Initialize the namespace of $nsKey if needed.

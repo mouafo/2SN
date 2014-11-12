@@ -28,6 +28,26 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
         $this->propertyAccessor = new PropertyAccessor();
     }
 
+    public function getValidGetPropertyPaths()
+    {
+        return array_merge(
+            array(
+                array(new TestClass('Bernhard'), 'publicMethodAccessor', 'Bernhard', 'Bernhard'),
+            ),
+            $this->getValidPropertyPaths()
+        );
+    }
+
+    public function getValidSetPropertyPaths()
+    {
+        return array_merge(
+            array(
+                array(new TestClass('Bernhard'), 'publicMethodMutator', 'Bernhard', 'Bernhard'),
+            ),
+            $this->getValidPropertyPaths()
+        );
+    }
+
     public function getPathsWithMissingProperty()
     {
         return array(
@@ -60,7 +80,7 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getValidPropertyPaths
+     * @dataProvider getValidGetPropertyPaths
      */
     public function testGetValue($objectOrArray, $path, $value)
     {
@@ -161,7 +181,7 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getValidPropertyPaths
+     * @dataProvider getValidSetPropertyPaths
      */
     public function testSetValue($objectOrArray, $path)
     {
@@ -277,7 +297,7 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getValidPropertyPaths
+     * @dataProvider getValidGetPropertyPaths
      */
     public function testIsReadable($objectOrArray, $path)
     {
@@ -345,11 +365,11 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getValidPropertyPaths
+     * @dataProvider getValidSetPropertyPaths
      */
     public function testIsWritable($objectOrArray, $path)
     {
-        $this->assertTrue($this->propertyAccessor->isWritable($objectOrArray, $path));
+        $this->assertTrue($this->propertyAccessor->isWritable($objectOrArray, $path, 'Updated'));
     }
 
     /**
@@ -357,7 +377,7 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsWritableReturnsFalseIfPropertyNotFound($objectOrArray, $path)
     {
-        $this->assertFalse($this->propertyAccessor->isWritable($objectOrArray, $path));
+        $this->assertFalse($this->propertyAccessor->isWritable($objectOrArray, $path, 'Updated'));
     }
 
     /**
@@ -366,7 +386,7 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
     public function testIsWritableReturnsTrueIfIndexNotFound($objectOrArray, $path)
     {
         // Non-existing indices can be written. Arrays are created on-demand.
-        $this->assertTrue($this->propertyAccessor->isWritable($objectOrArray, $path));
+        $this->assertTrue($this->propertyAccessor->isWritable($objectOrArray, $path, 'Updated'));
     }
 
     /**
@@ -377,42 +397,42 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
         $this->propertyAccessor = new PropertyAccessor(false, true);
 
         // Non-existing indices can be written even if exceptions are enabled
-        $this->assertTrue($this->propertyAccessor->isWritable($objectOrArray, $path));
+        $this->assertTrue($this->propertyAccessor->isWritable($objectOrArray, $path, 'Updated'));
     }
 
     public function testIsWritableRecognizesMagicSet()
     {
-        $this->assertTrue($this->propertyAccessor->isWritable(new TestClassMagicGet('Bernhard'), 'magicProperty'));
+        $this->assertTrue($this->propertyAccessor->isWritable(new TestClassMagicGet('Bernhard'), 'magicProperty', 'Updated'));
     }
 
     public function testIsWritableDoesNotRecognizeMagicCallByDefault()
     {
-        $this->assertFalse($this->propertyAccessor->isWritable(new TestClassMagicCall('Bernhard'), 'magicCallProperty'));
+        $this->assertFalse($this->propertyAccessor->isWritable(new TestClassMagicCall('Bernhard'), 'magicCallProperty', 'Updated'));
     }
 
     public function testIsWritableRecognizesMagicCallIfEnabled()
     {
         $this->propertyAccessor = new PropertyAccessor(true);
 
-        $this->assertTrue($this->propertyAccessor->isWritable(new TestClassMagicCall('Bernhard'), 'magicCallProperty'));
+        $this->assertTrue($this->propertyAccessor->isWritable(new TestClassMagicCall('Bernhard'), 'magicCallProperty', 'Updated'));
     }
 
-    public function testNotObjectOrArrayIsNotWritable()
+    public function testIsWritableThrowsExceptionIfNotObjectOrArray()
     {
-        $this->assertFalse($this->propertyAccessor->isWritable('baz', 'foobar'));
+        $this->assertFalse($this->propertyAccessor->isWritable('baz', 'foobar', 'Updated'));
     }
 
-    public function testNullIsNotWritable()
+    public function testIsWritableThrowsExceptionIfNull()
     {
-        $this->assertFalse($this->propertyAccessor->isWritable(null, 'foobar'));
+        $this->assertFalse($this->propertyAccessor->isWritable(null, 'foobar', 'Updated'));
     }
 
-    public function testEmptyIsNotWritable()
+    public function testIsWritableThrowsExceptionIfEmpty()
     {
-        $this->assertFalse($this->propertyAccessor->isWritable('', 'foobar'));
+        $this->assertFalse($this->propertyAccessor->isWritable('', 'foobar', 'Updated'));
     }
 
-    public function getValidPropertyPaths()
+    private function getValidPropertyPaths()
     {
         return array(
             array(array('Bernhard', 'Schussek'), '[0]', 'Bernhard'),
@@ -431,11 +451,9 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
             array(new TestClass('Bernhard'), 'publicAccessorWithRequiredAndDefaultValue', 'Bernhard'),
             array(new TestClass('Bernhard'), 'publicIsAccessor', 'Bernhard'),
             array(new TestClass('Bernhard'), 'publicHasAccessor', 'Bernhard'),
-            array(new TestClass('Bernhard'), 'publicGetSetter', 'Bernhard'),
 
             // Methods are camelized
             array(new TestClass('Bernhard'), 'public_accessor', 'Bernhard'),
-            array(new TestClass('Bernhard'), '_public_accessor', 'Bernhard'),
 
             // Missing indices
             array(array('index' => array()), '[index][firstName]', null),

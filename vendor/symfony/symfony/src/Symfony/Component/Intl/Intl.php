@@ -11,61 +11,26 @@
 
 namespace Symfony\Component\Intl;
 
-use Symfony\Component\Intl\Data\Bundle\Reader\BundleReaderInterface;
-use Symfony\Component\Intl\Data\Bundle\Reader\JsonBundleReader;
-use Symfony\Component\Intl\Data\Bundle\Reader\IntlBundleReader;
-use Symfony\Component\Intl\Data\Bundle\Reader\BufferedBundleReader;
-use Symfony\Component\Intl\Data\Bundle\Reader\BundleEntryReader;
-use Symfony\Component\Intl\Data\Bundle\Reader\BundleEntryReaderInterface;
-use Symfony\Component\Intl\Data\Bundle\Reader\PhpBundleReader;
-use Symfony\Component\Intl\Data\Provider\ScriptDataProvider;
-use Symfony\Component\Intl\Exception\InvalidArgumentException;
-use Symfony\Component\Intl\ResourceBundle\CurrencyBundle;
-use Symfony\Component\Intl\ResourceBundle\CurrencyBundleInterface;
-use Symfony\Component\Intl\ResourceBundle\LanguageBundle;
-use Symfony\Component\Intl\ResourceBundle\LanguageBundleInterface;
-use Symfony\Component\Intl\ResourceBundle\LocaleBundle;
-use Symfony\Component\Intl\ResourceBundle\LocaleBundleInterface;
-use Symfony\Component\Intl\ResourceBundle\RegionBundle;
-use Symfony\Component\Intl\ResourceBundle\RegionBundleInterface;
+use Symfony\Component\Icu\IcuCurrencyBundle;
+use Symfony\Component\Icu\IcuData;
+use Symfony\Component\Icu\IcuLanguageBundle;
+use Symfony\Component\Icu\IcuLocaleBundle;
+use Symfony\Component\Icu\IcuRegionBundle;
+use Symfony\Component\Intl\ResourceBundle\Reader\BufferedBundleReader;
+use Symfony\Component\Intl\ResourceBundle\Reader\StructuredBundleReader;
 
 /**
  * Gives access to internationalization data.
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-final class Intl
+class Intl
 {
     /**
      * The number of resource bundles to buffer. Loading the same resource
      * bundle for n locales takes up n spots in the buffer.
      */
     const BUFFER_SIZE = 10;
-
-    /**
-     * The directory name of the currency data.
-     */
-    const CURRENCY_DIR = 'currencies';
-
-    /**
-     * The directory name of the language data.
-     */
-    const LANGUAGE_DIR = 'languages';
-
-    /**
-     * The directory name of the script data.
-     */
-    const SCRIPT_DIR = 'scripts';
-
-    /**
-     * The directory name of the locale data.
-     */
-    const LOCALE_DIR = 'locales';
-
-    /**
-     * The directory name of the region data.
-     */
-    const REGION_DIR = 'regions';
 
     /**
      * @var ResourceBundle\CurrencyBundleInterface
@@ -98,14 +63,14 @@ final class Intl
     private static $icuDataVersion = false;
 
     /**
-     * @var BundleEntryReaderInterface
+     * @var ResourceBundle\Reader\StructuredBundleReaderInterface
      */
-    private static $entryReader;
+    private static $bundleReader;
 
     /**
      * Returns whether the intl extension is installed.
      *
-     * @return bool Returns true if the intl extension is installed, false otherwise.
+     * @return bool    Returns true if the intl extension is installed, false otherwise.
      */
     public static function isExtensionLoaded()
     {
@@ -115,16 +80,12 @@ final class Intl
     /**
      * Returns the bundle containing currency information.
      *
-     * @return CurrencyBundleInterface The currency resource bundle.
+     * @return ResourceBundle\CurrencyBundleInterface The currency resource bundle.
      */
     public static function getCurrencyBundle()
     {
         if (null === self::$currencyBundle) {
-            self::$currencyBundle = new CurrencyBundle(
-                self::getDataDirectory().'/'.Intl::CURRENCY_DIR,
-                self::getEntryReader(),
-                self::getLocaleBundle()
-            );
+            self::$currencyBundle = new IcuCurrencyBundle(self::getBundleReader());
         }
 
         return self::$currencyBundle;
@@ -133,20 +94,12 @@ final class Intl
     /**
      * Returns the bundle containing language information.
      *
-     * @return LanguageBundleInterface The language resource bundle.
+     * @return ResourceBundle\LanguageBundleInterface The language resource bundle.
      */
     public static function getLanguageBundle()
     {
         if (null === self::$languageBundle) {
-            self::$languageBundle = new LanguageBundle(
-                self::getDataDirectory().'/'.Intl::LANGUAGE_DIR,
-                self::getEntryReader(),
-                self::getLocaleBundle(),
-                new ScriptDataProvider(
-                    self::getDataDirectory().'/'.Intl::SCRIPT_DIR,
-                    self::getEntryReader()
-                )
-            );
+            self::$languageBundle = new IcuLanguageBundle(self::getBundleReader());
         }
 
         return self::$languageBundle;
@@ -155,15 +108,12 @@ final class Intl
     /**
      * Returns the bundle containing locale information.
      *
-     * @return LocaleBundleInterface The locale resource bundle.
+     * @return ResourceBundle\LocaleBundleInterface The locale resource bundle.
      */
     public static function getLocaleBundle()
     {
         if (null === self::$localeBundle) {
-            self::$localeBundle = new LocaleBundle(
-                self::getDataDirectory().'/'.Intl::LOCALE_DIR,
-                self::getEntryReader()
-            );
+            self::$localeBundle = new IcuLocaleBundle(self::getBundleReader());
         }
 
         return self::$localeBundle;
@@ -172,16 +122,12 @@ final class Intl
     /**
      * Returns the bundle containing region information.
      *
-     * @return RegionBundleInterface The region resource bundle.
+     * @return ResourceBundle\RegionBundleInterface The region resource bundle.
      */
     public static function getRegionBundle()
     {
         if (null === self::$regionBundle) {
-            self::$regionBundle = new RegionBundle(
-                self::getDataDirectory().'/'.Intl::REGION_DIR,
-                self::getEntryReader(),
-                self::getLocaleBundle()
-            );
+            self::$regionBundle = new IcuRegionBundle(self::getBundleReader());
         }
 
         return self::$regionBundle;
@@ -225,7 +171,7 @@ final class Intl
     public static function getIcuDataVersion()
     {
         if (false === self::$icuDataVersion) {
-            self::$icuDataVersion = trim(file_get_contents(self::getDataDirectory().'/version.txt'));
+            self::$icuDataVersion = IcuData::getVersion();
         }
 
         return self::$icuDataVersion;
@@ -242,44 +188,20 @@ final class Intl
     }
 
     /**
-     * Returns the absolute path to the data directory.
+     * Returns a resource bundle reader for .php resource bundle files.
      *
-     * @return string The absolute path to the data directory
+     * @return ResourceBundle\Reader\StructuredBundleReaderInterface The resource reader.
      */
-    public static function getDataDirectory()
+    private static function getBundleReader()
     {
-        return realpath(__DIR__.'/Resources/data');
-    }
-
-    /**
-     * Returns the cached bundle entry reader.
-     *
-     * @return BundleEntryReaderInterface The bundle entry reader
-     */
-    private static function getEntryReader()
-    {
-        if (null === self::$entryReader) {
-            self::$entryReader = new BundleEntryReader(new BufferedBundleReader(
-                new JsonBundleReader(),
+        if (null === self::$bundleReader) {
+            self::$bundleReader = new StructuredBundleReader(new BufferedBundleReader(
+                IcuData::getBundleReader(),
                 self::BUFFER_SIZE
             ));
         }
 
-        return self::$entryReader;
-    }
-
-    /**
-     * Resets the internal state.
-     */
-    private static function reset()
-    {
-        self::$currencyBundle = null;
-        self::$languageBundle = null;
-        self::$localeBundle = null;
-        self::$regionBundle = null;
-        self::$icuVersion = false;
-        self::$icuDataVersion = false;
-        self::$entryReader = null;
+        return self::$bundleReader;
     }
 
     /**

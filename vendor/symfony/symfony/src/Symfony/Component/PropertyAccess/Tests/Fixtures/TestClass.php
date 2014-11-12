@@ -19,7 +19,7 @@ class TestClass
 
     private $publicAccessor;
     private $publicMethodAccessor;
-    private $publicGetSetter;
+    private $publicMethodMutator;
     private $publicAccessorWithDefaultValue;
     private $publicAccessorWithRequiredAndDefaultValue;
     private $publicAccessorWithMoreRequiredParameters;
@@ -31,7 +31,7 @@ class TestClass
         $this->publicProperty = $value;
         $this->publicAccessor = $value;
         $this->publicMethodAccessor = $value;
-        $this->publicGetSetter = $value;
+        $this->publicMethodMutator = $value;
         $this->publicAccessorWithDefaultValue = $value;
         $this->publicAccessorWithRequiredAndDefaultValue = $value;
         $this->publicAccessorWithMoreRequiredParameters = $value;
@@ -99,18 +99,19 @@ class TestClass
         return $this->publicHasAccessor;
     }
 
-    public function publicGetSetter($value = null)
+    public function publicMethodAccessor()
     {
-        if (null !== $value) {
-            $this->publicGetSetter = $value;
-        }
+        return $this->publicMethodAccessor;
+    }
 
-        return $this->publicGetSetter;
+    public function publicMethodMutator($value)
+    {
+        $this->publicMethodMutator = $value;
     }
 
     public function getPublicMethodMutator()
     {
-        return $this->publicGetSetter;
+        return $this->publicMethodMutator;
     }
 
     protected function setProtectedAccessor($value)

@@ -139,7 +139,10 @@ class FormBuilder extends FormConfigBuilder implements \IteratorAggregate, FormB
         }
 
         unset($this->unresolvedChildren[$name]);
-        unset($this->children[$name]);
+
+        if (array_key_exists($name, $this->children)) {
+            unset($this->children[$name]);
+        }
 
         return $this;
     }

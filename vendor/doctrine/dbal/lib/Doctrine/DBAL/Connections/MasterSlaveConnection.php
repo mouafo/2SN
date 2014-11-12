@@ -163,12 +163,11 @@ class MasterSlaveConnection extends Connection
         }
 
         if ($this->connections[$connectionName]) {
-            $this->_conn = $this->connections[$connectionName];
-
-            if ($forceMasterAsSlave && ! $this->keepSlave) {
-                $this->connections['slave'] = $this->_conn;
+            if ($forceMasterAsSlave) {
+                $this->connections['slave'] = $this->_conn = $this->connections['master'];
+            } else {
+                $this->_conn = $this->connections[$connectionName];
             }
-
             return false;
         }
 
@@ -279,17 +278,6 @@ class MasterSlaveConnection extends Connection
         $this->connect('master');
 
         return parent::delete($tableName, $identifier, $types);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function close()
-    {
-        unset($this->connections['master']);
-        unset($this->connections['slave']);
-
-        parent::close();
     }
 
     /**

@@ -11,12 +11,6 @@
 
 namespace Symfony\Component\Intl\ResourceBundle;
 
-use Symfony\Component\Intl\Data\Bundle\Reader\BundleEntryReaderInterface;
-use Symfony\Component\Intl\Data\Provider\CurrencyDataProvider;
-use Symfony\Component\Intl\Data\Provider\LocaleDataProvider;
-use Symfony\Component\Intl\Exception\MissingResourceException;
-use Symfony\Component\Intl\Intl;
-
 /**
  * Default implementation of {@link CurrencyBundleInterface}.
  *
@@ -24,61 +18,64 @@ use Symfony\Component\Intl\Intl;
  *
  * @internal
  */
-class CurrencyBundle extends CurrencyDataProvider implements CurrencyBundleInterface
+class CurrencyBundle extends AbstractBundle implements CurrencyBundleInterface
 {
-    /**
-     * @var LocaleDataProvider
-     */
-    private $localeProvider;
+    const INDEX_NAME = 0;
+
+    const INDEX_SYMBOL = 1;
+
+    const INDEX_FRACTION_DIGITS = 2;
+
+    const INDEX_ROUNDING_INCREMENT = 3;
 
     /**
-     * Creates a new currency bundle.
-     *
-     * @param string                     $path
-     * @param BundleEntryReaderInterface $reader
-     * @param LocaleDataProvider         $localeProvider
+     * {@inheritdoc}
      */
-    public function __construct($path, BundleEntryReaderInterface $reader, LocaleDataProvider $localeProvider)
+    public function getCurrencySymbol($currency, $locale = null)
     {
-        parent::__construct($path, $reader);
+        if (null === $locale) {
+            $locale = \Locale::getDefault();
+        }
 
-        $this->localeProvider = $localeProvider;
+        return $this->readEntry($locale, array('Currencies', $currency, static::INDEX_SYMBOL), true);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCurrencySymbol($currency, $displayLocale = null)
+    public function getCurrencyName($currency, $locale = null)
     {
-        try {
-            return $this->getSymbol($currency, $displayLocale);
-        } catch (MissingResourceException $e) {
-            return null;
+        if (null === $locale) {
+            $locale = \Locale::getDefault();
         }
+
+        return $this->readEntry($locale, array('Currencies', $currency, static::INDEX_NAME), true);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getCurrencyName($currency, $displayLocale = null)
+    public function getCurrencyNames($locale = null)
     {
-        try {
-            return $this->getName($currency, $displayLocale);
-        } catch (MissingResourceException $e) {
-            return null;
+        if (null === $locale) {
+            $locale = \Locale::getDefault();
         }
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrencyNames($displayLocale = null)
-    {
-        try {
-            return $this->getNames($displayLocale);
-        } catch (MissingResourceException $e) {
-            return null;
+        if (null === ($currencies = $this->readEntry($locale, array('Currencies'), true))) {
+            return array();
         }
+
+        if ($currencies instanceof \Traversable) {
+            $currencies = iterator_to_array($currencies);
+        }
+
+        $index = static::INDEX_NAME;
+
+        array_walk($currencies, function (&$value) use ($index) {
+            $value = $value[$index];
+        });
+
+        return $currencies;
     }
 
     /**
@@ -86,11 +83,7 @@ class CurrencyBundle extends CurrencyDataProvider implements CurrencyBundleInter
      */
     public function getFractionDigits($currency)
     {
-        try {
-            return parent::getFractionDigits($currency);
-        } catch (MissingResourceException $e) {
-            return null;
-        }
+        return $this->readEntry('en', array('Currencies', $currency, static::INDEX_FRACTION_DIGITS), true);
     }
 
     /**
@@ -98,22 +91,6 @@ class CurrencyBundle extends CurrencyDataProvider implements CurrencyBundleInter
      */
     public function getRoundingIncrement($currency)
     {
-        try {
-            return parent::getRoundingIncrement($currency);
-        } catch (MissingResourceException $e) {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getLocales()
-    {
-        try {
-            return $this->localeProvider->getLocales();
-        } catch (MissingResourceException $e) {
-            return null;
-        }
+        return $this->readEntry('en', array('Currencies', $currency, static::INDEX_ROUNDING_INCREMENT), true);
     }
 }

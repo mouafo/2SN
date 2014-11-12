@@ -173,7 +173,7 @@ class Twig_Extension_Core extends Twig_Extension
 
             // array helpers
             new Twig_SimpleFilter('join', 'twig_join_filter'),
-            new Twig_SimpleFilter('split', 'twig_split_filter', array('needs_environment' => true)),
+            new Twig_SimpleFilter('split', 'twig_split_filter'),
             new Twig_SimpleFilter('sort', 'twig_sort_filter'),
             new Twig_SimpleFilter('merge', 'twig_array_merge'),
             new Twig_SimpleFilter('batch', 'twig_array_batch'),
@@ -298,8 +298,8 @@ class Twig_Extension_Core extends Twig_Extension
     public function parseTestExpression(Twig_Parser $parser, Twig_NodeInterface $node)
     {
         $stream = $parser->getStream();
-        $name = $this->getTestName($parser, $node->getLine());
-        $class = $this->getTestNodeClass($parser, $name);
+        $name = $stream->expect(Twig_Token::NAME_TYPE)->getValue();
+        $class = $this->getTestNodeClass($parser, $name, $node->getLine());
         $arguments = null;
         if ($stream->test(Twig_Token::PUNCTUATION_TYPE, '(')) {
             $arguments = $parser->getExpressionParser()->parseArguments(true);
@@ -308,40 +308,32 @@ class Twig_Extension_Core extends Twig_Extension
         return new $class($node, $name, $arguments, $parser->getCurrentToken()->getLine());
     }
 
-    protected function getTestName(Twig_Parser $parser, $line)
+    protected function getTestNodeClass(Twig_Parser $parser, $name, $line)
     {
-        $stream = $parser->getStream();
-        $name = $stream->expect(Twig_Token::NAME_TYPE)->getValue();
         $env = $parser->getEnvironment();
         $testMap = $env->getTests();
-
+        $testName = null;
         if (isset($testMap[$name])) {
-            return $name;
-        }
-
-        if ($stream->test(Twig_Token::NAME_TYPE)) {
+            $testName = $name;
+        } elseif ($parser->getStream()->test(Twig_Token::NAME_TYPE)) {
             // try 2-words tests
             $name = $name.' '.$parser->getCurrentToken()->getValue();
 
             if (isset($testMap[$name])) {
                 $parser->getStream()->next();
 
-                return $name;
+                $testName = $name;
             }
         }
 
-        $message = sprintf('The test "%s" does not exist', $name);
-        if ($alternatives = $env->computeAlternatives($name, array_keys($testMap))) {
-            $message = sprintf('%s. Did you mean "%s"', $message, implode('", "', $alternatives));
+        if (null === $testName) {
+            $message = sprintf('The test "%s" does not exist', $name);
+            if ($alternatives = $env->computeAlternatives($name, array_keys($env->getTests()))) {
+                $message = sprintf('%s. Did you mean "%s"', $message, implode('", "', $alternatives));
+            }
+
+            throw new Twig_Error_Syntax($message, $line, $parser->getFilename());
         }
-
-        throw new Twig_Error_Syntax($message, $line, $parser->getFilename());
-    }
-
-    protected function getTestNodeClass(Twig_Parser $parser, $name)
-    {
-        $env = $parser->getEnvironment();
-        $testMap = $env->getTests();
 
         if ($testMap[$name] instanceof Twig_SimpleTest) {
             return $testMap[$name]->getNodeClass();
@@ -444,10 +436,10 @@ function twig_random(Twig_Environment $env, $values = null)
  *   {{ post.published_at|date("m/d/Y") }}
  * </pre>
  *
- * @param Twig_Environment                               $env      A Twig_Environment instance
- * @param DateTime|DateTimeInterface|DateInterval|string $date     A date
- * @param string|null                                    $format   The target format, null to use the default
- * @param DateTimeZone|string|null|false                 $timezone The target timezone, null to use the default, false to leave unchanged
+ * @param Twig_Environment             $env      A Twig_Environment instance
+ * @param DateTime|DateInterval|string $date     A date
+ * @param string                       $format   A format
+ * @param DateTimeZone|string          $timezone A timezone
  *
  * @return string The formatted date
  */
@@ -481,12 +473,9 @@ function twig_date_format_filter(Twig_Environment $env, $date, $format = null, $
 function twig_date_modify_filter(Twig_Environment $env, $date, $modifier)
 {
     $date = twig_date_converter($env, $date, false);
-    $resultDate = $date->modify($modifier);
+    $date->modify($modifier);
 
-    // This is a hack to ensure PHP 5.2 support and support for DateTimeImmutable
-    // DateTime::modify does not return the modified DateTime object < 5.3.0
-    // and DateTimeImmutable does not modify $date.
-    return null === $resultDate ? $date : $resultDate;
+    return $date;
 }
 
 /**
@@ -498,32 +487,32 @@ function twig_date_modify_filter(Twig_Environment $env, $date, $modifier)
  *    {% endif %}
  * </pre>
  *
- * @param Twig_Environment                       $env      A Twig_Environment instance
- * @param DateTime|DateTimeInterface|string|null $date     A date
- * @param DateTimeZone|string|null|false         $timezone The target timezone, null to use the default, false to leave unchanged
+ * @param Twig_Environment    $env      A Twig_Environment instance
+ * @param DateTime|string     $date     A date
+ * @param DateTimeZone|string $timezone A timezone
  *
  * @return DateTime A DateTime instance
  */
 function twig_date_converter(Twig_Environment $env, $date = null, $timezone = null)
 {
     // determine the timezone
-    if (false !== $timezone) {
-        if (null === $timezone) {
-            $timezone = $env->getExtension('core')->getTimezone();
-        } elseif (!$timezone instanceof DateTimeZone) {
-            $timezone = new DateTimeZone($timezone);
-        }
+    if (!$timezone) {
+        $defaultTimezone = $env->getExtension('core')->getTimezone();
+    } elseif (!$timezone instanceof DateTimeZone) {
+        $defaultTimezone = new DateTimeZone($timezone);
+    } else {
+        $defaultTimezone = $timezone;
     }
 
     // immutable dates
     if ($date instanceof DateTimeImmutable) {
-        return false !== $timezone ? $date->setTimezone($timezone) : $date;
+        return false !== $timezone ? $date->setTimezone($defaultTimezone) : $date;
     }
 
     if ($date instanceof DateTime || $date instanceof DateTimeInterface) {
         $date = clone $date;
         if (false !== $timezone) {
-            $date->setTimezone($timezone);
+            $date->setTimezone($defaultTimezone);
         }
 
         return $date;
@@ -534,9 +523,9 @@ function twig_date_converter(Twig_Environment $env, $date = null, $timezone = nu
         $date = '@'.$date;
     }
 
-    $date = new DateTime($date, $env->getExtension('core')->getTimezone());
+    $date = new DateTime($date, $defaultTimezone);
     if (false !== $timezone) {
-        $date->setTimezone($timezone);
+        $date->setTimezone($defaultTimezone);
     }
 
     return $date;
@@ -683,7 +672,7 @@ function _twig_markup2string(&$value)
 function twig_array_merge($arr1, $arr2)
 {
     if (!is_array($arr1) || !is_array($arr2)) {
-        throw new Twig_Error_Runtime(sprintf('The merge filter only works with arrays or hashes; %s and %s given.', gettype($arr1), gettype($arr2)));
+        throw new Twig_Error_Runtime('The merge filter only works with arrays or hashes.');
     }
 
     return array_merge($arr1, $arr2);
@@ -703,15 +692,7 @@ function twig_array_merge($arr1, $arr2)
 function twig_slice(Twig_Environment $env, $item, $start, $length = null, $preserveKeys = false)
 {
     if ($item instanceof Traversable) {
-        if ($item instanceof IteratorAggregate) {
-            $item = $item->getIterator();
-        }
-
-        if ($start >= 0 && $length >= 0) {
-            return iterator_to_array(new LimitIterator($item, $start, $length === null ? -1 : $length), $preserveKeys);
-        }
-
-        $item = iterator_to_array($item, $preserveKeys);
+        $item = iterator_to_array($item, false);
     }
 
     if (is_array($item)) {
@@ -721,10 +702,10 @@ function twig_slice(Twig_Environment $env, $item, $start, $length = null, $prese
     $item = (string) $item;
 
     if (function_exists('mb_get_info') && null !== $charset = $env->getCharset()) {
-        return (string) mb_substr($item, $start, null === $length ? mb_strlen($item, $charset) - $start : $length, $charset);
+        return mb_substr($item, $start, null === $length ? mb_strlen($item, $charset) - $start : $length, $charset);
     }
 
-    return (string) (null === $length ? substr($item, $start) : substr($item, $start, $length));
+    return null === $length ? substr($item, $start) : substr($item, $start, $length);
 }
 
 /**
@@ -807,31 +788,13 @@ function twig_join_filter($value, $glue = '')
  *
  * @return array The split string as an array
  */
-function twig_split_filter(Twig_Environment $env, $value, $delimiter, $limit = null)
+function twig_split_filter($value, $delimiter, $limit = null)
 {
-    if (!empty($delimiter)) {
-        return null === $limit ? explode($delimiter, $value) : explode($delimiter, $value, $limit);
-    }
-
-    if (!function_exists('mb_get_info') || null === $charset = $env->getCharset()) {
+    if (empty($delimiter)) {
         return str_split($value, null === $limit ? 1 : $limit);
     }
 
-    if ($limit <= 1) {
-        return preg_split('/(?<!^)(?!$)/u', $value);
-    }
-
-    $length = mb_strlen($value, $charset);
-    if ($length < $limit) {
-        return array($value);
-    }
-
-    $r = array();
-    for ($i = 0; $i < $length; $i += $limit) {
-        $r[] = mb_substr($value, $i, $limit, $charset);
-    }
-
-    return $r;
+    return null === $limit ? explode($delimiter, $value) : explode($delimiter, $value, $limit);
 }
 
 // The '_default' filter is used internally to avoid using the ternary operator
@@ -981,7 +944,7 @@ function twig_escape_filter(Twig_Environment $env, $string, $strategy = 'html', 
             static $htmlspecialcharsCharsets;
 
             if (null === $htmlspecialcharsCharsets) {
-                if (defined('HHVM_VERSION')) {
+                if ('hiphop' === substr(PHP_VERSION, -6)) {
                     $htmlspecialcharsCharsets = array('utf-8' => true, 'UTF-8' => true);
                 } else {
                     $htmlspecialcharsCharsets = array(

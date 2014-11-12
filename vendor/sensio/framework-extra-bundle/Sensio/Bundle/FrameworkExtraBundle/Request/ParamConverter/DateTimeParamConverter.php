@@ -43,18 +43,12 @@ class DateTimeParamConverter implements ParamConverterInterface
             return false;
         }
 
-        if (isset($options['format'])) {
-            $date = DateTime::createFromFormat($options['format'], $value);
+        $date = isset($options['format'])
+            ? DateTime::createFromFormat($options['format'], $value)
+            : new DateTime($value);
 
-            if (!$date) {
-                throw new NotFoundHttpException('Invalid date given.');
-            }
-        } else {
-            if (false === strtotime($value)) {
-                throw new NotFoundHttpException('Invalid date given.');
-            }
-
-            $date = new DateTime($value);
+        if (!$date) {
+            throw new NotFoundHttpException('Invalid date given.');
         }
 
         $request->attributes->set($param, $date);

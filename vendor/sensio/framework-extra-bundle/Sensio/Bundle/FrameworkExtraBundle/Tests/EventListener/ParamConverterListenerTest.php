@@ -19,32 +19,18 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 class ParamConverterListenerTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider getControllerWithNoArgsFixtures
-     */
-    public function testRequestIsSkipped($controllerCallable)
+    public function testRequestIsSkipped()
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $request = new Request();
 
         $listener = new ParamConverterListener($this->getParamConverterManager($request, array()));
-        $event = new FilterControllerEvent($kernel, $controllerCallable, $request, null);
+        $event = new FilterControllerEvent($kernel, array(new TestController(), 'noArgAction'), $request, null);
 
         $listener->onKernelController($event);
     }
 
-    public function getControllerWithNoArgsFixtures()
-    {
-        return array(
-            array(array(new TestController(), 'noArgAction')),
-            array(new InvokableNoArgController()),
-        );
-    }
-
-    /**
-     * @dataProvider getControllerWithArgsFixtures
-     */
-    public function testAutoConvert($controllerCallable)
+    public function testAutoConvert()
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $request = new Request(array(), array(), array('date' => '2014-03-14 09:00:00'));
@@ -52,31 +38,21 @@ class ParamConverterListenerTest extends \PHPUnit_Framework_TestCase
         $converter = new ParamConverter(array('name' => 'date', 'class' => 'DateTime'));
 
         $listener = new ParamConverterListener($this->getParamConverterManager($request, array('date' => $converter)));
-        $event = new FilterControllerEvent($kernel, $controllerCallable, $request, null);
+        $event = new FilterControllerEvent($kernel, array(new TestController(), 'dateAction'), $request, null);
 
         $listener->onKernelController($event);
     }
 
-    /**
-     * @dataProvider getControllerWithArgsFixtures
-     */
-    public function testNoAutoConvert($controllerCallable)
+
+    public function testNoAutoConvert()
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernelInterface');
         $request = new Request(array(), array(), array('date' => '2014-03-14 09:00:00'));
 
         $listener = new ParamConverterListener($this->getParamConverterManager($request, array()), false);
-        $event = new FilterControllerEvent($kernel, $controllerCallable, $request, null);
+        $event = new FilterControllerEvent($kernel, array(new TestController(), 'dateAction'), $request, null);
 
         $listener->onKernelController($event);
-    }
-
-    public function getControllerWithArgsFixtures()
-    {
-        return array(
-            array(array(new TestController(), 'dateAction')),
-            array(new InvokableController()),
-        );
     }
 
     protected function getParamConverterManager(Request $request, $configurations)
@@ -99,20 +75,6 @@ class TestController
     }
 
     public function dateAction(\DateTime $date)
-    {
-    }
-}
-
-class InvokableNoArgController
-{
-    public function __invoke(Request $request)
-    {
-    }
-}
-
-class InvokableController
-{
-    public function __invoke(\DateTime $date)
     {
     }
 }

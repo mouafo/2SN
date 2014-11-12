@@ -1,5 +1,8 @@
 <?php
 
+use Doctrine\Tests\Common\Annotations\Fixtures\Annotation\Secure;
+use Doctrine\Tests\Common\Annotations\Fixtures\Annotation\Route;
+
 class SingleClassLOC1000
 {
     const TEST1 = 1234567890;

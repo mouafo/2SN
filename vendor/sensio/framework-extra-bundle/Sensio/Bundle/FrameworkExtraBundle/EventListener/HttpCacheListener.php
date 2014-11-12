@@ -93,24 +93,12 @@ class HttpCacheListener implements EventSubscriberInterface
             return;
         }
 
-        if (null !== $age = $configuration->getSMaxAge()) {
-            if (!is_numeric($age)) {
-                $now = microtime(true);
-
-                $age = ceil(strtotime($configuration->getSMaxAge(), $now) - $now);
-            }
-
-            $response->setSharedMaxAge($age);
+        if (null !== $configuration->getSMaxAge()) {
+            $response->setSharedMaxAge($configuration->getSMaxAge());
         }
 
-        if (null !== $age = $configuration->getMaxAge()) {
-            if (!is_numeric($age)) {
-                $now = microtime(true);
-
-                $age = ceil(strtotime($configuration->getMaxAge(), $now) - $now);
-            }
-
-            $response->setMaxAge($age);
+        if (null !== $configuration->getMaxAge()) {
+            $response->setMaxAge($configuration->getMaxAge());
         }
 
         if (null !== $configuration->getExpires()) {

@@ -354,8 +354,6 @@ final class DocParser
 
             $pos++;
         }
-
-        return null;
     }
 
     /**
@@ -845,7 +843,16 @@ final class DocParser
      */
     private function Values()
     {
-        $values = array($this->Value());
+        $values = array();
+
+        // Handle the case of a single array as value, i.e. @Foo({....})
+        if ($this->lexer->isNextToken(DocLexer::T_OPEN_CURLY_BRACES)) {
+            $values['value'] = $this->Value();
+
+            return $values;
+        }
+
+        $values[] = $this->Value();
 
         while ($this->lexer->isNextToken(DocLexer::T_COMMA)) {
             $this->match(DocLexer::T_COMMA);

@@ -1038,9 +1038,8 @@ abstract class AbstractPlatform
     /**
      * Honors that some SQL vendors such as MsSql use table hints for locking instead of the ANSI SQL FOR UPDATE specification.
      *
-     * @param string       $fromClause The FROM clause to append the hint for the given lock mode to.
-     * @param integer|null $lockMode   One of the Doctrine\DBAL\LockMode::* constants. If null is given, nothing will
-     *                                 be appended to the FROM clause.
+     * @param string  $fromClause
+     * @param integer $lockMode
      *
      * @return string
      */
@@ -2215,13 +2214,13 @@ abstract class AbstractPlatform
     }
 
     /**
-     * Note: if the input is not a boolean the original input might be returned.
+     * Some platforms need the boolean values to be converted.
      *
-     * There are two contexts when converting booleans: Literals and Prepared Statements.
-     * This method should handle the literal case
+     * The default conversion in this implementation converts to integers (false => 0, true => 1).
      *
-     * @param mixed $item A boolean or an array of them.
-     * @return mixed A boolean database value or an array of them.
+     * @param mixed $item
+     *
+     * @return mixed
      */
     public function convertBooleans($item)
     {
@@ -2231,40 +2230,11 @@ abstract class AbstractPlatform
                     $item[$k] = (int) $value;
                 }
             }
-        } elseif (is_bool($item)) {
+        } else if (is_bool($item)) {
             $item = (int) $item;
         }
 
         return $item;
-    }
-
-
-    /**
-     * Some platforms have boolean literals that needs to be correctly converted
-     *
-     * The default conversion tries to convert value into bool "(bool)$item"
-     *
-     * @param mixed $item
-     *
-     * @return bool|null
-     */
-    public function convertFromBoolean($item)
-    {
-        return null === $item ? null : (bool)$item;
-    }
-
-    /**
-     * This method should handle the prepared statements case. When there is no
-     * distinction, it's OK to use the same method.
-     *
-     * Note: if the input is not a boolean the original input might be returned.
-     *
-     * @param mixed $item A boolean or an array of them.
-     * @return mixed A boolean database value or an array of them.
-     */
-    public function convertBooleansToDatabaseValue($item)
-    {
-        return $this->convertBooleans($item);
     }
 
     /**

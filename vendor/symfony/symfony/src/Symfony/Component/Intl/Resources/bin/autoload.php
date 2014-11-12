@@ -15,4 +15,4 @@ if (!file_exists($autoload)) {
     bailout('You should run "composer install --dev" in the component before running this script.');
 }
 
-require_once $autoload;
+require_once realpath($autoload);

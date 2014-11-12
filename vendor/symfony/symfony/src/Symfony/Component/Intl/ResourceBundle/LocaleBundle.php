@@ -11,11 +11,6 @@
 
 namespace Symfony\Component\Intl\ResourceBundle;
 
-use Symfony\Component\Intl\Data\Bundle\Reader\BundleEntryReaderInterface;
-use Symfony\Component\Intl\Data\Provider\LocaleDataProvider;
-use Symfony\Component\Intl\Exception\MissingResourceException;
-use Symfony\Component\Intl\Intl;
-
 /**
  * Default implementation of {@link LocaleBundleInterface}.
  *
@@ -23,41 +18,37 @@ use Symfony\Component\Intl\Intl;
  *
  * @internal
  */
-class LocaleBundle extends LocaleDataProvider implements LocaleBundleInterface
+class LocaleBundle extends AbstractBundle implements LocaleBundleInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getLocales()
+    public function getLocaleName($ofLocale, $locale = null)
     {
-        try {
-            return parent::getLocales();
-        } catch (MissingResourceException $e) {
-            return null;
+        if (null === $locale) {
+            $locale = \Locale::getDefault();
         }
+
+        return $this->readEntry($locale, array('Locales', $ofLocale), true);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getLocaleName($locale, $displayLocale = null)
+    public function getLocaleNames($locale = null)
     {
-        try {
-            return $this->getName($locale, $displayLocale);
-        } catch (MissingResourceException $e) {
-            return null;
+        if (null === $locale) {
+            $locale = \Locale::getDefault();
         }
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getLocaleNames($displayLocale = null)
-    {
-        try {
-            return $this->getNames($displayLocale);
-        } catch (MissingResourceException $e) {
-            return null;
+        if (null === ($locales = $this->readEntry($locale, array('Locales'), true))) {
+            return array();
         }
+
+        if ($locales instanceof \Traversable) {
+            $locales = iterator_to_array($locales);
+        }
+
+        return $locales;
     }
 }

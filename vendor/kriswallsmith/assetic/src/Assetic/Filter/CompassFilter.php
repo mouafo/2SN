@@ -3,7 +3,7 @@
 /*
  * This file is part of the Assetic package, an OpenSky project.
  *
- * (c) 2010-2014 OpenSky Project Inc
+ * (c) 2010-2013 OpenSky Project Inc
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +13,7 @@ namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
-use Assetic\Filter\Sass\BaseSassFilter;
+use Assetic\Factory\AssetFactory;
 
 /**
  * Loads Compass files.
@@ -21,7 +21,7 @@ use Assetic\Filter\Sass\BaseSassFilter;
  * @link http://compass-style.org/
  * @author Maxime Thirouin <maxime.thirouin@gmail.com>
  */
-class CompassFilter extends BaseSassFilter
+class CompassFilter extends BaseProcessFilter implements DependencyExtractorInterface
 {
     private $compassPath;
     private $rubyPath;
@@ -42,10 +42,10 @@ class CompassFilter extends BaseSassFilter
     private $imagesDir;
     private $javascriptsDir;
     private $fontsDir;
-    private $relativeAssets;
 
     // compass configuration file options
     private $plugins = array();
+    private $loadPaths = array();
     private $httpPath;
     private $httpImagesPath;
     private $httpFontsPath;
@@ -143,6 +143,16 @@ class CompassFilter extends BaseSassFilter
         $this->plugins[] = $plugin;
     }
 
+    public function setLoadPaths(array $loadPaths)
+    {
+        $this->loadPaths = $loadPaths;
+    }
+
+    public function addLoadPath($loadPath)
+    {
+        $this->loadPaths[] = $loadPath;
+    }
+
     public function setHttpPath($httpPath)
     {
         $this->httpPath = $httpPath;
@@ -178,16 +188,14 @@ class CompassFilter extends BaseSassFilter
         $this->homeEnv = $homeEnv;
     }
 
-    public function setRelativeAssets($relativeAssets)
-    {
-        $this->relativeAssets = $relativeAssets;
-    }
-
     public function filterLoad(AssetInterface $asset)
     {
+        $root = $asset->getSourceRoot();
+        $path = $asset->getSourcePath();
+
         $loadPaths = $this->loadPaths;
-        if ($dir = $asset->getSourceDirectory()) {
-            $loadPaths[] = $dir;
+        if ($root && $path) {
+            $loadPaths[] = dirname($root.'/'.$path);
         }
 
         // compass does not seems to handle symlink, so we use realpath()
@@ -224,23 +232,15 @@ class CompassFilter extends BaseSassFilter
             $pb->add('--no-line-comments');
         }
 
-        // these three options are not passed into the config file
+        // these two options are not passed into the config file
         // because like this, compass adapts this to be xxx_dir or xxx_path
         // whether it's an absolute path or not
         if ($this->imagesDir) {
             $pb->add('--images-dir')->add($this->imagesDir);
         }
 
-        if ($this->relativeAssets) {
-            $pb->add('--relative-assets');
-        }
-
         if ($this->javascriptsDir) {
             $pb->add('--javascripts-dir')->add($this->javascriptsDir);
-        }
-
-        if ($this->fontsDir) {
-            $pb->add('--fonts-dir')->add($this->fontsDir);
         }
 
         // options in config file
@@ -290,6 +290,10 @@ class CompassFilter extends BaseSassFilter
             $optionsConfig['http_javascripts_path'] = $this->httpJavascriptsPath;
         }
 
+        if ($this->fontsDir) {
+            $optionsConfig['fonts_dir'] = $this->fontsDir;
+        }
+
         // options in configuration file
         if (count($optionsConfig)) {
             $config = array();
@@ -314,7 +318,7 @@ class CompassFilter extends BaseSassFilter
         // compass choose the type (sass or scss from the filename)
         if (null !== $this->scss) {
             $type = $this->scss ? 'scss' : 'sass';
-        } elseif ($path = $asset->getSourcePath()) {
+        } elseif ($path) {
             // FIXME: what if the extension is something else?
             $type = pathinfo($path, PATHINFO_EXTENSION);
         } else {
@@ -367,6 +371,12 @@ class CompassFilter extends BaseSassFilter
 
     public function filterDump(AssetInterface $asset)
     {
+    }
+
+    public function getChildren(AssetFactory $factory, $content, $loadPath = null)
+    {
+        // todo
+        return array();
     }
 
     private function formatArrayToRuby($array)

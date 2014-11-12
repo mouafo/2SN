@@ -11,7 +11,6 @@
 
 namespace Sensio\Bundle\FrameworkExtraBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -75,11 +74,8 @@ class SensioFrameworkExtraExtension extends Extension
         if ($config['security']['annotations']) {
             $annotationsToLoad[] = 'security.xml';
 
-            if (class_exists('Symfony\Component\ExpressionLanguage\ExpressionLanguage') && class_exists('Symfony\Component\Security\Core\Authorization\ExpressionLanguage')) {
-                $container->setAlias('sensio_framework_extra.security.expression_language', new Alias($config['security']['expression_language'], false));
-            } else {
-                $container->removeDefinition('sensio_framework_extra.security.expression_language.default');
-            }
+            $container->setAlias('sensio_framework_extra.security.expression_language', $config['security']['expression_language']);
+            $container->getAlias('sensio_framework_extra.security.expression_language')->setPublic(false);
 
             $this->addClassesToCompile(array(
                 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\SecurityListener',

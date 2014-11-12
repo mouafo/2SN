@@ -22,33 +22,33 @@ interface CurrencyBundleInterface extends ResourceBundleInterface
      * Returns the symbol used for a currency.
      *
      * @param string $currency A currency code (e.g. "EUR").
-     * @param string $displayLocale   Optional. The locale to return the result in.
+     * @param string $locale   Optional. The locale to return the result in.
      *                         Defaults to {@link \Locale::getDefault()}.
      *
      * @return string|null The currency symbol or NULL if not found.
      */
-    public function getCurrencySymbol($currency, $displayLocale = null);
+    public function getCurrencySymbol($currency, $locale = null);
 
     /**
      * Returns the name of a currency.
      *
      * @param string $currency A currency code (e.g. "EUR").
-     * @param string $displayLocale   Optional. The locale to return the name in.
+     * @param string $locale   Optional. The locale to return the name in.
      *                         Defaults to {@link \Locale::getDefault()}.
      *
      * @return string|null The name of the currency or NULL if not found.
      */
-    public function getCurrencyName($currency, $displayLocale = null);
+    public function getCurrencyName($currency, $locale = null);
 
     /**
      * Returns the names of all known currencies.
      *
-     * @param string $displayLocale Optional. The locale to return the names in.
+     * @param string $locale Optional. The locale to return the names in.
      *                       Defaults to {@link \Locale::getDefault()}.
      *
      * @return string[] A list of currency names indexed by currency codes.
      */
-    public function getCurrencyNames($displayLocale = null);
+    public function getCurrencyNames($locale = null);
 
     /**
      * Returns the number of digits after the comma of a currency.
