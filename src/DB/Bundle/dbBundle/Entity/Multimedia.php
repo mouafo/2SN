@@ -72,7 +72,6 @@ class Multimedia
     /**
      * @Vich\UploadableField(mapping="user_images", fileNameProperty="imageName")
      *
-     * @note This is not a mapped field of entity metadata, just a simple property.
      *
      * @var File $imageFile
      */
