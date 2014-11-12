@@ -1,3 +1,6 @@
 quelp_infos_homepage:
     path:     /he
     defaults: { _controller: QuelpInfosBundle:Default:index }
+quelp_image_apropospage:
+     path:     /apropos
+     defaults: { _controller: QuelpInfosBundle:Apropos:index }
