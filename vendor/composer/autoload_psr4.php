@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Vich\\UploaderBundle\\' => array($vendorDir . '/vich/uploader-bundle'),
+    'Vich\\TestBundle\\' => array($vendorDir . '/vich/uploader-bundle/Tests/Fixtures/App/src/TestBundle'),
     'Symfony\\Bundle\\MonologBundle\\' => array($vendorDir . '/symfony/monolog-bundle'),
     'Sonata\\DoctrineORMAdminBundle\\' => array($vendorDir . '/sonata-project/doctrine-orm-admin-bundle'),
     'Sonata\\CoreBundle\\' => array($vendorDir . '/sonata-project/core-bundle'),
