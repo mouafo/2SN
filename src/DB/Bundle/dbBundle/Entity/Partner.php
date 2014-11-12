@@ -78,8 +78,6 @@ class Partner
     public function setActive($active)
     {
         $this->active = $active;
-
-        return $this;
     }
 
     /**

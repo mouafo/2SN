@@ -17,6 +17,7 @@ class UserRepository extends EntityRepository
 		$qb->where('u.name like :name') ->setParameter('name', '%'.$name.'%')
 			->orWhere('u.surname like :name') ->setParameter('name', '%'.$name.'%')
 			->orWhere('u.username like :name') ->setParameter('name', '%'.$name.'%')
+			->orWhere('u.job like :name') ->setParameter('name', '%'.$name.'%')
 			->orderBy('u.username', 'ASC'); 
 		return $qb->getQuery()->getResult();
 	}

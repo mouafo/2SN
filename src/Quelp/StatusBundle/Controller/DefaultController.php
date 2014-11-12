@@ -14,6 +14,10 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $securityContext = $this->container->get('security.context');
+        if (!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
         $task = new Lessons();
         //$task->setSubject('coucou les gens');
         //$task->setDueDate(new \DateTime('tomorrow'));

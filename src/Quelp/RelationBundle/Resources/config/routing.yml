@@ -10,3 +10,10 @@ quelp_relation_demande:
 quelp_relation_showall:
     path:     /partner
     defaults: { _controller: QuelpRelationBundle:Search:show }
+quelp_relation_showwaiting:
+    path:     /partner/waiting
+    defaults: { _controller: QuelpRelationBundle:Default:showwaiting }
+
+quelp_relation_accept:
+    path:     /partner/accept
+    defaults: { _controller: QuelpRelationBundle:Default:accept }

@@ -23,17 +23,25 @@ class PartnerRepository extends EntityRepository
 
 	public function findWaitingPartners($user) {
 		$qb = $this->createQueryBuilder('p');
-		$qb ->where('p.user = :user') ->setParameter('user', $user)
+		$qb ->where('p.user_partner = :user') ->setParameter('user', $user)
 			->andWhere('p.active = :actif') ->setParameter('actif', FALSE)
-			->orderBy('p.createDate', 'ASC'); 
+			->orderBy('p.createDate', 'DESC'); 
 		return $qb->getQuery()->getResult();
 	}
 
 	public function findPartner($user, $userPartner) {
 		$qb = $this->createQueryBuilder('p');
 		$qb ->where('p.user = :user') ->setParameter('user', $user)
-			->andWhere('p.user_partner = :userPartner') ->setParameter('user', $userPartner)
+			->andWhere('p.user_partner = :userPartner') ->setParameter('userPartner', $userPartner)
 			->andWhere('p.active = :actif') ->setParameter('actif', TRUE);
+		return $qb->getQuery()->getResult();
+	}
+
+	public function findWaitingPartner($user, $userPartner) {
+		$qb = $this->createQueryBuilder('p');
+		$qb ->where('p.user = :user') ->setParameter('user', $user)
+			->andWhere('p.user_partner = :userPartner') ->setParameter('userPartner', $userPartner)
+			->andWhere('p.active = :actif') ->setParameter('actif', FALSE);
 		return $qb->getQuery()->getResult();
 	}
 }

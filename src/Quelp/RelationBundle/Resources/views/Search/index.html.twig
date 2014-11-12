@@ -60,7 +60,14 @@
 				   	  <li>{{ row.surname }}</li>
 				   	  <li>{{ row.email }}</li>
 				   	  <li>{{ row.username }}</li>
-				   	  <li><a href="{{ path('quelp_relation_demande', {'id': row.id}) }}">demande d'amis</a></li>
+                      {% if (etat[key] == "Deja partenaire") or  (etat[key] == "en attente") %}
+                            <li>{{ etat[key] }}</li>
+                        {% elseif etat[key] == "confirmation" %}
+                            <li><a href="{{ path('quelp_relation_accept', {'id': row.id}) }}">{{ etat[key]}}</a></li>
+                        {% else %}
+                            <li><a href="{{ path('quelp_relation_demande', {'id': row.id}) }}">{{ etat[key]}}</a></li>
+                        {% endif %}
+				   	  
 				</ul>
 				<br>
 				{% endfor %}
