@@ -9,12 +9,11 @@ parameters:
     # mailer_transport: smtp
     mailer_transport: gmail
     # mailer_host: 127.0.0.1
-    mailer_host:
+    mailer_host: 
     # mailer_user: null
     # mailer_password: null
     mailer_user: mouafogatien@gmail.com #inserer un compte gmail valide
-    #inserer le mot de passe du compte gmail precedent
-    mailer_password: mot_de_passe
+    mailer_password: ******  #inserer le mot de passe du compte gmail precedent
     locale: en
     secret: f3c43d061d4f9a280d7a85e07712e702
     debug_toolbar: true
