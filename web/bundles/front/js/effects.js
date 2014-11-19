@@ -17,6 +17,22 @@ $(document).ready(function(){
     });
 });
 
+/* Fonction pour afficher ajout */
+$(document).ready(function(){
+    $(".add-control").click(function(){
+        $('.add-pictures').show('swing');
+        $('.confirm-add-pictures').show('swing');
+    });
+});
+/*ajout d'album*/
+$(document).ready(function(){
+    $(".addalbum-control").click(function(){
+        $('.add-albums').show('swing');
+        $('.confirm-add-albums').show('swing');
+    });
+});
+
+
 /*
 $(document).ready(function(){
     $(".complete-profil-button").mouseover(function(){

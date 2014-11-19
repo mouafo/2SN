@@ -100,8 +100,39 @@ li
     display: none;
     bottom: 10%;
 }
-
 .confirm-delete-pictures
 {
     display: none;
+}
+.add-pictures
+{
+    position: absolute;
+    left:5%;
+    display: none;
+    bottom: 0%;
+}
+.confirm-add-pictures
+{
+    display: none;
+}
+
+
+.panel
+{
+    background-color: rgba(255, 255, 255, 0.75);
+}
+.add-albums
+{
+    position: absolute;
+    left:5%;
+    display: none;
+    top: 10%;
+}
+#upload .browse input[type='file']{
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 3px;
+    height: 1px;
+    width: 1px;
+    z-index: -5;
 }

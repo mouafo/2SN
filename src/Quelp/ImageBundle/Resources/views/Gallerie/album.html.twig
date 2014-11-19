@@ -10,6 +10,8 @@
 
 <!-- Contenu gallerie -->
 
+
+<!-- Debut du contenu titre + nav -->
 <div class="col-xs-12 col-md-10" style="margin-top: 20px">
 
 <!-- Debut du contenu titre + nav -->
@@ -26,7 +28,7 @@
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Ajouter</a></li>
+                            <li><a href="#" class="add-control">Ajouter</a></li>
                             <li class="divider"></li>
                             <li><a href="#" class="delete-control">Supprimer</a></li>
                         </ul>
@@ -40,6 +42,20 @@
 
     <!-- Début Gallerie -->
     <div class="col-xs-12 col-md-12" style="background-color: rgba(255, 255, 255, 0.8)">
+        <div class="col-md-10">
+            <br><br><br><br><br><br>
+        <span class="add-pictures">
+<h4>Ajouter des photos</h4>
+<div class="form-group">
+    <input type="file" id="exampleInputFile" class="browse" multiple>
+</div>
+
+<button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
+</span>
+        </div>
+
+        <br>
+
 
         <!-- Image de l'album avec possibilité de suppression et ajout -->
         <div class="col-md-4">
@@ -117,21 +133,24 @@
             </a>
             <span class="delete-pictures"><label><input type="checkbox"></label></span>
         </div>
+        <div class="col-md-8 col-md-offset-2">
+            <br><br>
+            <button type="submit" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%">SUPPRIMER</button>
+            <button type="reset" class="btn btn-info confirm-delete-pictures">ANNULER</button>
+            <br><br>
+            <br><br>
+        </div>
+
+
+        <br>
     </div>
-    <br>
     <table style="width: 100%">
         <tr>
-            <td>
-                <button type="submit" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%">SUPPRIMER</button>
-            </td>
             <td>
                 <ul class="pager">
                     <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4></a></li>
                     <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4></a></li>
                 </ul>
-            </td>
-            <td>
-                <button type="reset" class="btn btn-info confirm-delete-pictures">ANNULER</button>
             </td>
         </tr>
     </table>

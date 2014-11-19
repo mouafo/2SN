@@ -10,41 +10,58 @@
         <div class="panel-heading" style="padding:0px; border-bottom:0px">
             <div class="row">
                 <div class="col-xs-12 col-md-2" align="center">
-
                     <h2>Galerie</h2>
-
                 </div>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                <ul>
+                    <li class="dropdown">
                         <div class="pull-right" style="margin-right:50px; margin-top:20px">
-                            <span class="glyphicon glyphicon-cog"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Ajouter</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Supprimer</a></li>
-                    </ul>
-                </li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-trash" ></span>
+                            </a>
+
+
+                                <a href="#" class="delete-control">Supprimer</a>
+
+                        </div>
+                    </li>
+                </ul>
             </div></div>
         <br> <br>
+
+
         <div class="row">
             <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
+                <a href="#" class="thumbnail rollopaque">
+                <ul class="list-inline">
+                        <li><h4>Pas de titre</h4></li>
                     </ul>
-                    <img src="{{asset('bundles/front/img/geek.jpg')}}">
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/sky1.jpg')}}">
-                </a>
-            </div>
+                    <img src="{{asset('bundles/front/img/pn.jpg')}}" data-toggle="modal" data-target="#myModal">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Ajouter un nouvel album</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input class="form-control" type="text" placeholder="Entrer un titre pour cet album">
+                                    <br>
+                                    <div class="form-group">
+                                        <input type="file" id="exampleInputFile" class="browse" multiple>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary pull-right">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a></div>
+
+
+
+
             <div class="col-md-4">
                 <a href="#" class="thumbnail">
                     <ul class="list-inline">
@@ -53,25 +70,10 @@
                     </ul>
                     <img src="{{asset('bundles/front/img/sky22.jpg')}}">
                 </a>
+                <span class="delete-pictures"><label><input type="checkbox"></label></span>
             </div>
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/linux.jpg')}}">
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/sky3.jpg')}}">
-                </a>
-            </div>
+
+
             <div class="col-md-4">
                 <a href="#" class="thumbnail">
                     <ul class="list-inline">
@@ -80,114 +82,163 @@
                     </ul>
                     <img src="{{asset('bundles/front/img/fil.jpg')}}">
                 </a>
-
-
-
+                <span class="delete-pictures"><label><input type="checkbox"></label></span>
             </div>
-        </div>
-        <br>
-        <ul class="pager">
-            <li><a href="#"><h4><strong> <-- </strong></h4></a></li>
-            <li><a href="#"><h4><strong> --> </strong></h4></a></li>
-        </ul>
-    </div>
 
-</div>
 
-</div>
-<div class="col-xs-12 col-md-2" >
-    <div class="panel panel-primary" >
-        <br><br>
-<span style="color:green">
-&nbsp;&nbsp;<i class="glyphicon glyphicon-off" style="font-size:17px;"></i></span>
-        <strong> Amis&nbsp;Actifs </strong>
-        <br><br>
-        <ul>
-            <li class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="...">
-
-                    <div class="media-body">
-                        <h5 class="media-heading">Ami1</h5>
+            <div class="col-md-4">
+                <a href="#" class="thumbnail">
+                    <ul class="list-inline">
+                        <li><h4>Titre</h4></li>
+                        <li>JJ/MM/AA</li>
+                    </ul>
+                    <img src="{{asset('bundles/front/img/linux.jpg')}}">
                 </a>
-    </div>
-    </li>
-    <li class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="...">
+                <span class="delete-pictures"><label><input type="checkbox"></label></span>
+            </div>
 
-            <div class="media-body">
-                <h5 class="media-heading">Ami2</h5>
-        </a>
-</div>
-</li>
 
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
+            <div class="col-md-4">
+                <a href="#" class="thumbnail">
+                    <ul class="list-inline">
+                        <li><h4>Titre</h4></li>
+                        <li>JJ/MM/AA</li>
+                    </ul>
+                    <img src="{{asset('bundles/front/img/nous.jpg')}}">
+                </a>
+                <span class="delete-pictures"><label><input type="checkbox"></label></span>
+            </div>
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami3</h5>
-    </a>
-    </div>
-</li>
 
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
+            <div class="col-md-4">
+                <a href="#" class="thumbnail">
+                    <ul class="list-inline">
+                        <li><h4>Titre</h4></li>
+                        <li>JJ/MM/AA</li>
+                    </ul>
+                    <img src="{{asset('bundles/front/img/geek.jpg')}}">
+                </a>
+                <span class="delete-pictures"><label><input type="checkbox"></label></span>
+            </div>
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami4</h5>
-    </a>
-    </div>
-</li>
 
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami5</h5> </a>
 
-    </div>
-</li>
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami6</h5>
-    </a>
-    </div>
-</li>
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami7</h5>
-    </a>
-    </div>
-</li>
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami8</h5>
-    </a>
-    </div>
-</li>
-<li class="media">
-    <a class="pull-left" href="#">
-        <img class="media-object" src="...">
+            <div class="col-md-8 col-md-offset-2">
+                <br><br>
+                <button type="submit" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%">SUPPRIMER</button>
+                <button type="reset" class="btn btn-info confirm-delete-pictures">ANNULER</button>
+                <br><br>
 
-        <div class="media-body">
-            <h5 class="media-heading">Ami9</h5>
-    </a>
-    </div>
-</li>
-</ul>
+
+                <br>
+            </div>
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <ul class="pager">
+                            <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4></a></li>
+                            <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4></a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div></div>
+    <div class="col-xs-12 col-md-2">
+        <div class="panel panel-primary" style="padding: 0px 0 30px 0;text-align: center">
+            <div class="friend-connect-title">
+                <span style="color:green"><i class="glyphicon glyphicon-off" style="font-size:17px;"></i></span>
+                <strong> Amis&nbsp;Actifs </strong>
+            </div>
+            <br>
+            <ul>
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami1</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami2</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami3</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami4</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami5</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami6</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami7</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami8</h5>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <div class="media-body">
+                            <h5 class="media-heading">Ami9</h5>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div> </div>
 </div> </div>
 
 {% endblock %}

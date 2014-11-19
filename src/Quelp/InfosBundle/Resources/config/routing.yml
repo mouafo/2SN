@@ -4,3 +4,9 @@ quelp_infos_homepage:
 quelp_image_apropospage:
      path:     /apropos
      defaults: { _controller: QuelpInfosBundle:Apropos:index }
+quelp_image_privacypolicy:
+     path:     /privacypolicy
+     defaults: { _controller: QuelpInfosBundle:Privacypolicy:index }
+quelp_image_termsofservice:
+     path:     /termsofservice
+     defaults: { _controller: QuelpInfosBundle:Termsofservice:index }
