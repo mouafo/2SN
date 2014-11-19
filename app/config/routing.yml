@@ -1,3 +1,7 @@
+quelp_message:
+    resource: "@QuelpMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 status:
     resource: "@StatusBundle/Resources/config/routing.yml"
     prefix:   /

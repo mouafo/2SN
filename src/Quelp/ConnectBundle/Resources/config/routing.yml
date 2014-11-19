@@ -46,3 +46,11 @@ quelp_connect_editprofile:
 quelp_image_murpage:
      path:     /mur
      defaults: { _controller: QuelpImageBundle:Mur:index }
+
+################################################################################################
+#####################################   MESSAGE   ##############################################
+################################################################################################
+
+quelp_connect_messagepage:
+     path:     /message
+     defaults: { _controller: QuelpConnectBundle:Messagerie:index }

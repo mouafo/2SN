@@ -1,0 +1,7 @@
+parameters:
+#    quelp_message.example.class: Quelp\MessageBundle\Example
+
+services:
+#    quelp_message.example:
+#        class: %quelp_message.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
