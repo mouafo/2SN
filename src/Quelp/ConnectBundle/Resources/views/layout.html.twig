@@ -8,6 +8,8 @@
     <meta name="keywords" content="reseau, reseau social, aide, besoin">
     <meta name="description" content="Quelp est un reseau social">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {% stylesheets
     'bundles/front/bootstrap/css/bootstrap.min.css'
     'bundles/front/css/style.css'
@@ -53,17 +55,14 @@
         {% block content %}
             {# Ici on charge et on affiche le contenu de chaque page #}
         {% endblock %}
-        {# Ici on charge et on affiche le contenu du footer #}
-        {% include "QuelpConnectBundle:Common:footer.html.twig" %}
     {% endif %}
 
 
-
+{# Ici on charge et on affiche le contenu du footer #}
+{% include "QuelpConnectBundle:Common:footer.html.twig" %}
 
 {% javascripts
 'bundles/front/js/jquery/jquery.js'
-'bundles/front/js/jquery-latest.min.js'
-'bundles/front/js/jquery.min.js'
 'bundles/front/bootstrap/js/bootstrap.min.js'
 'bundles/front/js/effects.js'
 'bundles/front/js/msg_effects.js'

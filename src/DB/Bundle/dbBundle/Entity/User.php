@@ -78,14 +78,6 @@ class User extends BaseUser
      */
     private $editDate;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->setCreateDate(new \Datetime());
-        $this->setEditDate($this->getCreateDate());
-    }
-
-
     /**
      * Get id
      *
@@ -324,5 +316,4 @@ class User extends BaseUser
     {
         return $this->editDate;
     }
-
 }

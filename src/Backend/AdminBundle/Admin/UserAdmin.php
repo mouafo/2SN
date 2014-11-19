@@ -14,39 +14,14 @@ class UserAdmin extends Admin
   {
     //    if ($this->admin->isGranted('ADD')) {
         $formMapper
-          ->with('Account Manager', array('class' => 'col-md-12'))
-                  ->add('username', 'text', array('label' => 'username', 'required' => true))
-          ->end()
-          ->with('User Personal data', array( 'class' => 'col-md-6' ))
-                ->add('name', 'text', array('required' => false))
-                ->add('surname', 'text', array('required' => false)) 
-                ->add('email', 'email', array('required' => true))
-                ->add('password', 'text', array('required' => true, 'read_only'=> 'read_only'))
-                
-          ->end()
-          ->with('User\'s Account State', array( 'class' => 'col-md-6' ))
-                ->add('bornDate', 'date', array('input'  => "datetime",
-                              'widget' => 'choice',
-                              'years' => range(1950,2015),
-                              'format' => 'dd / MM / yyyy',
-                              'empty_value' => '',
-                              'label'=>'Date of Birth:'))
-                ->add('job')
-                ->add('locked', null, array('required' => false))
-                ->add('roles', 'choice', array(
-                                'choices'   => array(
-                                    'ROLE_USER'   => 'ROLE_USER',
-                                    'ROLE_STAFF'        => 'ROLE_STAFF',
-                                    'ROLE_SONATA_FOO_READER'        => 'ROLE_SONATA_FOO_READER',
-                                    'ROLE_SONATA_FOO_EDITOR'        => 'ROLE_SONATA_FOO_EDITOR',
-                                    'ROLE_SONATA_FOO_ADMIN'        => 'ROLE_SONATA_FOO_ADMIN',
-                                    'ROLE_ADMIN'        => 'ROLE_ADMIN',
-                                    'ROLE_SUPER_ADMIN'        => 'ROLE_SUPER_ADMIN',
-                                ),
-                                'required' => false,
-                                'multiple'  => true,
-                ))
-          ->end()
+	  ->add('username', 'text', array('label' => 'username', 'required' => true))
+	  ->add('email', 'email', array('required' => true))
+	  ->add('password', 'password', array('required' => true))
+	  ->add('name', null, array('required' => false))
+	  ->add('surname', null, array('required' => false))
+	  ->add('job')
+          ->add('locked', null, array('required' => false))
+          ->add('bornDate')
 	  ;
 	//   }
   }

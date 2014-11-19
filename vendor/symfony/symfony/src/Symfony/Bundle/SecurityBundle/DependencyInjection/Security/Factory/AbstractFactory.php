@@ -35,7 +35,7 @@ abstract class AbstractFactory implements SecurityFactoryInterface
     protected $defaultSuccessHandlerOptions = array(
         'always_use_default_target_path' => false,
         'default_target_path'            => '/',
-        'login_path'                     => '/',
+        'login_path'                     => '/login',
         'target_path_parameter'          => '_target_path',
         'use_referer'                    => false,
     );
@@ -43,7 +43,7 @@ abstract class AbstractFactory implements SecurityFactoryInterface
     protected $defaultFailureHandlerOptions = array(
         'failure_path'                   => null,
         'failure_forward'                => false,
-        'login_path'                     => '/',
+        'login_path'                     => '/login',
         'failure_path_parameter'         => '_failure_path',
     );
 
