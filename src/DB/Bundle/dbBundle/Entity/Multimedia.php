@@ -4,6 +4,7 @@ namespace DB\Bundle\dbBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -41,7 +42,7 @@ class Multimedia
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255,  nullable=true)
      */
     private $path;
 
@@ -61,15 +62,18 @@ class Multimedia
 
     /**
      * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false) */
+     * @ORM\JoinColumn(nullable=true) */
     private $user;
      
     /**
      * @ORM\ManyToOne(targetEntity="DB\Bundle\dbBundle\Entity\Album", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false) */
+     * @ORM\JoinColumn(nullable=true) */
     private $album;
 
     /**
+     * @Assert\File(
+     *     mimeTypes={"image/png", "image/jpeg", "image/gif"}
+     * )
      * @Vich\UploadableField(mapping="user_images", fileNameProperty="imageName")
      *
      *
@@ -84,16 +88,9 @@ class Multimedia
      */
     protected $imageName;
 
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime $updatedAt
-     */
-    protected $updatedAt;
 
     public function __construct() {
         $this->setCreateDate(new \Datetime());
-        $this->setEditDate($this->getCreateDate());
     }
 
     /**
@@ -112,7 +109,7 @@ class Multimedia
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
+            $this->editDate = new \DateTime('now');
         }
     }
 

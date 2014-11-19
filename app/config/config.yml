@@ -1,8 +1,34 @@
 sonata_admin:
     title:      Quelp Administration
     title_logo: bundles/sonataadmin/logo_title.png
-#    security:
-#        handler: sonata.admin.security.handler.role
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Welcome to the Quelp Administration Pannel</h2>
+                        <p>This section allows you to manage easily the different <code>user accounts</code> 
+                        that have being created and more over the different contents of each user 
+                        account's content.<br>
+                        On this pannel, you can <code>manage accounts</code>, <code>partnerships amoungs users</code>, 
+                        and eventually <code>contents of any user</code> on the social network</p>
+                        <h4>Top bar menu</h4>
+                        <p>This section offers a dropdown menu at the right corner that allows you
+                         to manage any of the functionnalities offered by the admin section.
+                         on the left part of the bar you can have appropriate ideas on wher you are located 
+                         as you <code>manage your contents</code>.<br>
+    templates:
+        # this is the search configuration
+        search:              SonataAdminBundle:Core:search.html.twig
+        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
+    security:
+        handler: sonata.admin.security.handler.role
+        acl_user_manager: my_user_manager
 
 # VichUploaderBundle config for ImageBundle and any other uploads
 # https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/usage.md
@@ -11,8 +37,13 @@ vich_uploader:
 
     mappings:
         user_images:
-            uri_prefix:         /data/uploads
-            upload_destination: %kernel.root_dir%/../app/data/uploads
+            uri_prefix:         /web/bundles/front/uploads/images
+            upload_destination: %kernel.root_dir%/../web/bundles/front/uploads/images
+            namer:              vich_uploader.namer_uniqid
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
 
 
             # inject_on_load: should the file be injected into the uploadable entity when it is loaded from the data store.
@@ -25,15 +56,13 @@ vich_uploader:
             # delete_on_remove: should the file be deleted when the entity is removed (default: true)
             # delete_on_remove:   true
 
-        # user_files:
-        #             uri_prefix:         /data/files
-        #             upload_destination: %kernel.root_dir%/../app/data/files
-
 
 sonata_block:
     default_contexts: [cms]
     blocks:
         # Enable the SonataAdminBundle block
+        sonata.block.service.text:
+        sonata.user.block.account:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 

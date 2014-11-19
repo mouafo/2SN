@@ -1,3 +1,0 @@
-quelp_message_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: QuelpMessageBundle:Default:index }

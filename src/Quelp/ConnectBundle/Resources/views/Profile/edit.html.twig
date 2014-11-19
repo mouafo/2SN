@@ -1,6 +1,6 @@
 {# Cette page est la page modification du user profil #}
 
-{% extends "QuelpConnectBundle::layoutprofil.html.twig" %}
+{% extends "QuelpConnectBundle::layout.html.twig" %}
 
 {% block title %} Accueil {% endblock %}
 
@@ -14,15 +14,15 @@
 
 
 <!-- Page Content -->
-<div class="container-fluid fos_user_user_show">
+<div class="container-fluid">
 
     <div class="row-fluid">
         <div class="col-xs-12 col-md-2">
             <div class="boder">
                 <h4 class="text-center">QUELPER</h4>
                 <p class="text-center"><span class="glyphicon glyphicon-star-empty"></span>100%</p>
-                <a href="{{ path('quelp_connect_profilepage')}}" ><img src="{{asset('bundles/front/img/default-avatar.png')}}" height="125" width="125" alt="" class="img-rounded"></a></br>
-                <br><p class="text-center">{{ user.surname }}</p>
+                <a href="profil.html" ><img src="image/my-avatar.jpg" height="125" width="125" alt="" class="img-rounded"></a></br>
+                <br><p class="text-center">Ludo Lebon</p>
                 <p class="text-center">22 ans</p>
 
 
@@ -31,7 +31,7 @@
                 <br><span class="glyphicon glyphicon-calendar"></span> <a href="#" >Événement</a></br>
             </div>
         </div>
-        <div class="col-xs-12 col-md-8">
+        <div class="col-xs-12 col-md-7">
             <div class="boder">
                 <h2>Informations générales</h2>
                 <div class="progress">
@@ -39,17 +39,6 @@
                         60%
                     </div>
                 </div>
-                {% trans_default_domain 'FOSUserBundle' %}
-
-
-                <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-                    {{ form_widget(form) }}
-                    <div>
-                        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-                    </div>
-                </form>
-
-
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="exampleInputFile" class="col-sm-2 control-label">Image</label>
@@ -61,13 +50,13 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Pseudo</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3" placeholder={{ user.surname }}>
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="Pseudo">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder={{ user.email }}>
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
@@ -84,7 +73,7 @@
                     </div>
                     <h2>Mes super compétences</h2>
                     <h5>First compétences</h5>
-                    <input type="text" class="form-control" placeholder="Taper ici votre super compétence"><br>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super pouvoir"><br>
                     <p>Niveau de compétence</p>
                     <select class="form-control">
                         <option>Débutant</option>
@@ -93,7 +82,16 @@
                         <option>Expert</option>
                     </select>
                     <h5>Second compétences</h5>
-                    <input type="text" class="form-control" placeholder="Taper ici votre super compétence"><br>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super pouvoir"><br>
+                    <p>Niveau de compétence</p>
+                    <select class="form-control">
+                        <option>Débutant</option>
+                        <option>Internédiaire</option>
+                        <option>Avancé</option>
+                        <option>Expert</option>
+                    </select>
+                    <h5>Third compétences</h5>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super pouvoir"><br>
                     <p>Niveau de compétence</p>
                     <select class="form-control">
                         <option>Débutant</option>
@@ -108,7 +106,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-xs-12 col-md-2">
+        <div class="col-xs-12 col-md-3">
             <div class="boder">
                 <input type="text" class="form-control" placeholder="chat with  ..."></br>
                 <div class="panel-group" id="accordion">
@@ -117,7 +115,6 @@
                             <p class="text-center">En ligne (5)  <span class="glyphicon glyphicon-chevron-down"></span></p>
                         </a>
                     </h4>
-
 
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">

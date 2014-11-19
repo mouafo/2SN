@@ -150,6 +150,11 @@ file that was distributed with this source code.
                             {% block sonata_top_nav_menu %}
                                 <div class="navbar-right">
                                     <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="{{ path('quelp_connect_registerpage') }}" alt="Home Page">
+                                                <i class="fa fa-home fa-fw"></i></i>
+                                            </a>
+                                        </li>
                                         <li class="dropdown">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                                 <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -241,7 +246,14 @@ file that was distributed with this source code.
                                     {% endif %}
                                 {% endblock side_bar_nav %}
                                 {% block side_bar_after_nav %}
-                                    <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px"><a href="http://sonata-project.org" rel="noreferrer" target="_blank">sonata project</a></p>
+                                    <h4>Developper Team</h4><br><br><br>
+                                    <h4 class="text-center" style="margin-left: 10px; padding-top: 10px"><a>Developper Team</a></h4>
+                                    <p class="text-left small" style="border-top: 1px solid #444444; padding-top: 10px">---<a href="http://www.mouafocv.com" rel="noreferrer" target="_blank">Gatien MOUAFO</a></p>
+                                    <p class="text-left small" style="border-top: 1px solid #444444; padding-top: 10px">---<a href="#" rel="noreferrer" target="_blank">feriel ABACHI</a></p>
+                                    <p class="text-left small" style="border-top: 1px solid #444444; padding-top: 10px">---<a href="#" rel="noreferrer" target="_blank">timothe LESTIN</a></p>
+                                    <p class="text-left small" style="border-top: 1px solid #444444; padding-top: 10px">---<a href="#" rel="noreferrer" target="_blank">priscillia LORENTZ</a></p>
+                                    <p class="text-left small" style="border-top: 1px solid #444444; padding-top: 10px">---<a href="#" rel="noreferrer" target="_blank">Jean Baptiste BOUHIE</a></p>
+                                    <p class="text-left small" style="border-top: 1px solid #444444; padding-top: 10px">---<a href="#" rel="noreferrer" target="_blank">zarali MANEL</a></p>
                                 {% endblock %}
                             {% endblock sonata_side_nav %}
                         </section>

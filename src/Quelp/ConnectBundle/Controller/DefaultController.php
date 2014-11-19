@@ -12,9 +12,6 @@ class DefaultController extends Controller
 		if (!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
 		    return $this->redirect($this->generateUrl('fos_user_security_login'));
 		}
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('QuelpConnectBundle:Messagerie');
-
         return $this->render('QuelpConnectBundle:Default:index.html.twig', array('name' => $name));
     }
 }
