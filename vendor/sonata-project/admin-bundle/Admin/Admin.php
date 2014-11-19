@@ -123,7 +123,7 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
      *
      * @var integer
      */
-    protected $maxPerPage = 25;
+    protected $maxPerPage = 15;
 
     /**
      * The maximum number of page numbers to display in the list
@@ -209,7 +209,7 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
      */
     protected $datagridValues = array(
         '_page'       => 1,
-        '_per_page'   => 25,
+        '_per_page'   => 15,
     );
 
     /**
@@ -217,7 +217,7 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
      *
      * @var array
      */
-    protected $perPageOptions = array(15, 25, 50, 100, 150, 200);
+    protected $perPageOptions = array(10, 15, 25, 50, 100, 150, 200);
 
     /**
      * The code related to the admin
@@ -767,7 +767,7 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
             $fieldDescription = $this->getModelManager()->getNewFieldDescriptionInstance($this->getClass(), 'batch', array(
                 'label'    => 'batch',
                 'code'     => '_batch',
-                'sortable' => false
+                'sortable' => true
             ));
 
             $fieldDescription->setAdmin($this);
@@ -786,7 +786,7 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
             $fieldDescription = $this->getModelManager()->getNewFieldDescriptionInstance($this->getClass(), 'select', array(
                 'label'    => false,
                 'code'     => '_select',
-                'sortable' => false,
+                'sortable' => true,
             ));
 
             $fieldDescription->setAdmin($this);

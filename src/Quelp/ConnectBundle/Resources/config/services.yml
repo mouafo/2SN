@@ -1,6 +1,5 @@
 parameters:
 #    quelp_connect.example.class: Quelp\ConnectBundle\Example
-
 #    quelp_connect.example:
 #        class: %quelp_connect.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
