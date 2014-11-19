@@ -1,6 +1,6 @@
 {# Cette page est la page home des pages connections d'inscription #}
 
-{% extends "QuelpConnectBundle::layout.html.twig" %}
+{% extends "QuelpConnectBundle::layoutprofil.html.twig" %}
 
 {% block title %} Accueil {% endblock %}
 
@@ -16,71 +16,53 @@
 
         <div class="col-xs-12 row-fluid" style="margin-bottom: 20px">
             <div class="col-md-2">
+                <div class="panel panel-info"  align="center"  >
+                    <div class="panel-heading">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">Menu</h4> </a>
+                    </div>
                 <div class="boder">
-                    <span class="glyphicon glyphicon-picture" style="color: white;font-size: 20px"></span> <a href="{{ path('quelp_image_albumpage') }}" class="lien" style="color: white;font-size: 17px; font-weight: 300">&nbsp;Photos</a>
-                    <a href="{{ path('quelp_image_albumpage') }}" ><img src="{{ asset('bundles/front/img/bg_Foto.jpg') }}" width="115" alt="" class="img-border img-rounded" style="border: 3px solid rgba(255, 255, 255, 0.3);margin-top: 10px"></a>
-                    <span class="glyphicon glyphicon-calendar" style="color: white;font-size: 20px;margin-top: 20px"></span> <a href="#" class="lien" style="color: white;font-size: 16px; font-weight: 300">Événements</a>
+                    <p><a href="{{ path('quelp_image_albumpage') }}" class="lien" style="font-size: 17px; font-weight: 300">Galleries</a></p>
+                    <p><a href="{{ path('quelp_image_albumpage') }}" ><img src="{{ asset('bundles/front/img/bg_Foto.jpg') }}" width="115" alt="" class="img-border img-rounded" style="border: 3px solid rgba(255, 255, 255, 0.3);margin-top: 10px"></a></p>
+                    <p ><a href="#" class="lien" style="font-size: 16px; font-weight: 300">Événements</a></p>
                     <a href="#" ><img src="{{ asset('bundles/front/img/symfony.png') }}" width="115" alt="" class="img-border img-rounded" style="margin-top: 10px;border: 3px solid rgba(255, 255, 255, 0.3)"></a>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-7">
-                <div class="boder">
+            </div>
+            <div class="col-xs-12 col-md-8">
+                <div class="panel panel-info"  align="center"  >
+                    <div class="panel-heading">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">My Profil</h4> </a>
+                    </div>
+
+
+
                     <div class="media">
+
                         <a class="pull-left" href="#">
-                            <img src="{{ asset('bundles/front/img/avatarmanel.jpg') }}"  height="160" width="160" alt="" class="img-thumbnail" >
+                            <img src="{{asset('bundles/front/img/default-avatar.png')}}"  height="160" width="160" alt="" class="img-thumbnail" >
                         </a>
+
                         <div class="media-body">
-                            <h4 class="media-heading">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <p class="firstname-profil" style="color: rgba(0, 0, 0, 0.5);font-size: 22px;font-weight: 400">{{ user.username }}&nbsp;</p>
-                                        </td>
-                                        <td>
-                                            <p class="surname-profil" style="color: rgba(0, 0, 0, 0.5);font-size: 22px;font-weight: 400">{{user.name}}</p>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </h4>
-                            <div class="edit-profil">
-                                <a href="{{ path('quelp_connect_editprofile') }}"><span class="glyphicon glyphicon-cog" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Modifier Profil</span></a>
+
+                            <div class="row">
+                                <div class="col-md-1 col-md-offset-1"><h3><p class="firstname-profil" style="color: rgba(0, 0, 0, 0.5);">{{ user.username }}&nbsp;{{ user.name }}</p></h3></div>
+                                <div class="col-md-5 col-md-offset-5"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-cog" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Modifier Profil</span></a></div>
+                                <div class="col-md-4"><a href="{{ path('quelp_relation_showall') }}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-user" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Patterns</span></a></div>
+                                <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-star" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Avis</span></a></div>
                             </div>
                         </div>
                     </div>
-                    <table class="table table-hover">
-                        <tr>
-                            <td><a href="followers.html" class="lien">Follower (8)</a></td>
-                            <td><a href="following.html" class="lien">Following (8)</a></td>
-                            <td><a href="" class="lien">Notes des Quelpers (3)</a></td>
-                        </tr>
-
-                    </table>
-                    <div class="news"><h4>Mon Actualité</h4></div>
+                </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">My news</h4> </a>
+                        </div>
 
                     <div style="float: left">
-                        <a href="#"><img class="media-object img-rounded" src="{{ asset('bundles/front/img/avatarmanel.jpg') }}" width="90" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
-                    </div>
-                    <div style="display: inline-block">
-                    <table>
-                        <tr>
-                            <td style="padding: 5px 10px 5px 0px">
 
-                            </td>
-                            <td style="padding: 0 20px 0 10px;vertical-align: top">
-                                <h4 style="float: left">Prénom NOM</h4>
-                                <div class="pull-right" style="display: inline-block">
-                                    <span class="glyphicon glyphicon-time"></span><small>&nbsp;12 mins ago</small>
-                                </div>
-                            </td>
-
-                        </tr>
-                        <tr style="vertical-align: top">
-                            <td style="vertical-align: top"><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
-                            <td style="padding: -150px 20px 0 10px;">
-                                <p>Hae duae provinciae bello quondam piratico catervis mixtae praedonum a Servilio pro consule missae sub iugum factae sunt vectigales. et hae quidem regiones velut.  bello quondam piratico catervis mixtae</p>
-                            </td>
-                        </tr>
-                    </table>
                     </div>
 
 
@@ -88,12 +70,12 @@
 
                         <div class="media">
                             <a class="pull-left" href="#">
-                                <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                                <img class="media-object" src="{{asset('bundles/front/img/default-avatar.png')}}" height="80px" alt="...">
                             </a>
                             <div class="media-body">
                                 <small class="pull-right text-muted">
                                     <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                <h4 class="media-heading">Billy Perrot</h4>
+                                <h4 class="media-heading">{{user.surname}}</h4>
                                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
                                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
                                 vulputate fringilla. Donec lacinia congue felis in faucibus.
@@ -107,12 +89,12 @@
                     <div class="news">
                         <div class="media">
                             <a class="pull-left" href="#">
-                                <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
+                                <img class="media-object" src="{{asset('bundles/front/img/default-avatar.png')}}" height="80px" alt="...">
                             </a>
                             <div class="media-body">
                                 <small class="pull-right text-muted">
                                     <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                <h4 class="media-heading">Billy Perrot</h4>
+                                <h4 class="media-heading">{{user.surname}}</h4>
                                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
                                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
                                 vulputate fringilla. Donec lacinia congue felis in faucibus.
@@ -121,22 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="news">
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="image/my-avatar.jpg" height="80px" alt="...">
-                            </a>
-                            <div class="media-body">
-                                <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                <h4 class="media-heading">Billy Perrot</h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                                vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>  <a href="#" class="lien"><span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="panel-group" id="accordion">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
@@ -148,7 +115,11 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">Partners</h4> </a>
+                    </div>
                 <div class="boder">
                     <input type="text" class="form-control" placeholder="chat with  ..."></br>
                     <div class="panel-group" id="accordion">
@@ -192,6 +163,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <!-- /.row -->
 

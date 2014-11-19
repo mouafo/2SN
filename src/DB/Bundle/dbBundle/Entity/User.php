@@ -51,6 +51,20 @@ class User extends BaseUser
     private $job = null;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="competence1", type="string", length=150, nullable=true)
+     */
+    private $competence1 = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="competence2", type="string", length=150, nullable=true)
+     */
+    private $competence2 = null;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="create_date", type="datetime")
@@ -238,6 +252,32 @@ class User extends BaseUser
     {
         return $this->job;
     }
+
+    /**
+     * Set competence1
+     *
+     * @param string $competence1
+     * @return competence1
+     */
+    public function setCompetence1($competence1)
+    {
+        $this->competence1 = $competence1;
+
+        return $this;
+    }
+    /**
+     * Set competence2
+     *
+     * @param string $competence2
+     * @return competence2
+     */
+    public function setCompetence2($competence2)
+    {
+        $this->competence2 = $competence2;
+
+        return $this;
+    }
+
 
     /**
      * Set createDate

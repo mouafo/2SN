@@ -31,13 +31,19 @@ class ProfileController extends Controller
     /**
      * Show the user
      */
+
+
     public function showAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        $request = $this->get('request');
+        if($request ->getMethod() =='GET'){
 
+
+        }
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.twig', array('user' => $user));
     }
 
@@ -50,6 +56,7 @@ class ProfileController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:edit.html.twig', array('user' => $user));
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->container->get('event_dispatcher');
