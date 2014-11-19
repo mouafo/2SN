@@ -136,3 +136,21 @@ li
     width: 1px;
     z-index: -5;
 }
+.panel-message,.flip
+{
+    padding:5px;
+    text-align:center;
+    background-color:#e5eecc;
+    border:solid 1px #c3c3c3;
+}
+.panel-message
+{
+    padding:50px;
+    display:none;
+}
+
+.hid-element
+{
+    display: none;
+    padding: 70px;
+}

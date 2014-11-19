@@ -20,6 +20,7 @@ $(document).ready(function(){
 /* Fonction pour afficher ajout */
 $(document).ready(function(){
     $(".add-control").click(function(){
+        $('.hid-element').show('swing');
         $('.add-pictures').show('swing');
         $('.confirm-add-pictures').show('swing');
     });
@@ -32,6 +33,12 @@ $(document).ready(function(){
     });
 });
 
+
+$(document).ready(function(){
+    $(".flip").click(function(){
+        $(".panel-message").slideToggle("slow");
+    });
+});
 
 /*
 $(document).ready(function(){
