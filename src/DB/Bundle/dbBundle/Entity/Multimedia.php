@@ -26,27 +26,6 @@ class Multimedia
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=200, nullable=true)
-     */
-    private $name = null;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ext", type="string", length=5, nullable=true)
-     */
-    private $ext = null;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="path", type="string", length=255,  nullable=true)
-     */
-    private $path;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="create_date", type="datetime")
@@ -145,75 +124,6 @@ class Multimedia
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Multimedia
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set ext
-     *
-     * @param string $ext
-     * @return Multimedia
-     */
-    public function setExt($ext)
-    {
-        $this->ext = $ext;
-
-        return $this;
-    }
-
-    /**
-     * Get ext
-     *
-     * @return string 
-     */
-    public function getExt()
-    {
-        return $this->ext;
-    }
-
-    /**
-     * Set path
-     *
-     * @param string $path
-     * @return Multimedia
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    /**
-     * Get path
-     *
-     * @return string 
-     */
-    public function getPath()
-    {
-        return $this->path;
     }
 
     /**

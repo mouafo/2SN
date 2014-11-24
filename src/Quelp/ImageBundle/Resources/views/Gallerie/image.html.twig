@@ -19,7 +19,7 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-xs-12 col-md-2" align="center">
-                <h2>Titre1</h2>
+                <h2>Images</h2>
             </div>
             <ul>
                 <li class="dropdown">
@@ -28,9 +28,11 @@
                             <span class="glyphicon glyphicon-cog"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="add-control">Ajouter</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#myModal">Add New Image</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" class="delete-control">Supprimer</a></li>
+                            <li><a href="#" class="add-control">Activate Edit Action</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="delete-control">Activate Delete Action</a></li>
                         </ul>
 
                     </div>
@@ -42,100 +44,103 @@
 
     <!-- Début Gallerie -->
     <div class="col-xs-12 col-md-12" style="background-color: rgba(255, 255, 255, 0.8)">
-        <div class="col-md-10 hid-element">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Add a new Image Here</h4>
+                                </div>
+                                <form method="post" {{ form_enctype(img_form) }}>
 
-        <span class="add-pictures">
-<h4>Ajouter des photos</h4>
-<div class="form-group">
-    <input type="file" id="exampleInputFile" class="browse" multiple>
-</div>
-
-<button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
-</span>
-        </div>
+                                <div class="modal-body">
+                                    <br>
+                                    <div class="form-group">
+                                        {{ form_widget(img_form) }}
+                                        <!-- <input type="file" id="exampleInputFile" class="browse" multiple> -->
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary pull-right">Save changes</button>
+                                </div>
+                                {{ form_rest(img_form) }}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
         <br>
 
 
         <!-- Image de l'album avec possibilité de suppression et ajout -->
-        <div class="col-md-4">
+
+        <form id='delete' action="{{ path('quelp_image_delete') }}" method="POST" >
+        {% for key, row in list_img %}
+            <div class="col-md-4">
 
             <!-- Lien vers image modal -->
             <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
 
                 <!-- Image -->
-                <img src="{{asset('bundles/front/img/gallerie/sky22.jpg')}}">
-
+                <img src="{{ asset('bundles/front/uploads/images/'~row.imageName) }}">
 
                 <!-- Titre de la photo -->
-                <span class="hide-title">Titre 1</span>
+                <span class="hide-title">Added on {{ row.editDate|date('d-M-Y') }}</span>
             </a>
 
             <!-- Suppression -->
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+            <span class="delete-pictures"><label><input type="checkbox" name="box[]" value="{{ row.id }}"></label></span>
+            <span class="add-pictures">
+                        <a href="#" class="thumbnail">
+                        <i class="glyphicon glyphicon-pencil"  data-toggle="modal" data-target="#myModalEdit{{ row.id }}"></i>
+                        </a></span>
         </div>
-        <!-- Fin d'affichage d'une image -->
+         {% endfor %}
+         </form>
 
-        <div class="col-md-4">
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img1.jpg')}}">
-                <span class="hide-title">Photo du mur</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
-        <div class="col-md-4">
-            <a href="#img2" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img2.jpg')}}">
-                <span class="hide-title">Photo du mur</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
-        <div class="col-md-4">
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img2.jpg')}}">
-                <span class="hide-title">Photo du mur</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
-        <div class="col-md-4">
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img7.jpg')}}">
-                <span class="hide-title">Photo de profil</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
-        <div class="col-md-4">
+<!-- portion that goes through each album to generate a fade modal for each (enables easy edit of an album) -->
+{% for key, row in list_img %}
+<div class="modal fade" id="myModalEdit{{ row.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{{ path('quelp_image_edit', {'id': row.id}) }}">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times
+                            </span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Change Image</h4>
+                        </div>
+                        <div class="modal-body">
 
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img5.jpg')}}">
-                <span class="hide-title">Photo du mur</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
+                                <div class="form-group">
+                                    Album :
+                                    <select name="list_album">
+                                        {% for key, row in list_album %}
+                                            {% if row.id == def_albumId %}
+                                                <option value="{{ row.id }}" selected="selected">{{ row.name }}</option>
+                                            {% else %}
+                                                <option value="{{ row.id }}">{{ row.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary pull-right">Change</button>
+                        </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-4">
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img6.jpg')}}">
-                <span class="hide-title">Photo du mur</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
-        <div class="col-md-4">
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img7.jpg')}}">
-                <span class="hide-title">Photo du mur</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
-        <div class="col-md-4">
-            <a href="#" class="thumbnail rollopaque" data-toggle="modal" data-target=".bs-example-modal-lg">
-                <img src="{{asset('bundles/front/img/gallerie/img8.jpg')}}">
-                <span class="hide-title">Photo de profil</span>
-            </a>
-            <span class="delete-pictures"><label><input type="checkbox"></label></span>
-        </div>
+    </div>
+{% endfor %}
+<!-- end of edit form -->
+
+
+       
+
+
         <div class="col-md-8 col-md-offset-2">
             <br><br>
-            <button type="submit" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%">SUPPRIMER</button>
+            <input type="button" onClick="javascript: submitform()" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%" value="SUPPRIMER">
             <button type="reset" class="btn btn-info confirm-delete-pictures">ANNULER</button>
             <br><br>
             <br><br>
@@ -144,16 +149,66 @@
 
         <br>
     </div>
-    <table style="width: 100%">
-        <tr>
-            <td>
-                <ul class="pager">
-                    <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4></a></li>
-                    <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4></a></li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+{% for key, row in list_album %}
+    {% if (row.id == def_albumId) and (key == 0) and ((key + 1) < list_album|length) %}
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <ul class="pager">
+                        <li>
+                            <a href="#">
+                                <h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('quelp_image_albumpage', {'id': list_album[key + 1].id}) }}">
+                                <h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% elseif (row.id == def_albumId) and (key > 0) and ((key + 1) < list_album|length) %}
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <ul class="pager">
+                        <li>
+                            <a href="{{ path('quelp_image_albumpage', {'id': list_album[key - 1].id}) }}">
+                                <h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('quelp_image_albumpage', {'id': list_album[key + 1].id}) }}">
+                                <h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% elseif (row.id == def_albumId) and (key > 0) %}
+        <table style="width: 100%">
+            <tr>
+                <td>
+                    <ul class="pager">
+                        <li>
+                            <a href="{{ path('quelp_image_albumpage', {'id': list_album[key - 1].id}) }}">
+                                <h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+{% endfor %}
 </div>
 
 <div class="row">
@@ -175,75 +230,24 @@
                     <div id="carousel-example-manel" class=" slide img-responsive carousel-manel " style="border: 1px solid #f5f5f5;border-radius: 10px">
 
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="{{asset('bundles/front/img/gallerie/sky22.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img1.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img2.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img3.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img7.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img5.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img6.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img7.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <img src="{{asset('bundles/front/img/gallerie/img8.jpg')}}">
-                                <div class="carousel-caption">
-                                    ...
-                                </div>
-                            </div>
-
-
-
-
+                            {% for key, row in list_img %}
+                                {% if key == 0 %}
+                                    <div class="item active">
+                                        <img src="{{asset('bundles/front/uploads/images/'~row.imageName)}}">
+                                        <div class="carousel-caption">
+                                            ...
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="item">
+                                        <img src="{{asset('bundles/front/uploads/images/'~row.imageName)}}">
+                                        <div class="carousel-caption">
+                                            ...
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            
                         </div>
 
                         <!-- Controls -->
@@ -267,40 +271,6 @@
                                     <a href="#"><img class="media-object img-circle" src="img/user.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
                                 </td>
                                 <td style="padding: 0 20px 5px 10px;">
-                                    <h4>Prénom NOM</h4>
-                                    <span style="font-size: 10px;color: grey">Posté le 28 octobre</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
-                                <td style="padding: 0 20px 0 10px;">
-                                    <p>Ceci est un commentaire, ceci est un comment. Ceci est un commentaire</p>
-                                </td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td style="padding: 5px 10px 5px 50px">
-                                    <a href="#"><img class="media-object img-circle" src="img/avatarmanel.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
-                                </td>
-                                <td style="padding: 0 20px 0 10px;">
-                                    <h4>Prénom NOM</h4>
-                                    <span style="font-size: 10px;color: grey">Posté le 28 octobre</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><!-- On laisse vide pour aligner nom/prénom avec le commentaires --></td>
-                                <td style="padding: 0 20px 0 10px;">
-                                    <p>Hae duae provinciae bello quondam piratico catervis mixtae praedonum a Servilio pro consule missae sub iugum factae sunt vectigales. et hae quidem regiones velut.  bello quondam piratico catervis mixtae praedonum a Servilio pro consule missae sub iugum factae sunt vectigales. et hae quidem regiones velut</p>
-                                </td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td style="padding: 5px 10px 5px 50px">
-                                    <a href="#"><img class="media-object img-circle" src="img/avatarmanel.jpg" width="50" height="50" style="opacity: 0.8;border: 1px solid dimgray;" alt="..."></a>
-                                </td>
-                                <td style="padding: 0 20px 0 10px;">
                                     <h4>Prénom NOM</h4>
                                     <span style="font-size: 10px;color: grey">Posté le 28 octobre</span>
                                 </td>
@@ -507,4 +477,18 @@
     </div>
 </div>
 
+
+<script type="text/javascript">
+    function submitform()
+    {
+        var result = confirm("Do you really want to delete the selected image(s)?");
+        if (result) {
+            var form = document.getElementById('delete');
+            form.submit();
+        }
+        else{
+            alert("deletion cancelled");
+        }
+    }
+</script>
 {% endblock %}

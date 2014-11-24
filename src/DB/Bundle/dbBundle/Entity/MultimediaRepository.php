@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class MultimediaRepository extends EntityRepository
 {
+	public function findByAlbums($user, $album) {
+		$qb = $this->createQueryBuilder('m');
+		$qb ->where('m.user = :user') ->setParameter('user', $user)
+			->andwhere('m.album = :album') ->setParameter('album', $album)
+			->orderBy('m.createDate', 'DESC');
+		return $qb->getQuery()->getResult();
+	}
 }

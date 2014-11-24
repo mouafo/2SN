@@ -17,11 +17,13 @@
                     <li class="dropdown">
                         <div class="pull-right" style="margin-right:50px; margin-top:20px">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-trash" ></span>
+                                <span class="glyphicon glyphicon-cog"></span>
                             </a>
-
-
-                                <a href="#" class="delete-control">Supprimer</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="add-control">Activate Edit Action</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" class="delete-control">Activate Delete option</a></li>
+                            </ul>
 
                         </div>
                     </li>
@@ -29,125 +31,95 @@
             </div></div>
         <br> <br>
 
-
         <div class="row">
-            <div class="col-md-4">
-                <a href="#" class="thumbnail rollopaque">
+            <div class="col-md-2">
+                <a href="#" class="thumbnail">
                 <ul class="list-inline">
-                        <li><h4>Pas de titre</h4></li>
+                        <li><h4>Add an Album</h4></li>
                     </ul>
-                    <img src="{{asset('bundles/front/img/pn.jpg')}}" data-toggle="modal" data-target="#myModal">
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Ajouter un nouvel album</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <input class="form-control" type="text" placeholder="Entrer un titre pour cet album">
-                                    <br>
-                                    <div class="form-group">
-                                        <input type="file" id="exampleInputFile" class="browse" multiple>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary pull-right">Save changes</button>
-                                </div>
+                    <img src="{{asset('bundles/front/img/png.png')}}" data-toggle="modal" data-target="#myModal">   
+                </a>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" {{ form_enctype(img_form) }}>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times
+                            </span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Add a new album</h4>
+                        </div>
+                        <div class="modal-body">
+                                {{ form_widget(alb_form) }}
+                            <br>
+                            <div class="form-group">
+                                {{ form_widget(img_form) }}
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary pull-right">Add Album</button>
+                        </div>
+                    {{ form_rest(alb_form) }}
+                    {{ form_rest(img_form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+                </div>
+
+<!-- portion that lists all the albums of the user -->
+                    <form id='delete' action="{{ path('quelp_albums_delete') }}" method="POST" >
+                    {% for key, row in list_albums %}
+                    <div class="col-md-3">
+                        <a href="{{ path('quelp_image_albumpage', {'id': row.id}) }}" class="thumbnail">
+                            <ul class="list-inline">
+                                <li><h4>{{ row.name }}</h4></li>
+                                <li>{{ row.editDate|date('Y-m-d') }}</li>
+                            </ul>
+                            <img src="{{asset('bundles/front/img/sky22.jpg')}}">
+                        </a>
+                        <span class="delete-pictures" style="text-align:right"><label><input type="checkbox" name="box[]" value="{{ row.id }}" style="text-align:right"></label></span>
+                        <span class="add-pictures">
+                        <a href="#" class="thumbnail">
+                        <i class="glyphicon glyphicon-pencil"  data-toggle="modal" data-target="#myModalEdit{{ row.id }}"></i>
+                        </a></span>
                     </div>
-                </a></div>
+                    {% endfor %}
 
-
-
-
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/sky22.jpg')}}">
-                </a>
-                <span class="delete-pictures"><label><input type="checkbox"></label></span>
-            </div>
-
-
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/fil.jpg')}}">
-                </a>
-                <span class="delete-pictures"><label><input type="checkbox"></label></span>
-            </div>
-
-
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/linux.jpg')}}">
-                </a>
-                <span class="delete-pictures"><label><input type="checkbox"></label></span>
-            </div>
-
-
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/nous.jpg')}}">
-                </a>
-                <span class="delete-pictures"><label><input type="checkbox"></label></span>
-            </div>
-
-
-            <div class="col-md-4">
-                <a href="#" class="thumbnail">
-                    <ul class="list-inline">
-                        <li><h4>Titre</h4></li>
-                        <li>JJ/MM/AA</li>
-                    </ul>
-                    <img src="{{asset('bundles/front/img/geek.jpg')}}">
-                </a>
-                <span class="delete-pictures"><label><input type="checkbox"></label></span>
-            </div>
-
-
-
-
-
-
-
-            <div class="col-md-8 col-md-offset-2">
-                <br><br>
-                <button type="submit" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%">SUPPRIMER</button>
-                <button type="reset" class="btn btn-info confirm-delete-pictures">ANNULER</button>
-                <br><br>
-
-
-                <br>
-            </div>
-            <table style="width: 100%">
-                <tr>
-                    <td>
-                        <ul class="pager">
-                            <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-left">  </strong></h4></a></li>
-                            <li><a href="#"><h4><strong class="glyphicon glyphicon-chevron-right"> </strong></h4></a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
+                    <div class="col-md-8 col-md-offset-2">
+                        <br><br>
+                        <input type="button" onClick="javascript: submitform()" class="btn btn-info confirm-delete-pictures" style="position: relative;left: 70%" value="DELETE" />
+                        <button type="reset" class="btn btn-info confirm-delete-pictures">CANCEL</button>
+                        <br><br>
+                    </div>
+                    </form>
         </div>
     </div></div>
+<!-- end of show & delete form -->
+
+<!-- portion that goes through each album to generate a fade modal for each (enables easy edit of an album) -->
+{% for key, row in list_albums %}
+<div class="modal fade" id="myModalEdit{{ row.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{{ path('quelp_albums_edit', {'id': row.id}) }}">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times
+                            </span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Change Albums's Name</h4>
+                        </div>
+                        <div class="modal-body">
+                                Name : <input type="text" name="alb_name" value="{{ row.name }}"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary pull-right">Modify Album</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<!-- end of edit form -->
+
     <div class="col-xs-12 col-md-2">
         <div class="panel panel-primary" style="padding: 0px 0 30px 0;text-align: center">
             <div class="friend-connect-title">
@@ -158,7 +130,7 @@
             <ul>
                 <li class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
+                        <img class="media-object img-circle" src="{{asset('bundles/front/img/geek.jpg')}}" width="35" height="35" style="float: left;border: 1px solid grey">
                         <div class="media-body">
                             <h5 class="media-heading">Ami1</h5>
                         </div>
@@ -241,4 +213,19 @@
         </div> </div>
 </div> </div>
 
+<script type="text/javascript">
+    function submitform()
+    {
+        var result = confirm("Do you really want to delete the selected album(s)?\n all their contents will be deleted too ...");
+        if (result) {
+            var form = document.getElementById('delete');
+            form.submit();
+        }
+        else{
+            alert("deletion cancelled");
+        }
+    }
+</script>
+
 {% endblock %}
+

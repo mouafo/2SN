@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlbumRepository extends EntityRepository
 {
+	public function findUser($user) {
+		$qb = $this->createQueryBuilder('a');
+		$qb ->where('a.user = :user') ->setParameter('user', $user)
+			->orderBy('a.createDate', 'DESC');
+		return $qb->getQuery()->getResult();
+	}
 }

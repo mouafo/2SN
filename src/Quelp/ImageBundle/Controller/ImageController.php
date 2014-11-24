@@ -8,8 +8,7 @@ use DB\Bundle\dbBundle\Entity\Album;
 use DB\Bundle\dbBundle\Form\MultimediaType;
 use DB\Bundle\dbBundle\Form\AlbumType;
 
-
-class AlbumsController extends Controller
+class ImageController extends Controller
 {
     public function indexAction()
     {
@@ -21,37 +20,36 @@ class AlbumsController extends Controller
 		$token = $security ->getToken();  // Si la requête courante n'est pas derrière un pare-feu, $token est null
 		$userAccount = $token->getUser();// Sinon , on récupère l'utilisateur
 		$em = $this->getDoctrine() ->getManager();
+		$request = $this->get('request');
 
-    	$albums = new Album();
-    	$Image = new Multimedia();
+		if ($request->query->get('id') != null) {
+			$id = $request->query->get('id');
+    		$album = $em->getRepository('DBdbBundle:Album') ->findById($id);
 
-    	$albums ->setUser($userAccount);
-    	$Image ->setUser($userAccount);
-    	$formImg = $this->CreateForm(new MultimediaType, $Image);
-    	$formAlb = $this->CreateForm(new AlbumType, $albums);
+		    $Image = new Multimedia();
+		   	$Image ->setUser($userAccount);
+		   	$Image ->setAlbum($album[0]);
+			$formImg = $this->CreateForm(new MultimediaType, $Image);
 
-    	$request = $this->get('request');
-    	if ($request ->getMethod() == 'POST') {
-    		$formImg->bind($request);
-    		$formAlb->bind($request);
-    		if ($formImg->IsValid()) {
-    			if ($formAlb->IsValid()) {
-	    			$em->persist($albums);
+	    	if ($request ->getMethod() == 'POST') {
+
+	    		$formImg->bind($request);
+	    		if ($formImg->IsValid()) {
+	    			$em->persist($Image);
 					$em->flush();
-					$Image ->setAlbum($albums);
-    			}
-                if ($Image->getEditDate() != null) {
-                    $em->persist($Image);
-				    $em->flush();
-                }
-    		}
-    	}
+	    		}
+	    	}
+		
+	    	$list_img = $em->getRepository('DBdbBundle:Multimedia') ->findByAlbums($userAccount, $album);
+	    	$list_album = $em->getRepository('DBdbBundle:Album') ->findByUser($userAccount);
 
-    	$list_albums = $em->getRepository('DBdbBundle:Album') ->findUser($userAccount);
-
-        return $this->render('QuelpImageBundle:Gallerie:albums.html.twig', array('img_form' => $formImg->createView(),
-        						'alb_form' => $formAlb->createView(),
-        						'list_albums' => $list_albums));
+	        return $this->render('QuelpImageBundle:Gallerie:image.html.twig', array(
+	        						'img_form' => $formImg->createView(),
+	        						'list_img' => $list_img,
+	        						'list_album' => $list_album,
+	        						'def_albumId' => $id));
+        }
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 
     public function editAction() {
@@ -68,13 +66,14 @@ class AlbumsController extends Controller
 
         if ($request->query->get('id') != null) {
             $id = $request->query->get('id');
-            $album = $em->getRepository('DBdbBundle:Album') ->findById($id);
+            $image = $em->getRepository('DBdbBundle:Multimedia') ->findById($id);
 
             if ($request ->getMethod() =='POST') {
-                $name = $request->request->get('alb_name');
-                $album[0]->setName($name);
-                $album[0]->setEditDate(new \Datetime());
-                $em->persist($album[0]);
+                $album = $request->request->get('list_album');
+                $album = $em->getRepository('DBdbBundle:Album') ->findById($album);
+                $image[0]->setAlbum($album[0]);
+                $image[0]->setEditDate(new \Datetime());
+                $em->persist($image[0]);
                 $em->flush();
                // return new Response('Album(s) deleted successfully');
             }
@@ -90,25 +89,17 @@ class AlbumsController extends Controller
         }
 
         $request = $this->get('request');
-        $token = $security ->getToken();
-        $userAccount = $token->getUser();
         $em = $this->getDoctrine() ->getManager();
 
         if ($request ->getMethod() =='POST') {
             for ($i = 0; isset($request->request->get('box')[$i]); $i++ ) {
                 $boxes = $request->request->get('box')[$i];
-                $album = $em->getRepository('DBdbBundle:Album') ->findById($boxes);
-                if (isset($album[0])) {
-                    $images_album = $em->getRepository('DBdbBundle:Multimedia') ->findByAlbum($album[0]);
-                    for ($j = 0; isset($images_album[$j]); $j++ ) {
-                        $em->remove($images_album[$j]);
-                    }
-                    $em->remove($album[0]);
-                }
+                $list_img = $em->getRepository('DBdbBundle:Multimedia') ->findById($boxes);
+                $em->remove($list_img[0]);
             }
             $em->flush();
            // return new Response('Album(s) deleted successfully');
         }
-        return $this->forward('QuelpImageBundle:Albums:index');
+        return $this->forward('QuelpImageBundle:Image:index', array('request' => $request));
     }
 }

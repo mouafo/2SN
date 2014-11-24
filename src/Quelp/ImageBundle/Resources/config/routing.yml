@@ -1,9 +1,22 @@
 quelp_image_albumpage:
-    path:     /album
-    defaults: { _controller: QuelpImageBundle:Default:add }
+    path:     /images
+    defaults: { _controller: QuelpImageBundle:Image:index }
 quelp_image_albumspage:
     path:     /albums
     defaults: { _controller: QuelpImageBundle:Albums:index }
+quelp_albums_delete:
+    path:     /albums/delete
+    defaults: { _controller: QuelpImageBundle:Albums:delete }
+quelp_image_delete:
+    path:     /image/delete
+    defaults: { _controller: QuelpImageBundle:Image:delete }
+quelp_albums_edit:
+    path:     /albums/edit
+    defaults: { _controller: QuelpImageBundle:Albums:edit }
+quelp_image_edit:
+    path:     /image/edit
+    defaults: { _controller: QuelpImageBundle:Image:edit }
+
 quelp_image_murpage:
      path:     /mur
      defaults: { _controller: QuelpImageBundle:Mur:index }

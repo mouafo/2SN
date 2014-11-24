@@ -3,12 +3,15 @@
 namespace DB\Bundle\dbBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Album
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="DB\Bundle\dbBundle\Entity\AlbumRepository")
+ * @UniqueEntity({"name", "user"})
  */
 class Album
 {
@@ -24,7 +27,7 @@ class Album
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, )
      */
     private $name = null;
 
