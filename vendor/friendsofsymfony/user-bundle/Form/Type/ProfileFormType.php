@@ -28,6 +28,7 @@ class ProfileFormType extends AbstractType
         $this->class = $class;
     }
 
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->buildUserForm($builder, $options);
@@ -64,6 +65,18 @@ class ProfileFormType extends AbstractType
         $builder
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
+            ->add('job', null, array('label' => 'form.job', 'translation_domain' => 'FOSUserBundle'))
+            ->add('competence1', null, array('label' => 'form.competence1', 'translation_domain' => 'FOSUserBundle'))
+            ->add('competence2', null, array('label' => 'form.competence2', 'translation_domain' => 'FOSUserBundle'))
+            ->add('plainPassword', 'repeated', array(
+                'type' => 'password',
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array('label' => 'form.password'),
+                'second_options' => array('label' => 'form.password_confirmation'),
+                'invalid_message' => 'fos_user.password.mismatch',
+
+            ))
         ;
     }
+
 }

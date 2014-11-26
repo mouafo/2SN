@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\User\User;
 
 /**
  * Controller managing the user profile
@@ -31,13 +32,28 @@ class ProfileController extends Controller
     /**
      * Show the user
      */
+
+
     public function showAction()
     {
+        $security = $this->container->get('security.context');
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        $token = $security ->getToken();  // Si la requête courante n'est pas derrière un pare-feu, $token est null
+        $userAccount = $token->getUser();// Sinon , on récupère l'utilisateur
+        $em = $this->getDoctrine() ->getManager();
+        $request = $this->get('request');
+        if($request ->getMethod() =='GET'){
+            $id = $request->query->get('id');
+            if(isset($id)){
+                $user = $em->getRepository('DBdbBundle:User') ->findById($id);
 
+                $user = $user[0];
+            }
+
+        }
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:show.html.twig', array('user' => $user));
     }
 
@@ -50,6 +66,7 @@ class ProfileController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->container->get('event_dispatcher');
@@ -69,6 +86,7 @@ class ProfileController extends Controller
 
         $form->handleRequest($request);
 
+
         if ($form->isValid()) {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->container->get('fos_user.user_manager');
@@ -77,6 +95,7 @@ class ProfileController extends Controller
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
             $userManager->updateUser($user);
+            $userManager->flush();
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->container->get('router')->generate('fos_user_profile_show');
@@ -90,7 +109,8 @@ class ProfileController extends Controller
 
         return $this->container->get('templating')->renderResponse(
             'FOSUserBundle:Profile:edit.html.twig',
-            array('form' => $form->createView())
+            array('form' => $form->createView(),
+                'user' => $user)
         );
     }
 }

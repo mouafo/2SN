@@ -44,6 +44,7 @@
 
     <!-- Début Gallerie -->
     <div class="col-xs-12 col-md-12" style="background-color: rgba(255, 255, 255, 0.8)">
+<<<<<<< Updated upstream:src/Quelp/ImageBundle/Resources/views/Gallerie/image.html.twig
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -68,6 +69,19 @@
                             </div>
                         </div>
                     </div>
+=======
+        <div class="col-md-10">
+            <br><br><br><br><br><br>
+        <span class="add-pictures">
+<h4>Ajouter des photos</h4>
+<div class="form-group">
+    <input type="file" id="exampleInputFile" class="browse" multiple>
+</div>
+
+<button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
+</span>
+        </div>
+>>>>>>> Stashed changes:src/Quelp/ImageBundle/Resources/views/Gallerie/album.html.twig
 
         <br>
 
@@ -324,83 +338,17 @@
             <strong> Amis&nbsp;Actifs </strong>
         </div>
 
-        <table style="width:100%">
-            <tr>
-                <td class="flip">
-
-                    <img class="media-object img-circle" src="img/manel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
-                    <div class="media-body">
-                        <h5 class="media-heading">Ami2</h5>
-                    </div>
-
-
-                    <div class="panel-message">
-
-
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="flip">
-
+        <ul>
+            <li class="media">
+                <a class="pull-left" href="#">
                     <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
                     <div class="media-body">
-                        <h5 class="media-heading">Ami2</h5>
+                        <h5 class="media-heading">Ami1</h5>
                     </div>
+                </a>
+            </li>
 
-
-                    <div class="panel-message">
-
-
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="flip">
-
-                    <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
-                    <div class="media-body">
-                        <h5 class="media-heading">Ami2</h5>
-                    </div>
-
-
-                    <div class="panel-message">
-
-
-                    </div>
-                </td>
-            </tr>
-                <td class="flip">
-
-                    <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
-                    <div class="media-body">
-                        <h5 class="media-heading">Ami2</h5>
-                    </div>
-
-
-                    <div class="panel-message">
-
-
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="flip">
-
-                    <img class="media-object img-circle" src="img/avatarmanel.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
-                    <div class="media-body">
-                        <h5 class="media-heading">Ami2</h5>
-                    </div>
-
-
-                    <div class="panel-message">
-
-
-                    </div>
-                </td>
-            </tr>
-            </table>
-<!--            <li class="media">
+            <li class="media">
                 <a class="pull-left" href="#">
                     <img class="media-object img-circle" src="img/user.jpg" width="35" height="35" style="float: left;border: 1px solid grey">
                     <div class="media-body">
@@ -472,7 +420,7 @@
                 </a>
             </li>
 
-        </ul>-->
+        </ul>
 
     </div>
 </div>

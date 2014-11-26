@@ -66,14 +66,23 @@
                         <div class="col-sm-9">
                             <span class="input-from-form">{{ form_widget(form.current_password, {'attr': {'placeholder': 'Entrez votre password actuel'}}) }}</span>
                         </div>
-
+                        <span class="error-from-form">{{ form_errors(form.current_password) }}</span>
                     </div>
-                    {# Job #}
+                    {# mot de passe #}
                     <div class="form-group">
-                        <span class="col-sm-2 control-label">{{ form_label(form.job, "Job ") }}</span>
+                        <span class="col-sm-2 control-label">{{ form_label(form.plainPassword.first, "password ") }}</span>
                         <div class="col-sm-9">
-                            <span class="input-from-form">{{ form_widget(form.job, {'attr': {'placeholder': 'Entrer votre profession'}}) }}</span>
+                            <span class="input-from-form">{{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Entrez votre nouveau password'}}) }}</span>
                         </div>
+                        <span class="error-from-form">{{ form_errors(form.plainPassword.first) }}</span>
+                    </div>
+                    {# Connfirmation mot de passe #}
+                    <div class="form-group">
+                        <span class="col-sm-2 control-label">{{ form_label(form.plainPassword.second, "password ") }}</span>
+                        <div class="col-sm-9">
+                            <span class="input-from-form">{{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Confirmer votre nouveau password'}}) }}</span>
+                        </div>
+                        <span class="error-from-form">{{ form_errors(form.plainPassword.second) }}</span>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile" class="col-sm-2 control-label">Image</label>
@@ -82,12 +91,37 @@
                         </div>
                         <p class="help-block">Télécharger une image de profil depuis votre ordinateur.</p>
                     </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Résidence</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPassword3" placeholder="Résidence">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Biographie</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
                     <h2>Mes super compétences</h2>
-
                     <h5>First compétences</h5>
-                    <span class="input-from-form">{{ form_widget(form.competence1, {'attr': {'placeholder': 'Taper ici votre super compétence'}}) }}</span>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super compétence"><br>
+                    <p>Niveau de compétence</p>
+                    <select class="form-control">
+                        <option>Débutant</option>
+                        <option>Internédiaire</option>
+                        <option>Avancé</option>
+                        <option>Expert</option>
+                    </select>
                     <h5>Second compétences</h5>
-                    <span class="input-from-form">{{ form_widget(form.competence2, {'attr': {'placeholder': 'Taper ici votre super compétence'}}) }}</span>
+                    <input type="text" class="form-control" placeholder="Taper ici votre super compétence"><br>
+                    <p>Niveau de compétence</p>
+                    <select class="form-control">
+                        <option>Débutant</option>
+                        <option>Internédiaire</option>
+                        <option>Avancé</option>
+                        <option>Expert</option>
+                    </select>
                     <br>
 
                     <div class="form-group">
