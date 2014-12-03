@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>My Quelp</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        background-image: url("image/bg_foto.jpg");
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="col-md-2">
+                <div class="boder">
+                    <h4 class="text-center">QUELPER</h4>
+                    <p class="text-center"><span class="glyphicon glyphicon-star-empty"></span>100%</p>
+                    <a href="profil.html" ><img src="image/my-avatar.jpg" height="125" width="125" alt="" class="img-rounded"></a></br>
+                    <br><p class="text-center">Ludo Lebon</p>
+                    <p class="text-center">22 ans</p>
+                    <br><span class="glyphicon glyphicon-book"></span><a href="#" >Compétences</a></br>
+
+                    <br><span class="glyphicon glyphicon-user"> </span> <a href="#" >Follower</a></br>
+                    <br><span class="glyphicon glyphicon-picture"></span> <a href="#" >Photo</a></br>
+                    <br><span class="glyphicon glyphicon-calendar"></span> <a href="#" >Événement</a></br>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="boder">
+                    <p class="text-center">
+                        <button type="button" class="bton bton-default btn-msg" data-toggle="modal" data-target="#myModal">Nouveau Message <span class="glyphicon glyphicon-edit"></span></button>
+                        <button type="button" class="bton bton-default btn-msg">Message reçu <span class="glyphicon glyphicon-envelope"></span></button>
+                        <button type="button" class="bton bton-default btn-msg">Archive <span class="glyphicon glyphicon-folder-open"></span></button>
+                    </p>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"> Nouveau Message <span class="glyphicon glyphicon-comment"></span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-body">
+                                        <ul class="chat">
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="input-group">
+                                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your contact here..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-sm" id="btn-chat">to</button>
+                                            </span>
+                                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal -->
+
+                    <div class="list-group" data-toggle="modal" data-target="#myModal1">
+                        <a href="#" class="list-group-item">
+                            <span class="chat-img pull-left">
+                                <img src="image/avatar2.jpg" alt="User Avatar" class="img-circle" height="50px"/>
+                            </span>
+                            <span class="badge">14</span>
+                            <span class="text-center">
+                                <h4 class="list-group-item-heading">Thomas</h4>
+                                <p class="list-group-item-text">Dapibus ac facilisis in</p>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"> Thomas <span class="glyphicon glyphicon-comment"></span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-body">
+                                        <ul class="chat">
+                                            <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="image/avatar2.jpg" alt="User Avatar" class="img-circle" height="50px"/>
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="image/my-avatar.jpg" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="image/avatar2.jpg" alt="User Avatar" class="img-circle" height="50px"/>
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="image/my-avatar.jpg" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="input-group">
+                                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal -->
+
+                    <div class="list-group" data-toggle="modal" data-target="#myModal2">
+                        <a href="#" class="list-group-item">
+                            <span class="chat-img pull-left">
+                                <img src="image/naruto.png" alt="User Avatar" class="img-circle" height="50px"/>
+                            </span>
+                            <span class="badge">7</span>
+                            <span class="text-center">
+                                <h4 class="list-group-item-heading">Mike P.</h4>
+                                <p class="list-group-item-text">Dapibus ac facilisis in</p>
+                            </span>
+
+                        </a>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="text-center" id="myModalLabel">Mike P.<span class="glyphicon glyphicon-comment"></span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-body">
+                                        <ul class="chat">
+                                            <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="image/my-avatar.jpg" height="50px"" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="image/naruto.png" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="image/my-avatar.jpg" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="image/naruto.png" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="input-group">
+                                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                                            </span>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="list-group" data-toggle="modal" data-target="#myModal3">
+                        <a href="#" class="list-group-item">
+                            <span class="chat-img pull-left">
+                                <img src="image/rosa.jpg" alt="User Avatar" class="img-circle" height="50px"/>
+                            </span>
+                            <span class="badge">1</span>
+                            <span class="text-center">
+                                <h4 class="list-group-item-heading"  >Julie</h4>
+                            <p class="list-group-item-text">Dapibus ac facilisis in</p>
+                            </span>
+
+                        </a>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"> Julie <span class="glyphicon glyphicon-comment"></span></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel-body">
+                                        <ul class="chat">
+                                            <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="image/my-avatar.jpg" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="right clearfix">
+                                                <span class="chat-img pull-right">
+                                                    <img src="image/rosa.jpg" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="left clearfix">
+                                                <span class="chat-img pull-left">
+                                                    <img src="image/my-avatar.jpg" height="50px" alt="User Avatar" class="img-circle" />
+                                                </span>
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                        dolor, quis ullamcorper ligula sodales.
+                                                    </p>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="input-group">
+                                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal -->
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="boder">
+                    <input type="text" class="form-control" placeholder="chat with  ..."></br>
+                    <div class="panel-group" id="accordion">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        <p class="text-center">En ligne (5)  <span class="glyphicon glyphicon-chevron-down"></span></p>
+                                    </a>
+                                </h4>
+
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <br>
+                                <table class="table">
+                                    <tr data-toggle="modal" data-target="#myModal1">
+                                        <td><a href="#"><img src="image/icone-marvel.png" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="#" class="lien">Thomas</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#myModal2">
+                                        <td><a href="#"><img src="image/avatar2.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="#" class="lien">Damien</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                    <tr data-toggle="modal" data-target="#myModal3">
+                                        <td><a href="#"><img src="image/black-widow-icon.png" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="#" class="lien">Anne</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #eea236 "></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><img src="image/naruto.png" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Julien</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href=""><img src="image/rosa.jpg" alt="" height="25px" class="img-circle"></a></td>
+                                        <td><a href="" class="lien">Sophie</a></td>
+                                        <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+        <!-- Colorbox Core JavaScript -->
+        <script src="js/jquery.colorbox-min.js"></script>
+
+</body>
+
+</html>
