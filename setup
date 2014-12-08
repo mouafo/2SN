@@ -1,0 +1,46 @@
+#!/bin/bash
+
+time_sleep_short = 5
+time_sleep_average = 10
+time_sleep_long = 20
+
+echo checking if git command exists on system ....
+sleep $time_sleep_short
+echo
+
+if ! type "git" > /dev/null; then
+	echo git not found on the system. Going to download ...
+	sleep $time_sleep_short
+	sudo apt-get install git
+	echo 
+	echo ok
+	echo git downloaded and installed successfully ...
+else
+	echo git found on the system. continue ...
+fi
+
+echo
+echo getting git repository folder ...
+echo
+
+if [ -d quelp ]; then
+	sudo rm -rf quelp
+fi
+  
+git clone https://github.com/jbouhier/2SN.git quelp
+sudo tar czf quelp.tar.gz quelp
+sudo mv quelp.tar.gz /var/www/quelp.tar.gz
+
+echo waiting to untar cloned folder ...
+sleep $time_sleep_short
+echo 
+cd /var/www && sudo tar -xzvf /var/www/quelp.tar.gz 
+
+echo
+echo untar ended successfully ...
+
+cd ~ && echo "<VirtualHost *:80>" >> test.txt
+cd ~ && echo "		ServerName www.quelp.com" >> test.txt
+cd ~ && echo "		DocumentRoot /var/www/quelp/web/" >> test.txt
+cd ~ && echo "</VirtualHost>" >> test.txt
+
