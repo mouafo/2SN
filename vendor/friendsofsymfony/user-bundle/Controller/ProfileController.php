@@ -95,7 +95,7 @@ class ProfileController extends Controller
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
             $userManager->updateUser($user);
-            $userManager->flush();
+            $em = $this->getDoctrine() ->getManager();
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->container->get('router')->generate('fos_user_profile_show');

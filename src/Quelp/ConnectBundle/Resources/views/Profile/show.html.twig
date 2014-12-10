@@ -49,9 +49,12 @@
                                 <div class="col-md-5 col-md-offset-5"></div>
                             </div>
                             <div class="row">
+                                {% if(user.username==app.user.username) %}
                                 <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-cog" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Modifier Profil</span></a></div>
+                                {% endif %}
                                 <div class="col-md-4"><a href="{{ path('quelp_relation_showall') }}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-user" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Patterns</span></a></div>
                                 <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-star" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Avis</span></a></div>
+
                             </div>
                         </div>
                     </div>
