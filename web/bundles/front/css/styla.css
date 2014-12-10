@@ -96,7 +96,7 @@ li
 .delete-pictures
 {
     position: absolute;
-    left: 15%;
+    right: 15%;
     display: none;
     bottom: 10%;
 }

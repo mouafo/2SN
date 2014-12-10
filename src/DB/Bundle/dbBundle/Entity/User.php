@@ -65,6 +65,13 @@ class User extends BaseUser
     private $competence2 = null;
 
     /**
+     * @var \Boolean
+     *
+     * @ORM\Column(name="connected", type="boolean")
+     */
+    private $connected;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="create_date", type="datetime")
@@ -85,7 +92,6 @@ class User extends BaseUser
         $this->setEditDate($this->getCreateDate());
     }
 
-
     /**
      * Get id
      *
@@ -97,45 +103,24 @@ class User extends BaseUser
     }
 
     /**
-     * Set email
+     * Set connected
      *
-     * @param string $email
-     * 
+     * @param \Boolean $connected
+     *
      */
-    public function setEmail($email)
+    public function setConnected($connected)
     {
-        $this->email = $email;
+        $this->connected = $connected;
     }
 
     /**
-     * Get email
+     * Get connected
      *
-     * @return string 
+     * @return \Boolean
      */
-    public function getEmail()
+    public function getConnected()
     {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * 
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
+        return $this->connected;
     }
 
     /**
@@ -182,29 +167,6 @@ class User extends BaseUser
     public function getSurname()
     {
         return $this->surname;
-    }
-
-    /**
-     * Set state
-     *
-     * @param integer $state
-     * @return User
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * Get state
-     *
-     * @return integer 
-     */
-    public function getState()
-    {
-        return $this->state;
     }
 
     /**

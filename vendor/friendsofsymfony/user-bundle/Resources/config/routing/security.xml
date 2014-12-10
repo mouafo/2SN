@@ -14,7 +14,7 @@
     </route>
 
     <route id="fos_user_security_logout" pattern="/logout">
-        <default key="_controller">FOSUserBundle:Security:logout</default>
+        <default key="_controller">QuelpConnectBundle:Default:logout</default>
     </route>
 
 </routes>

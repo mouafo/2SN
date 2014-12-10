@@ -42,7 +42,7 @@ security:
             form_login:
                 login_path:             fos_user_security_login
                 check_path:             fos_user_security_check
-            logout:       true
+            logout:       false
             anonymous:    true
             remember_me:
                 key: %secret% # %secret% est un paramè tre de parameters.yml

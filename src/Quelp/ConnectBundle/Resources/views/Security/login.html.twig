@@ -8,11 +8,18 @@
     <!-- Header -->
     <div class="modal-header" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg')">
         <button type="button" class="close" data-dismiss="modal" style="color: white"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="color: white">Connection</h4>
+        <h4 class="modal-title" id="myModalLabel" style="color: white">Log In</h4>
     </div>
 
     <!-- Content -->
     <div class="modal-body">
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="{{ type }}">
+                    {{ message|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         <form action="{{ path("fos_user_security_check") }}" class="form-horizontal log-in" method="post" style="margin-top: 30px">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 

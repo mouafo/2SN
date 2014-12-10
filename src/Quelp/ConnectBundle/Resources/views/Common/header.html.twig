@@ -11,12 +11,12 @@
                 <span class="know-status">{{ app.user.username }}&nbsp;{{ app.user.name }}&nbsp;</span>
                 <button class="btn btn-default btn-primary deconnect-button">
                     <a class="link-deconnect" href="{{ path('fos_user_security_logout') }}" style="color: #f5f5f5">
-                        Déconnection
+                        Log out
                     </a>
                 </button>
                 {% else %}
                 <a data-toggle="modal" href="{{ path('quelp_connect_connectpage') }}" data-target="#myModal">
-                    <button  class="btn btn-default connect-button" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg');color: #f5f5f5">Se connecter</button>
+                    <button  class="btn btn-default connect-button" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg');color: #f5f5f5">Log In</button>
                 </a>
                 {% endif %}
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -484,7 +484,7 @@ abstract class User implements UserInterface, GroupableInterface
     public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
-
+        $this->setConnected(TRUE);
         return $this;
     }
 

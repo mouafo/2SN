@@ -6,12 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function logoutAction()
     {
     	$securityContext = $this->container->get('security.context');
-		if (!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-		    return $this->redirect($this->generateUrl('fos_user_security_login'));
-		}
-        return $this->render('QuelpConnectBundle:Default:index.html.twig', array('name' => $name));
+		$token = $securityContext ->getToken();  // Si la requête courante n'est pas derrière un pare-feu, $token est null
+		$userAccount = $token->getUser();
+		$userAccount->setConnected(FALSE);
+		$em = $this->getDoctrine() ->getManager();
+        $em->persist($userAccount);
+        $em->flush();
+        $this->get('security.context')->setToken(null);
+        $this->get('request')->getSession()->invalidate();
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 }
