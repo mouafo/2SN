@@ -5,12 +5,12 @@ namespace DB\Bundle\dbBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Post_Solution
+ * PostSolution
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="DB\Bundle\dbBundle\Entity\Post_SolutionRepository")
+ * @ORM\Entity(repositoryClass="DB\Bundle\dbBundle\Entity\PostSolutionRepository")
  */
-class Post_Solution
+class PostSolution
 {
     /**
      * @var integer
@@ -31,7 +31,7 @@ class Post_Solution
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="string", length=300)
+     * @ORM\Column(name="file", type="string", length=300, nullable=true)
      */
     private $file;
 
@@ -39,7 +39,7 @@ class Post_Solution
      * @var \DateTime
      *
      * @ORM\Column(name="create_date", type="datetime")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $createDate;
 
@@ -80,7 +80,7 @@ class Post_Solution
      * Set subject
      *
      * @param string $subject
-     * @return Post_Solution
+     * @return PostSolution
      */
     public function setSubject($subject)
     {
@@ -103,7 +103,7 @@ class Post_Solution
      * Set file
      *
      * @param string $file
-     * @return Post_Solution
+     * @return PostSolution
      */
     public function setFile($file)
     {
@@ -126,7 +126,7 @@ class Post_Solution
      * Set createDate
      *
      * @param \DateTime $createDate
-     * @return Post_Solution
+     * @return PostSolution
      */
     public function setCreateDate($createDate)
     {
@@ -149,7 +149,7 @@ class Post_Solution
      * Set editDate
      *
      * @param \DateTime $editDate
-     * @return Post_Solution
+     * @return PostSolution
      */
     public function setEditDate($editDate)
     {
