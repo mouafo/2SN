@@ -13,12 +13,6 @@ class MessageController extends Controller
 {
     public function indexAction()
     {
-        /*        $security = $this->container->get('security.context');
-                if (!$security->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-                    return $this->redirect($this->generateUrl('fos_user_security_login'));
-                }
-                $token = $security->getToken();
-                $user = $token->getUser();*/
 
         $all_users = $this->getDoctrine()->getRepository('DBdbBundle:User')->findAll();//findByNameorSurname($name);
 
@@ -38,6 +32,26 @@ class MessageController extends Controller
         return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('users_message' => $all_users, 'user_content_message' => $user_content_message)));
     }
 
+    public function blocListeMessageAction()
+    {
+        $all_users = $this->getDoctrine()->getRepository('DBdbBundle:User')->findAll();//findByNameorSurname($name);
+
+        $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->findAll();
+
+//        $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->getListMessage($user);
+        if (!$user_content_message)
+        {
+            return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('user_content_message' => '')));
+        }
+
+
+        if (!($all_users))
+        {
+            die("Pas d'utilisateur trouvé");
+        }
+        return ($this->render('QuelpMessageBundle:Message:list_users.html.twig', array('users_message' => $all_users, 'user_content_message' => $user_content_message)));
+
+    }
     public function listMessageAction(Request $request, $name)
     {
 
@@ -61,10 +75,12 @@ class MessageController extends Controller
         $message->setReceiver($user_message);
 
         $form = $this->createFormBuilder($message)
-            ->add('subject', 'text', array(
-                'attr' => array('class' => 'name-receiver')
+            ->add('subject', 'textarea', array(
+                'attr' => array('class' => 'form-control', 'placeholder' => 'Type your text here')
             ))
-            ->add('submit', 'submit')
+            ->add('submit', 'submit', array(
+                'attr' => array('class' => 'btn btn-default btn-msg')
+            ))
             ->getForm();
 
         $form->handleRequest($request);

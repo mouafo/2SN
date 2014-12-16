@@ -57,7 +57,8 @@
 <!-- ICI On liste les messages prenom et nom du sender +nb message ou nouveaux messages -->
 {% for users in users_message %}
 <div class="list-group">
-    <a data-toggle="modal" href="{{ path('quelp_message_friendmessagepage', {'name': users.username}) }}" class="list-group-item" data-target="#myModalMessage">
+    <!--data-toggle="modal"-->
+    <a href="{{ path('quelp_message_friendmessagepage', {'name': users.username}) }}" class="list-group-item" data-target="#myModalMessage">
          <span class="chat-img pull-left">
                <img src="{{ asset('bundles/front/img/tim.jpg') }}" alt="User Avatar" class="img-circle" height="45" style="border: 1px solid rgba(0, 0, 0, 0.2)"/>
          </span>
@@ -72,7 +73,7 @@
 {% endfor %}
 <!-- Modal pour contenu des messages -->
 
-
+<!--
             <div class="modal fade" id="myModalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -81,9 +82,8 @@
                         {% endblock %}
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
-
     </div>
 <div class="col-md-3">
     <div class="boder" style="margin-bottom: 20px">

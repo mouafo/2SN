@@ -1,0 +1,18 @@
+{% block list_user %}
+{% for users in users_message %}
+    <div class="list-group">
+        <!--data-toggle="modal"-->
+        <a href="{{ path('quelp_message_friendmessagepage', {'name': users.username}) }}" class="list-group-item" data-target="#myModalMessage">
+         <span class="chat-img pull-left">
+               <img src="{{ asset('bundles/front/img/tim.jpg') }}" alt="User Avatar" class="img-circle" height="45" style="border: 1px solid rgba(0, 0, 0, 0.2)"/>
+         </span>
+            <span class="badge">14</span>
+            <div class="text-center">
+
+                <h4 class="list-group-item-heading">{{ users.username }}</h4>
+                <p class="list-group-item-text" style="font-weight: 300">Dapibus ac facilisis in</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endblock %}

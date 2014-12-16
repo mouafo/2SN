@@ -305,3 +305,8 @@ line-height: 1.42857143;
 {
     display: inline-block;
 }
+
+#form label
+{
+    display: none;
+}
