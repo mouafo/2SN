@@ -40,14 +40,6 @@ html, body
     background-size: cover;
 }
 
-footer
-{
-    width:100%;
-    height:165px;
-    position:absolute;
-    bottom:0;
-    left:0;
-}
 .header
 {
     background-color: rgba(255, 255, 255, 0.1);
@@ -210,4 +202,106 @@ line-height: 1.42857143;
     left: -20px;
     display: none;
     z-index: 1;
+}
+
+/* ----- MESSAGERIE ----- */
+
+.list-friend
+{
+    width:100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    vertical-align: middle;
+}
+
+.list-friend h5
+{
+    font-weight: 300;
+    font-size: 16px;
+    /* Deconnecter */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.connect-friend h5
+{
+   color: #000000;
+}
+.end-list-friend
+{
+    padding-bottom: 10px;
+}
+
+.name-for-user
+{
+    font-size: 18px;
+    font-weight: 300;
+}
+.name-for-user:first-letter
+{
+    text-transform: uppercase;
+}
+
+.name-for-user span:nth-child(2):first-letter
+{
+    text-transform: uppercase;
+}
+
+.chat
+{
+    width: 100%;
+    height: 350px;
+    overflow: auto;
+}
+
+.chat li
+{
+    width: 90%;
+}
+
+.modal-for-message .panel-body
+{
+    padding: 15px 0 0 0;
+}
+
+.img-friend-deconnect
+{
+    filter: grayscale(80%);
+    -webkit-filter: grayscale(80%);
+}
+
+.chat li
+{
+    margin-bottom: 20px;
+}
+
+.sender-message-form
+{
+    float: left;
+    width: 50%;
+}
+
+.send-message-form
+{
+    width: 50%;
+    display: block;
+    float: right;
+}
+
+.sender-message-form label,
+.send-message-form label
+{
+    display: none;
+}
+
+#form div:nth-child(1)
+{
+    float: left;
+    display: inline-block;
+    width: 80%;
+}
+
+#form div
+{
+    display: inline-block;
 }

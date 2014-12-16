@@ -1,0 +1,86 @@
+{% block content_message %}
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalMessage"> {{ name_user_message }} <span class="glyphicon glyphicon-comment"></span></h4>
+    </div>
+    <div class="modal-body modal-for-message">
+        <div class="panel-body">
+
+            <ul class="chat">
+
+                {% for receive_message in get_message_receiver %}
+
+
+                <li class="left clearfix">
+                       <span class="chat-img pull-left">
+                              <img src="{{ asset('bundles/front/img/tim.jpg') }}" alt="User Avatar" class="img-circle" height="50px"/>
+                       </span>
+                    <div class="chat-body clearfix">
+                        <div class="header">
+                            <span class="primary-font" style="font-weight: 500;padding-left: 10px;">{{ name_user_session_message }} {{ app.user.name }}</span> <small class="pull-right text-muted">
+                                <span class="glyphicon glyphicon-time"></span>{{ receive_message.editDate|date('d-m-Y') }} <span>at</span> {{  receive_message.editDate|date('H:i') }}</small>
+                        </div>
+                        <div style="padding-left: 10px;margin-left: 20px;overflow: auto">
+                            {% if receive_message.subject %}
+                                <p style="font-weight: 300;">{{ receive_message.subject }}</p>
+                            {% else %}
+                                <li>Pas encore de message</li>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+                    {% for receive_message_other in get_message_sender %}
+
+                 <li class="right clearfix">
+                    <span class="chat-img pull-right">
+                         <img src="{{ asset('bundles/front/img/gatien.jpg') }}" height="50px" alt="User Avatar" class="img-circle" />
+                    </span>
+                    <div class="chat-body clearfix">
+                        <div class="header">
+                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ receive_message_other.editDate|date('d-m-Y') }} <span>at</span> {{  receive_message_other.editDate|date('H:i') }}</small>
+                            <strong class="pull-right primary-font" style="font-weight: 500;padding-right: 30px">{{ name_user_message }}</strong>
+                        </div>
+                         {% if receive_message_other.subject %}
+                            <p style="font-weight: 300">{{ receive_message_other.subject }}</p>
+                         {% else %}
+                             <p>Pas encore de message</p>
+                         {% endif %}
+                    </div>
+                </li>
+
+                {% endfor %}
+                {% endfor %}
+
+
+            </ul>
+
+
+            {{ form(form) }}
+
+
+        </div>
+
+        <div style="text-align: center">
+            <span class="glyphicon glyphicon-chevron-down" style="color: rgba(0, 0, 0, 0.6);font-size: 22px"></span>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="input-group">
+            <div class="col-xs-11">
+                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+            </div>
+            <div id="text">
+                <div id="loading">
+                    <img src="{{ asset('bundles/front/img/ajax-loader.gif') }}" alt="patientez...">
+                </div>
+            </div>
+
+             <span class="input-group-btn">
+                  <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+             </span>
+        </div>
+    </div>
+
+{% endblock %}

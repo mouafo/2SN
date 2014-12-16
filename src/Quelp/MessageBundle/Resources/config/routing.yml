@@ -1,3 +1,20 @@
+################################################################################################
+#####################################   HOME MESSAGE   #########################################
+################################################################################################
+
 quelp_message_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: QuelpMessageBundle:Default:index }
+    path:     /messages
+    defaults: { _controller:QuelpMessageBundle:Message:index }
+
+################################################################################################
+#####################################   WRITE NEW MESSAGE   ####################################
+################################################################################################
+
+quelp_message_newmessagepage:
+    path:     /messages/new
+    defaults: { _controller:QuelpMessageBundle:Message:newMessage }
+
+quelp_message_friendmessagepage:
+    path:     /messages/{name}
+    defaults: { _controller:QuelpMessageBundle:Message:listMessage }
+

@@ -1,0 +1,102 @@
+{% extends "QuelpImageBundle::layout.html.twig" %}
+
+{% block title %} Messages {% endblock %}
+
+{% block content %}
+
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <div class="col-md-3">
+                <div class="boder">
+                    <h4 class="text-center">Quelper</h4>
+                    <p class="text-center"><span class="glyphicon glyphicon-star-empty"></span>100%</p>
+                    <a href="#" ><img src="{{ asset('bundles/front/img/tim.jpg') }}" height="125" width="125" alt="" class="img-rounded" style="margin-left: 20%"></a></br>
+                    <br><p class="text-center name-for-user"><span>{{ app.user.username }}</span>&nbsp;<span class="surname-for-user">{{ app.user.name }}</span></p>
+                    <!--<p class="text-center">22 ans</p>-->
+                    <div style="margin-left: 15%">
+                    <br><span class="glyphicon glyphicon-book" style="font-size: 18px"></span><a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;&nbsp;Compétences</a></br>
+                    <br><span class="glyphicon glyphicon-user" style="font-size: 18px"> </span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Follower</a></br>
+                    <br><span class="glyphicon glyphicon-picture" style="font-size: 18px"></span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Photo</a></br>
+                    <br><span class="glyphicon glyphicon-calendar" style="font-size: 18px"></span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Événement</a></br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="boder">
+
+            <p class="text-center">
+                <button type="button" class="btn btn-default btn-msg">
+                <a data-toggle="modal" href="{{ path('quelp_message_newmessagepage') }}"  data-target="#myModalnewMessage" style="color: #000000;text-decoration: none">
+                  <!--  <button type="button" class="btn btn-default btn-msg" data-toggle="modal" data-target="#myModalnewMessage">Nouveau Message <span class="glyphicon glyphicon-edit"></span></button>-->
+                    Nouveau message
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                </button>
+                <button type="button" class="btn btn-default btn-msg">Message reçu <span class="glyphicon glyphicon-envelope"></span></button>
+                <button type="button" class="btn btn-default btn-msg">Archive <span class="glyphicon glyphicon-folder-open"></span></button>
+            </p>
+            <!-- Modal pour nouveau message -->
+            <div class="modal fade" id="myModalnewMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                         {% block new_message %}
+                         {% endblock %}
+
+                     </div>
+                </div>
+            </div>
+<!-- Fin Modal -->
+
+<!-- Begin message content -->
+
+<!-- ICI On liste les messages prenom et nom du sender +nb message ou nouveaux messages -->
+{% for users in users_message %}
+<div class="list-group">
+    <a data-toggle="modal" href="{{ path('quelp_message_friendmessagepage', {'name': users.username}) }}" class="list-group-item" data-target="#myModalMessage">
+         <span class="chat-img pull-left">
+               <img src="{{ asset('bundles/front/img/tim.jpg') }}" alt="User Avatar" class="img-circle" height="45" style="border: 1px solid rgba(0, 0, 0, 0.2)"/>
+         </span>
+        <span class="badge">14</span>
+        <div class="text-center">
+
+                <h4 class="list-group-item-heading">{{ users.username }}</h4>
+                <p class="list-group-item-text" style="font-weight: 300">Dapibus ac facilisis in</p>
+        </div>
+    </a>
+</div>
+{% endfor %}
+<!-- Modal pour contenu des messages -->
+
+
+            <div class="modal fade" id="myModalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        {% block content_message %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<div class="col-md-3">
+    <div class="boder" style="margin-bottom: 20px">
+        <!-- Begin Tchat -->
+        {% include "QuelpMessageBundle:Tchat:tchat.html.twig" %}
+        <!-- End Tchat -->
+    </div>
+</div>
+
+<!-- /.row -->
+
+<!-- /.container -->
+
+
+
+{% endblock %}

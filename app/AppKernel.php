@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Quelp\StatusBundle\StatusBundle(),
             new Quelp\InfosBundle\QuelpInfosBundle(),
             new Quelp\RelationBundle\QuelpRelationBundle(),
+            new Quelp\MessageBundle\QuelpMessageBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
         );
 

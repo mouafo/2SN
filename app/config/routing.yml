@@ -27,6 +27,10 @@ quelp_connect:
     resource: "@QuelpConnectBundle/Resources/config/routing.yml"
     prefix:   /
 
+quelp_message:
+    resource: "@QuelpMessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 d_bdb:
     resource: "@DBdbBundle/Resources/config/routing.yml"
     prefix:   /
