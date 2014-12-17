@@ -40,7 +40,6 @@ class SearchController extends Controller
 		*/
 		if ($request ->getMethod() =='POST') {
 				$name = $request->request->get('name');
-				$name = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 				
 				$users = $em->getRepository('DBdbBundle:User') ->findByNameOrSurname($name);
 				if (count($users) == 0) {

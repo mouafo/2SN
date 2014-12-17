@@ -64,7 +64,6 @@ class DefaultController extends Controller
 
         if ($request ->getMethod() =='POST') {
                 $post = $request->request->get('post');
-                $post = filter_var($post, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                 if ($post != "") {
                     $post_obj = new Post();
