@@ -1,0 +1,29 @@
+{% if usersConnected != "" %}
+    <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            <p class="text-center">Online ({{ usersConnected['connected']|length }})  <span class="glyphicon glyphicon-chevron-down"></span></p>
+        </a>
+    </h4>
+
+    <div id="collapseOne" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <table class="table">
+                    {% for key, row in usersConnected['connected'] %}
+                        <tr>
+                            <td><a href=""><img src="{{asset('bundles/front/img/default-avatar.png')}}" alt="" height="25px" class="img-circle"></a></td>
+                            <td><a href="" class="lien">{{ row.username }}</a></td>
+                            <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
+                        </tr>
+                    {% endfor %}
+                    {% for key, row in usersConnected['out'] %}
+                        <tr>
+                            <td><a href=""><img src="{{asset('bundles/front/img/default-avatar.png')}}" alt="" height="25px" class="img-circle"></a></td>
+                            <td><a href="" class="lien">{{ row.username }}</a></td>
+                            <td><span class="glyphicon glyphicon-remove-sign" style="color: red"></span></td>
+                        </tr>
+                    {% endfor %}
+            </table>
+            <br>
+        </div>
+    </div>
+{% endif %}

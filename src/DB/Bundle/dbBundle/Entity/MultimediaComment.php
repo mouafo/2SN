@@ -5,12 +5,12 @@ namespace DB\Bundle\dbBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Multimedia_Comment
+ * MultimediaComment
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="DB\Bundle\dbBundle\Entity\Multimedia_CommentRepository")
+ * @ORM\Entity(repositoryClass="DB\Bundle\dbBundle\Entity\MultimediaCommentRepository")
  */
-class Multimedia_Comment
+class MultimediaComment
 {
     /**
      * @var integer
@@ -77,7 +77,7 @@ class Multimedia_Comment
      * Set comment
      *
      * @param string $comment
-     * @return Multimedia_Comment
+     * @return MultimediaComment
      */
     public function setComment($comment)
     {
@@ -100,7 +100,7 @@ class Multimedia_Comment
      * Set createDate
      *
      * @param \DateTime $createDate
-     * @return Multimedia_Comment
+     * @return MultimediaComment
      */
     public function setCreateDate($createDate)
     {
@@ -123,7 +123,7 @@ class Multimedia_Comment
      * Set editDate
      *
      * @param \DateTime $editDate
-     * @return Multimedia_Comment
+     * @return MultimediaComment
      */
     public function setEditDate($editDate)
     {

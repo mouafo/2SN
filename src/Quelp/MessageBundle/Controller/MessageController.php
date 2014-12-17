@@ -21,7 +21,7 @@ class MessageController extends Controller
 //        $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->getListMessage($user);
         if (!$user_content_message)
         {
-            return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('user_content_message' => '')));
+            return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('users_message' => '', 'user_content_message' => '')));
         }
 
 

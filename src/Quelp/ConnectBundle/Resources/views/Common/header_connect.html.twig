@@ -1,0 +1,50 @@
+
+<header>
+    <div class="row header">
+        <div class="col-sm-11"><!--col-xs-12 col-sm-6 col-md-8 col-lg-11-->
+            <a href="{{ path('quelp_connect_registerpage') }}" style="text-decoration: none"><h1 class="logo">Quelp</h1></a>
+            <div class="pull-right" style="margin-top: -45px">
+
+                <!-- Redirection vers la page connection -->
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <span class="know-status">{{ app.user.username }}&nbsp;{{ app.user.name }}&nbsp;</span>
+                <button class="btn btn-default btn-primary deconnect-button">
+                    <a class="link-deconnect" href="{{ path('fos_user_security_logout') }}" style="color: #f5f5f5">
+                        Log out
+                    </a>
+                </button>
+                {% else %}
+                <a data-toggle="modal" href="{{ path('quelp_connect_connectpage') }}" data-target="#myModal">
+                    <button  class="btn btn-default connect-button" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg');color: #f5f5f5">Log In</button>
+                </a>
+                {% endif %}
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: rgba(255, 255, 255, 0.9)">
+                            <div class="modal-header" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg')">
+                                <button type="button" class="close" data-dismiss="modal" style="color: white"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel" style="color: white">Connection</h4>
+                            </div>
+                            <div class="modal-body">
+                                {% trans_default_domain 'FOSUserBundle' %}
+
+                                {% block fos_user_content %}
+
+                                {% endblock fos_user_content %}
+
+                                <div class="col-sm-offset-8 ">
+                                    <span style="font-size: 10px;">Mot de passe oublié ? <a href="{{ path("quelp_connect_passwordpage") }}">Cliquez-ici</a></span>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg')">
+                                <span style="font-size: 10px;color: white">Pas encore de compte ? &nbsp;&nbsp;</span><button type="button" class="btn btn-default" style="background: url('/2SN/web/bundles/front/img/bg_Foto.jpg');border: 1px solid rgba(255, 255, 255, 0.5)"><a href="{{ path("quelp_connect_passwordpage") }}" style="text-decoration: none;color: #f5f5f5"><span class="glyphicon glyphicon-cloud" style="color: white">&nbsp;</span>Cliquez-ici</a></button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="background: url('../../../../../web/bundles/front/img/bg_Foto.jpg');border: 1px solid rgba(255, 255, 255, 0.5);color: #f5f5f5">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

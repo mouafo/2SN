@@ -1,219 +1,72 @@
-{% extends "QuelpImageBundle::layout.html.twig" %}
+{% extends "QuelpConnectBundle:Common:center_bloc.html.twig" %}
 
-{% block title %} Acceuil {% endblock %}
-
-{% block content %}
-
-<div class="col-xs-12 col-md-3" >
-
-    <div class="panel panel-primary"  align="center"  >
-
-<!--
-        <div class="panel panel-info"  align="center"  >
-            <div class="panel-heading">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">Profile</h4> </a>
-            </div>
-
-            <img src="{{asset('bundles/front/img/default-avatar.png')}}"  height="35%" width="35%" class="img-thumbnail" >
-            <p><strong>Nom&Prenom</strong></p>
-            <br><br><br><br><br><br>
-            <div class="" align ="left">
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-camera"></span> <strong>TELECHARGER</strong>
-            </div>
-            <br>
-            <div class="form-group">
--->
-<br>
-        <img src="{{asset('bundles/front/img/manel.jpg')}}"  height="35%" width="35%" class="img-thumbnail" >
-        <p><strong>Nom&Prenom</strong></p>
-        <br><br><br><br><br><br>
-        <div class="" align ="left">
-            &nbsp;&nbsp;
-            <span class="glyphicon glyphicon-camera"></span> <strong>TELECHARGER</strong>
-        </div>
-        <br>
-        <div class="form-group">
-
-                <input type="file" id="exampleInputFile">
-
-            </div>
-            <br>
-            <button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
-            <br><br><br><br>
-
-            <div class="" align ="left" >
-                &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-pencil"></span> <strong>ECRIRE</strong></div>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <textarea class="form-control" rows="3" placeholder="Exprimer-vous" style=" width: 98%"></textarea>
-            <div class="col-sm-offset-4 col-sm-3">
-                <br>
-                <button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
-            </div>
-            <br><br><br><br>
-            <br>
-            <br>
-
-        </div>
-    </div>
-</div>
-
-<div class="col-xs-12 col-md-7">
+{% block main %}
+<div class="col-xs-12 col-md-7" id="status">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <li class="dropdown">
-
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4>Actuality</h4> </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Tous les cercles</a></li>
-                    <li><a href="#">Cercle1</a></li>
-                    <li><a href="#">Cercle2</a></li>
-                    <li><a href="#">Cercle3</a></li>
-                </ul>
-            </li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4>Activities</h4> </a>
         </div>
 
-        <div class="col-md-8">
-
-            <br><br>
-
-            <ul>
-                <li class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="...">
-
-                        <div class="media-body">
-                            <h5 class="media-heading">Ami XY</h5>
-                        </div>
-                    </a>
-                </li>
-
-        <br>
-        <p><strong>Bsr les amis, je suis en 1ere année master dev et je cherche quelqu'un .....</strong></p>
-        <br><br>
-
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Ecrire quelque chose">
-      <span class="input-group-btn">
-        <button class="btn btn-info" type="button">Réagir</button>
-      </span>
-        </div><!-- /input-group -->
-        <br><br>
-
-        <li class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="...">
-
-                <div class="media-body">
-                    <h5 class="media-heading">Ami MZ</h5>
-                </div>
-            </a>
-
-    </li>
-                </ul>
-    <br>
-    <div class="row">
-
-        <a href="#" class="thumbnail">
-            <img src="{{asset('bundles/front/img/gallerie/sky22.jpg')}}" front-size="20%">
-        </a>
-
-    </div>
-    <br><br>
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Ecrire quelque chose">
-      <span class="input-group-btn">
-        <button class="btn btn-info" type="button">Réagir</button>
-      </span>
-    </div><!-- /input-group -->
-    <br><br>
-
-
-
-    <li class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="...">
-
-            <div class="media-body">
-                <h5 class="media-heading">Ami ZW</h5>
-            </div>
-        </a>
-
-</li>
-<br><br>
-
-</div>
-<br><br>
-
-
-<div class="row">
-    <div class="col-xs-12 col-md-4" >
-        
-    </div></li>
-</div> </div>
-</div>
-
-</div>
-
-<!-- Contenu Ami en ligne -->
-<div class="col-xs-12 col-md-2">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">Partners</h4> </a>
-        </div>
-        <div class="boder">
-            <input type="text" class="form-control" placeholder="chat with  ..."></br>
-            <div class="panel-group" id="accordion">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        <p class="text-center">En ligne (5)  <span class="glyphicon glyphicon-chevron-down"></span></p>
-                    </a>
-
-<!--<<<<<<< Updated upstream
-                </h4>
-
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <br>
-                        <table class="table">
-                            <tr>
-                                <td><a href=""><img src="image/icone-marvel.png" alt="" height="25px" class="img-circle"></a></td>
-                                <td><a href="" class="lien">Thomas</a></td>
-                                <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
-                            </tr>
-                            <tr>
-                                <td><a href=""><img src="image/avatar2.jpg" alt="" height="25px" class="img-circle"></a></td>
-                                <td><a href="" class="lien">Damien</a></td>
-                                <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
-                            </tr>
-                            <tr>
-                                <td><a href=""><img src="image/black-widow-icon.png" alt="" height="25px" class="img-circle"></a></td>
-                                <td><a href="" class="lien">Anne</a></td>
-                                <td><span class="glyphicon glyphicon-ok-sign" style="color: #eea236 "></span></td>
-                            </tr>
-                            <tr>
-                                <td><a href=""><img src="image/naruto.png" alt="" height="25px" class="img-circle"></a></td>
-                                <td><a href="" class="lien">Julien</a></td>
-                                <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
-                            </tr>
-                            <tr>
-                                <td><a href=""><img src="image/rosa.jpg" alt="" height="25px" class="img-circle"></a></td>
-                                <td><a href="" class="lien">Sophie</a></td>
-                                <td><span class="glyphicon glyphicon-ok-sign" style="color: #67b168"></span></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="statusResult">    <br>
+            {# include 'StatusBundle:Default:index.html.twig' with {'user_lesson' : "", 'post_comment' : ""}  #}
+        </div>      <br>
     </div>
 </div>
-=======-->
-                </li>
-                {% render (Controller('QuelpStatusBundle:Default:add')) %}
 
-            </ul>
-    </div> </div>
+<script type="text/javascript">
+    
+    var val = "";
 
+    window.setInterval(function(){
+        if (val == "") {
+            loadAjax();
+        }
+    }, 4000);
+
+    function addComment(key)
+    {
+        var comment = document.getElementById("commentPost"+key).value;
+        var postId = document.getElementById("postid"+key).value;
+        var DATA = 'commentText=' + comment + '&post=' + postId;
+        $.ajax({
+            type: "POST",
+            url: "{{ path('quelp_status_commentAdd') }}",
+            data: DATA,
+            cache: false,
+            success: function(data){
+                loadAjax();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                 alert(errorThrown);
+            }
+        });
+    }
+
+    function checkValue(key)
+    {
+        val = document.getElementById("commentPost"+key).value;
+    }
+
+    function checkValueMOn()
+    {
+        val = "je suis la";
+    }
+
+    function checkValueMOut()
+    {
+        val = "";
+    }
+
+    function loadAjax()
+    {
+        $.ajax({
+            type: "POST",
+            url: "{{ path('quelp_status_show') }}",
+            cache: false,
+            success: function(data){
+                $("#statusResult").html(data);
+            }
+        });
+    }
+</script>
 {% endblock %}

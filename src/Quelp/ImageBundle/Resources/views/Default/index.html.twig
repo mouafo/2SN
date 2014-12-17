@@ -1,10 +1,7 @@
-Hello
-
-
-<form method="post" {{ form_enctype(img_form) }}>
-    {{ form_widget(img_form) }}
-    <input type="submit" />
-</form>
-
-
-<img src='{{ img.imageFile }}' alt='mon test'/>
+{% for key_comment, row_comment in comments %}
+    <div class="col-sm-10">
+    <h4 style="color: blue">{{row_comment.user_comment.Name}} {{row_comment.user_comment.Surname}}<span style="font-size: 14px;color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ row_comment.comment }}</span></h4> 
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted on {{row_comment.editDate|date('d-M-Y \\a\\t H:i:s')}}</p>
+    <hr/>
+    </div>
+{% endfor %}

@@ -32,7 +32,7 @@ quelp_connect_profilepage:
     defaults: { _controller: FOSUserBundle:Profile:show }
 
 ################################################################################################
-#####################################   EDIT PROFIL   ###############################################
+#####################################   EDIT PROFIL   ##########################################
 ################################################################################################
 
 quelp_connect_editprofile:
@@ -40,9 +40,22 @@ quelp_connect_editprofile:
     defaults: { _controller: FOSUserBundle:Profile:edit }
 
 ################################################################################################
-#####################################   MUR   ###############################################
+#####################################   USERS CONNECTED   ######################################
 ################################################################################################
 
-quelp_image_murpage:
-     path:     /mur
-     defaults: { _controller: QuelpImageBundle:Mur:index }
+quelp_user_connect:
+     path:     /connected
+     defaults: { _controller: QuelpConnectBundle:Home:index }
+     requirements:
+        _method: POST
+
+
+################################################################################################
+#####################################   SEARCH CONNECTED   #####################################
+################################################################################################
+
+quelp_user_searchconnect:
+     path:     /connected/search
+     defaults: { _controller: QuelpConnectBundle:Home:searchConnected }
+     requirements:
+        _method: POST

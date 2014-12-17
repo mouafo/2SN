@@ -1,0 +1,47 @@
+<div class="col-xs-12 col-md-3" >
+
+    <div class="panel panel-primary"  align="center"  >
+
+        <div class="panel panel-info"  align="center"  >
+            <div class="panel-heading">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">Profile</h4> </a>
+            </div>
+            {% if app.user.imageName == NULL %}
+            <img src="{{asset('bundles/front/img/default-avatar.png')}}"  height="35%" width="35%" class="img-thumbnail" >
+            {% else %}
+            <img src="{{asset('bundles/front/uploads/profiles/'~app.user.imageName)}}"  height="35%" width="35%" class="img-thumbnail" >
+            {% endif %}
+            <p><strong>{{ app.user.Surname }} {{ app.user.Name }}</strong></p>
+            <br><br><br><br><br><br>
+            <div class="" align ="left">
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-camera"></span> <strong>Download Image</strong>
+            </div>
+            <br>
+            <div class="form-group">
+
+                <input type="file" id="exampleInputFile">
+
+            </div>
+            <br>
+            <button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
+            <br><br><br><br>
+
+            <div class="" align ="left" >
+                &nbsp;&nbsp;
+                <form action="{{ path('quelp_status_add') }}" method="POST">
+                <span class="glyphicon glyphicon-pencil"></span> <strong>ECRIRE</strong></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <textarea id="post" name="post" class="form-control" rows="3" placeholder="Exprimer-vous" style=" width: 98%"></textarea>
+            <div class="col-sm-offset-4 col-sm-3">
+                <br>
+                <button type="submit" class="btn btn-sm"><strong>VAlIDER</strong></button>
+            </div>
+            </form>
+            <br><br><br><br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+</div>

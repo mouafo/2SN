@@ -46,7 +46,7 @@ security:
             anonymous:    true
             remember_me:
                 key: %secret% # %secret% est un paramè tre de parameters.yml
-                lifetime: 31536000 # 365 days in seconds
+                lifetime: 25200 # 7 days in seconds 31536000  365 days in seconds
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

@@ -27,7 +27,7 @@ class DefaultController extends Controller
 				$userPartners[$i] = $partners[$i]->getUser();
 		}
 
-        return $this->render('QuelpRelationBundle:Search:partners.html.twig', array('users_found' => $userPartners));
+        return $this->render('QuelpRelationBundle:Search:waitingpartners.html.twig', array('users_found' => $userPartners));
     }
 
     public function acceptAction()

@@ -33,6 +33,10 @@
     {% endif %}
 </div>
 
+{# Ici on charge et on affiche le contenu du header #}
+
+        {% include "QuelpConnectBundle:Common:header.html.twig" %}
+        
 {% for type, messages in app.session.flashbag.all() %}
     {% for message in messages %}
         <div class="flash-{{ type }}" style="display: none">
@@ -40,11 +44,6 @@
         </div>
     {% endfor %}
 {% endfor %}
-
-
-{# Ici on charge et on affiche le contenu du header #}
-
-        {% include "QuelpImageBundle:Common:header.html.twig" %}
 
         {% block content %}
             {# Ici on charge et on affiche le contenu de chaque page #}

@@ -7,6 +7,7 @@ use DB\Bundle\dbBundle\Entity\Multimedia;
 use DB\Bundle\dbBundle\Entity\Album;
 use DB\Bundle\dbBundle\Form\MultimediaType;
 use DB\Bundle\dbBundle\Form\AlbumType;
+use DB\Bundle\dbBundle\Entity\MultimediaComment;
 
 class ImageController extends Controller
 {
@@ -42,14 +43,24 @@ class ImageController extends Controller
 		
 	    	$list_img = $em->getRepository('DBdbBundle:Multimedia') ->findByAlbums($userAccount, $album);
 	    	$list_album = $em->getRepository('DBdbBundle:Album') ->findByUser($userAccount);
+            $album = $em->getRepository('DBdbBundle:Album') ->findById($id);
+
+            if (count($list_img) == 0) {
+                $listmult = $list_img;
+            }
+            for ($i=0; $i<count($list_img); $i++) {
+                $list_comment = $em->getRepository('DBdbBundle:MultimediaComment') ->findByMultimedia($list_img[$i]);
+                $listmult[$i]['comment'] = $list_comment;
+                $listmult[$i]['image'] = $list_img[$i];
+            }
 
 	        return $this->render('QuelpImageBundle:Gallerie:image.html.twig', array(
 	        						'img_form' => $formImg->createView(),
-	        						'list_img' => $list_img,
+	        						'list_img' => $listmult,
 	        						'list_album' => $list_album,
-	        						'def_albumId' => $id));
+	        						'def_albumId' => $album[0]));
         }
-        return $this->redirect($this->generateUrl('fos_user_security_login'));
+        return $this->forward('QuelpImageBundle:Albums:index');
     }
 
     public function editAction() {
@@ -90,16 +101,21 @@ class ImageController extends Controller
 
         $request = $this->get('request');
         $em = $this->getDoctrine() ->getManager();
+        $id = $request->query->get('id');
 
         if ($request ->getMethod() =='POST') {
             for ($i = 0; isset($request->request->get('box')[$i]); $i++ ) {
                 $boxes = $request->request->get('box')[$i];
                 $list_img = $em->getRepository('DBdbBundle:Multimedia') ->findById($boxes);
+                $comments = $em->getRepository('DBdbBundle:MultimediaComment') ->findByMultimedia($list_img);
+                for ($j = 0; $j < count($comments); $j++ ) {
+                    $em->remove($comments[$j]);
+                }
                 $em->remove($list_img[0]);
             }
             $em->flush();
            // return new Response('Album(s) deleted successfully');
         }
-        return $this->forward('QuelpImageBundle:Image:index', array('request' => $request));
+        return $this->redirect($this->generateUrl("quelp_image_albumpage", array('id' =>$id)));
     }
 }

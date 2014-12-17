@@ -1,4 +1,16 @@
 
-status_homepage:
+quelp_status_show:
     path:     /status
+    defaults: { _controller: StatusBundle:Default:show }
+    requirements:
+        _method: POST
+
+quelp_status_add:
+    path:     /status/add
     defaults: { _controller: StatusBundle:Default:add }
+
+quelp_status_commentAdd:
+    path:     /status/comment/add
+    defaults: { _controller: StatusBundle:Default:commentAdd }
+    requirements:
+        _method: POST

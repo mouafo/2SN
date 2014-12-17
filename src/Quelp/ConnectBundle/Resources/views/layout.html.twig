@@ -17,7 +17,7 @@
     {% endstylesheets %}
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body onload="javascript:loadAjax()" >
 <div class="connect-status">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <span class="know-status">{{ ''|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |</span>
@@ -44,7 +44,7 @@
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         {% include "QuelpImageBundle:Common:mur.html.twig"  %}
     {% else %}
-        {% include "QuelpConnectBundle:Common:header.html.twig" %}
+        {% include "QuelpConnectBundle:Common:header_connect.html.twig" %}
 
         {% block content %}
             {# Ici on charge et on affiche le contenu de chaque page #}

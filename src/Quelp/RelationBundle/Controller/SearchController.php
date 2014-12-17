@@ -40,6 +40,7 @@ class SearchController extends Controller
 		*/
 		if ($request ->getMethod() =='POST') {
 				$name = $request->request->get('name');
+				$name = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 				
 				$users = $em->getRepository('DBdbBundle:User') ->findByNameOrSurname($name);
 				if (count($users) == 0) {
@@ -89,7 +90,7 @@ class SearchController extends Controller
 				}
 				return $this->render('QuelpRelationBundle:Search:index.html.twig', array('users_found' => $users, 'etat' => $etat));
 		 }
-		 return $this->redirect( $this->generateUrl('quelp_image_murpage'));
+		 return $this->redirect( $this->generateUrl('fos_user_security_login'));
     }
 
     /*
@@ -137,7 +138,7 @@ class SearchController extends Controller
 			*/
 			$mailer = $this->get('mailer');
 			$message = \Swift_Message::newInstance()
-				->setFrom('quelp@etna-alternance.net')
+				->setFrom('quelp.2sn@gmail.com')
 				->setSubject("Confirm friend request ...")
 				->setTo($userFriend[0]->getEmail())
 				->setBody("The user ".$userFriend[0]->getName()." ".$userFriend[0]->getSurname()."
@@ -145,10 +146,10 @@ class SearchController extends Controller
 				 connect to you account in order to accept his request, go to http://localhost:8888/2SN/web/app_dev.php");
 			$mailer->send($message);
 
-			return new Response('The Partner request has being sent to the user. Wait for confirmation ...');
+			return $this->redirect( $this->generateUrl('fos_user_security_login'));
 		 }
 	 	else {
-	 		return $this->redirect( $this->generateUrl('quelp_image_murpage'));
+	 		return $this->redirect( $this->generateUrl('fos_user_security_login'));
 	 	}
     }
 

@@ -10,6 +10,11 @@ quelp_albums_delete:
 quelp_image_delete:
     path:     /image/delete
     defaults: { _controller: QuelpImageBundle:Image:delete }
+quelp_image_comment:
+  pattern: /image/comment
+  defaults: { _controller: QuelpImageBundle:Default:add }
+  requirements:
+    _method: POST
 quelp_albums_edit:
     path:     /albums/edit
     defaults: { _controller: QuelpImageBundle:Albums:edit }

@@ -3,92 +3,113 @@
 namespace Quelp\StatusBundle\Controller;
 
 
-use DB\Bundle\dbBundle\Entity\PostSolution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use DB\Bundle\dbBundle\Entity\Post;
+use DB\Bundle\dbBundle\Entity\PostSolution;
+use DB\Bundle\dbBundle\Entity\Partner;
 
 class DefaultController extends Controller
 {
 
-    public function addAction(Request $request)
+    public function showAction()
     {
         $security = $this->container->get('security.context');
         if (!$security->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
 
-        /// en ce qui concerne le status
+        $token = $security ->getToken();  // Si la requête courante n'est pas derrière un pare-feu, $token est null
+        $userAccount = $token->getUser();// Sinon , on récupère l'utilisateur
+        $request = $this->container->get('request');
+        $em = $this->getDoctrine()->getManager();
+        $lesson = array();
 
-        $new_post = new Post();
-        $token = $security->getToken();
-        $user = $token->getUser();
-        $new_post->setUser($user);
-        $use = $new_post->setUser($user);
-
-
-        $form = $this->createFormBuilder($new_post)
-            ->add('subject', 'text')
-            ->add('save', 'submit')
-            ->getForm();
-
-       $form->handleRequest($request);
-
-        if ($form->isValid())
+        if( $request->isXmlHttpRequest() )
         {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($new_post);
-            $em->flush();
+            $query = $em->createQuery(
+                        "SELECT po
+                         FROM DBdbBundle:Post po
+                         LEFT JOIN DBdbBundle:Partner p WITH po.user = p.user OR po.user = p.user_partner
+                         WHERE (p.user = ?1 or p.user_partner = ?1) AND p.active = 1
+                         GROUP BY po.id
+                         ORDER BY po.editDate DESC"
+                     );
+            $query->setParameter(1, $userAccount);
+            $lesson = $query->getResult();
+
+            for ($i = 0; $i < count($lesson); $i++) {
+                $post_comment = $this->getDoctrine()
+                    ->getRepository('DBdbBundle:PostSolution')->findByPost($lesson[$i]);
+                $comment[$i] = $post_comment;
+            }
+
         }
-        $user_lesson = $this->getDoctrine()
-            ->getRepository('DBdbBundle:Post')->findUserPost($user);
-
-
-    return $this->render('StatusBundle:Default:index.html.twig', array(
-            'form' => $form->createView(),
-            'user_lesson' => $user_lesson,
-        ));
+        return $this->container->get('templating')->renderResponse(
+                'StatusBundle:Default:index.html.twig', array('user_lesson' => $lesson, 'post_comment' => $comment));
     }
-    /*public function addCommentAction(Request $request)
+
+    public function addAction()
     {
-        /// en ce qui concerne les commentaires
         $security = $this->container->get('security.context');
         if (!$security->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
 
-        $post_solution = new PostSolution();
-        $token = $security->getToken();
+        $request = $this->get('request');
+        $token = $security ->getToken();
+        $userAccount = $token->getUser();
+        $em = $this->getDoctrine() ->getManager();
+        $post = "";
 
-        //set user
-        $user = $token->getUser();
-        $post_solution->setUser($user);
+        if ($request ->getMethod() =='POST') {
+                $post = $request->request->get('post');
+                $post = filter_var($post, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        //set post
-        $post = $token->getPost();
-        $post_solution->setPost($post);
+                if ($post != "") {
+                    $post_obj = new Post();
+                    $post_obj->setUser($userAccount);
+                    $post_obj->setSubject($post);
+
+                    $em->persist($post_obj);
+                    $em->flush();
+                }
+         }
+         return $this->redirect( $this->generateUrl('fos_user_security_login'));
+    }
 
 
-        $form_comment = $this->createFormBuilder($post_solution)
-            ->add('subject', 'text')
-            ->add('save', 'submit')
-            ->getForm();
-
-        $form_comment->handleRequest($request);
-
-        if ($form_comment->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post_solution);
-            $em->flush();
+    public function commentAddAction()
+    {
+        $security = $this->container->get('security.context');
+        if (!$security->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
-        $comment = $this->getDoctrine()
-            ->getRepository('DBdbBundle:PostSolution')->findcomment();
 
-        return $this->render('StatusBundle:Default:index.html.twig', array(
-            'form_comment' => $form_comment->createView(),
-            'comment' => $comment,
-        ));
-    }*/
+        $token = $security ->getToken();  // Si la requête courante n'est pas derrière un pare-feu, $token est null
+        $userAccount = $token->getUser();// Sinon , on récupère l'utilisateur
+        $em = $this->getDoctrine() ->getManager();
+        $request = $this->container->get('request');
+
+        if($request->isXmlHttpRequest())
+        {
+            $commentText = $request->request->get('commentText');
+            $id_post = $request->request->get('post');
+
+            if($commentText != '')
+            {
+                $post = $em->getRepository('DBdbBundle:Post') ->findById($id_post);
+
+                $comment = new PostSolution();
+                $comment->setSubject($commentText);
+                $comment->setUser($userAccount);
+                $comment->setPost($post[0]);
+
+                $em->persist($comment);
+                $em->flush();
+            }
+        }
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
+    }
 
 }

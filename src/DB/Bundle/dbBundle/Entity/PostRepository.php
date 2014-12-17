@@ -12,11 +12,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
-    public function FindUserPost($user)
-    {
-        $qb = $this->createQueryBuilder('p');
-        $qb ->where('p.user = :user') ->setParameter('user', $user)
-            ->orderBy('p.editDate', 'DESC');
-        return $qb->getQuery()->getResult();
-    }
+   
 }
