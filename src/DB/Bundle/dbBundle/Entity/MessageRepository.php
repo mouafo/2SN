@@ -97,4 +97,13 @@ class MessageRepository extends EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+    public function getAllSubject($senderId, $receiverId) {
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->where('m.sender = :sender_id OR m.sender = :receiver_id')->setParameter('sender_id', $senderId)
+            ->andWhere('m.receiver = :sender_id OR m.receiver = :receiver_id')->setParameter('receiver_id', $receiverId)
+            ->orderBy('m.editDate');
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

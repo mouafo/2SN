@@ -10,9 +10,9 @@ quelp_message_homepage:
 #####################################   WRITE NEW MESSAGE   ####################################
 ################################################################################################
 
-quelp_message_newmessagepage:
-    path:     /messages/new
-    defaults: { _controller:QuelpMessageBundle:Message:newMessage }
+#quelp_message_newmessagepage:
+ #   path:     /messages/new
+  #  defaults: { _controller:QuelpMessageBundle:Message:newMessage }
 
 quelp_message_friendmessagepage:
     path:     /messages/{name}

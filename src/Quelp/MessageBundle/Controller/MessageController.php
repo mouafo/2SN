@@ -18,40 +18,17 @@ class MessageController extends Controller
 
         $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->findAll();
 
-//        $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->getListMessage($user);
         if (!$user_content_message)
-        {
             return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('users_message' => '', 'user_content_message' => '')));
-        }
 
 
         if (!($all_users))
         {
-            die("Pas d'utilisateur trouvé");
+            $all_users = "Aucun utilisateur";
         }
         return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('users_message' => $all_users, 'user_content_message' => $user_content_message)));
     }
 
-    public function blocListeMessageAction()
-    {
-        $all_users = $this->getDoctrine()->getRepository('DBdbBundle:User')->findAll();//findByNameorSurname($name);
-
-        $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->findAll();
-
-//        $user_content_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->getListMessage($user);
-        if (!$user_content_message)
-        {
-            return ($this->render('QuelpMessageBundle:Message:home_message.html.twig', array('user_content_message' => '')));
-        }
-
-
-        if (!($all_users))
-        {
-            die("Pas d'utilisateur trouvé");
-        }
-        return ($this->render('QuelpMessageBundle:Message:list_users.html.twig', array('users_message' => $all_users, 'user_content_message' => $user_content_message)));
-
-    }
     public function listMessageAction(Request $request, $name)
     {
 
@@ -63,7 +40,7 @@ class MessageController extends Controller
         $user_message = $this->getDoctrine()->getRepository('DBdbBundle:User')->findOneBy(array('username' => $name));
         if (!($user_message))
         {
-            die("Pas d'utilisateur trouvé");
+            $user_message = "Aucun utilisateur";
         }
 
 
@@ -76,7 +53,8 @@ class MessageController extends Controller
 
         $form = $this->createFormBuilder($message)
             ->add('subject', 'textarea', array(
-                'attr' => array('class' => 'form-control', 'placeholder' => 'Type your text here')
+                'attr' => array('class' => 'form-control',
+                    'placeholder' => 'Type your text here')
             ))
             ->add('submit', 'submit', array(
                 'attr' => array('class' => 'btn btn-default btn-msg')
@@ -90,33 +68,17 @@ class MessageController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
-
         }
 
-        $sender_message = $this->getDoctrine()->getRepository('DBdbBundle:Message')->findOneBy(array('sender' => $user));
-        if ($sender_message)
-            $sender = $sender_message->getSender();
-        else
-            $sender = "";
-
-        if ($sender == $user)
-            $see_msg = $this->getDoctrine()->getRepository('DBdbBundle:Message')->getMessageReceiverOfSender($user_message, $sender);
-        else
-            $see_msg = "Aucun Message";
-
-        $see_msg_of_other =  $this->getDoctrine()->getRepository('DBdbBundle:Message')->getMessageSenderOfReceiver($user_message, $user);
-        if (!$see_msg_of_other)
-            $see_msg_of_other = "";
+        $user_test =  $this->getDoctrine()->getRepository('DBdbBundle:Message')->getAllSubject($user, $user_message);
 
         return $this->render('QuelpMessageBundle:Message:message.html.twig', array(
             'form' => $form->createView(),
-            'get_message_receiver' => $see_msg,
-            'get_message_sender' => $see_msg_of_other,
             'name_user_message' => $name,
-            'name_user_session_message' => $user,
-
+            'user_test' => $user_test,
         ));
     }
+
 
     public function findReceiverAction()
     {
@@ -138,7 +100,7 @@ class MessageController extends Controller
     }
     public function newMessageAction(Request $request)
     {
-        $security = $this->container->get('security.context');
+ /*       $security = $this->container->get('security.context');
         if (!$security->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
@@ -209,6 +171,6 @@ class MessageController extends Controller
 
         return $this->render('QuelpMessageBundle:Message:new_message.html.twig', array(
             'form' => $form->createView(),
-        ));
+        ));*/
     }
 }
