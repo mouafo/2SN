@@ -138,6 +138,7 @@ class SearchController extends Controller
 			*/
 			$mailer = $this->get('mailer');
 			$message = \Swift_Message::newInstance()
+
 				->setFrom('quelp.2sn@gmail.com')
 				->setSubject("Confirm friend request ...")
 				->setTo($userFriend[0]->getEmail())

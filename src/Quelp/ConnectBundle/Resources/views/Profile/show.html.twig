@@ -45,7 +45,7 @@
                         <div class="media-body">
 
                             <div class="row">
-                                <div class="col-md-1 col-md-offset-1"><h3><p class="firstname-profil" style="color: rgba(0, 0, 0, 0.5);">{{ user.username }}&nbsp;{{ user.name }}</p></h3></div>
+                                <div class="col-md-1 col-md-offset-1"><h3><p class="firstname-profil" style="color: rgba(0, 0, 0, 0.5);">{{ user.name }}&nbsp;{{ user.surname }}</p></h3></div>
                                 <div class="col-md-5 col-md-offset-5"></div>
                             </div>
                             <div class="row">
@@ -53,7 +53,7 @@
                                 <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-cog" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Modifier Profil</span></a></div>
                                 {% endif %}
                                 <div class="col-md-4"><a href="{{ path('quelp_relation_showall') }}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-user" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Patterns</span></a></div>
-                                <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-star" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Avis</span></a></div>
+                                <div class="col-md-4"><a href="{{ path('quelp_connect_editprofile') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-star" style="color: white;padding-top: 3px"></span><span style="color: white">&nbsp;Infos</span></a></div>
 
                             </div>
                         </div>
@@ -67,45 +67,66 @@
                     <div style="float: left">
 
                     </div>
+                        <div id="statusResult">    <br>
+                            {# include 'StatusBundle:Default:index.html.twig' with {'user_lesson' : "", 'post_comment' : ""}  #}
+                        </div>      <br>
 
+                        <script type="text/javascript">
 
-                    <div class="news">
+                            var val = "";
 
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="{{asset('bundles/front/img/default-avatar.png')}}" height="80px" alt="...">
-                            </a>
-                            <div class="media-body">
-                                <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                <h4 class="media-heading">{{user.surname}}</h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                                vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                <br><br/><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                                    <a href="#" class="lien"> <span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
-                            </div>
-                        </div>
-                    </div>
+                            window.setInterval(function(){
+                                if (val == "") {
+                                    loadAjax();
+                                }
+                            }, 4000);
 
+                            function addComment(key)
+                            {
+                                var comment = document.getElementById("commentPost"+key).value;
+                                var postId = document.getElementById("postid"+key).value;
+                                var DATA = 'commentText=' + comment + '&post=' + postId;
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('quelp_status_commentAdd') }}",
+                                    data: DATA,
+                                    cache: false,
+                                    success: function(data){
+                                        loadAjax();
+                                    },
+                                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                        alert(errorThrown);
+                                    }
+                                });
+                            }
 
-                    <div class="news">
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="{{asset('bundles/front/img/default-avatar.png')}}" height="80px" alt="...">
-                            </a>
-                            <div class="media-body">
-                                <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-                                <h4 class="media-heading">{{user.surname}}</h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                                vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                <br></br><small class="pull-left text-muted"><a href="#" class="lien"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-                                    <a href="#" class="lien"><span class="glyphicon glyphicon-remove"></span> Supprimer</a></small>
-                            </div>
-                        </div>
-                    </div>
+                            function checkValue(key)
+                            {
+                                val = document.getElementById("commentPost"+key).value;
+                            }
+
+                            function checkValueMOn()
+                            {
+                                val = "je suis la";
+                            }
+
+                            function checkValueMOut()
+                            {
+                                val = "";
+                            }
+
+                            function loadAjax()
+                            {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('quelp_status_show') }}",
+                                    cache: false,
+                                    success: function(data){
+                                        $("#statusResult").html(data);
+                                    }
+                                });
+                            }
+                        </script>
 
                     <div class="panel-group" id="accordion">
                         <h4 class="panel-title">
