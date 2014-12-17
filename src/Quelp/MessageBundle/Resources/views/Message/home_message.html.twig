@@ -13,15 +13,16 @@
         <div class="boder">
             <h4 class="text-center">Quelper</h4>
             <p class="text-center"><span class="glyphicon glyphicon-star-empty"></span>100%</p>
-            <a href="#" ><img src="{{ asset('bundles/front/img/tim.jpg') }}" height="125" width="125" alt="" class="img-rounded" style="margin-left: 20%"></a></br>
+            <a href="#" ><img src="{{ asset('bundles/front/img/default-avatar.png') }}" height="125" width="125" alt="" class="img-rounded" style="margin-left: 20%"></a></br>
             <br><p class="text-center name-for-user"><span>{{ app.user.username }}</span>&nbsp;<span class="surname-for-user">{{ app.user.name }}</span></p>
             <!--<p class="text-center">22 ans</p>-->
-            <div style="margin-left: 15%">
-                <br><span class="glyphicon glyphicon-book" style="font-size: 18px"></span><a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;&nbsp;Compétences</a></br>
-                <br><span class="glyphicon glyphicon-user" style="font-size: 18px"> </span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Follower</a></br>
-                <br><span class="glyphicon glyphicon-picture" style="font-size: 18px"></span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Photo</a></br>
-                <br><span class="glyphicon glyphicon-calendar" style="font-size: 18px"></span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Événement</a></br>
-            </div>
+
+                <div style="margin-left: 15%">
+                    <br><span class="glyphicon glyphicon-book" style="font-size: 18px"></span><a href="{{ path('quelp_connect_profilepage') }}" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;&nbsp;Profile</a></br>
+                    <br><span class="glyphicon glyphicon-user" style="font-size: 18px"> </span> <a href="{{ path('quelp_relation_showall') }}" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Partner</a></br>
+                    <br><span class="glyphicon glyphicon-picture" style="font-size: 18px"></span> <a href="{{ path('quelp_image_albumspage') }}" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Photo</a></br>
+                </div>
+
         </div>
     </div>
 
@@ -57,9 +58,9 @@
 
                             <a href="{{ path('quelp_message_friendmessagepage', {'name': users.username}) }}" class="list-group-item" data-target="#myModalMessage">
          <span class="chat-img pull-left">
-               <img src="{{ asset('bundles/front/img/tim.jpg') }}" alt="User Avatar" class="img-circle" height="45" style="border: 1px solid rgba(0, 0, 0, 0.2)"/>
+               <img src="{{ asset('bundles/front/img/default-avatar.png') }}" alt="User Avatar" class="img-circle" height="45" style="border: 1px solid rgba(0, 0, 0, 0.2)"/>
          </span>
-                                <span class="badge">14</span>
+                                <span class="badge"><span class="glyphicon glyphicon-eye-open"></span></span>
                                 <div class="text-center">
 
                                     <h4 class="list-group-item-heading">{{ users.username }}</h4>
@@ -76,13 +77,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="boder" style="margin-bottom: 20px">
+
             <!-- Begin Tchat -->
-            {% include "QuelpMessageBundle:Tchat:tchat.html.twig" %}
+            {% include 'QuelpConnectBundle:Common:right_bloc_for_message.html.twig'  %}
+
             <!-- End Tchat -->
-        </div>
-    </div>
 
     <!-- /.row -->
 

@@ -1,0 +1,51 @@
+
+<!-- Contenu Ami en ligne -->
+    <div class="col-md-3">
+        <div class="boder" style="margin-bottom: 20px">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><h4 class="text-center">Partners</h4> </a>
+
+            <input id="chatPartner" type="text" class="form-control" onkeyup="search()" placeholder="chat with  ..." style="margin-top: 50px"></br>
+            <div class="panel-group" id="accordion">
+                <div id="connected">
+                    {% include 'QuelpConnectBundle:Common:listUser.html.twig' with {'usersConnected' : ""}  %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+
+    function search() {
+        var patner = document.getElementById("chatPartner").value;
+        var DATA = 'Text=' + patner;
+        $.ajax({
+            type: "POST",
+            url: "{{ path('quelp_user_searchconnect') }}",
+            data: DATA,
+            cache: false,
+            success: function(data){
+                $("#connected").html(data);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    }
+
+    window.setInterval(function(){
+        var patner = document.getElementById("chatPartner").value;
+        if ( patner == "" ) {
+            $.ajax({
+                type: "POST",
+                url: "{{ path('quelp_user_connect') }}",
+                cache: false,
+                success: function(data){
+                    $("#connected").html(data);
+                }
+            });
+        }
+    }, 2000);
+
+
+
+</script>

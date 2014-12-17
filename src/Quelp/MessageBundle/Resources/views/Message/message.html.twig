@@ -11,14 +11,12 @@
         <div class="boder">
             <h4 class="text-center">Quelper</h4>
             <p class="text-center"><span class="glyphicon glyphicon-star-empty"></span>100%</p>
-            <a href="#" ><img src="{{ asset('bundles/front/img/tim.jpg') }}" height="125" width="125" alt="" class="img-rounded" style="margin-left: 20%"></a></br>
+            <a href="#" ><img src="{{ asset('bundles/front/img/default-avatar.png') }}" height="125" width="125" alt="" class="img-rounded" style="margin-left: 20%"></a></br>
             <br><p class="text-center name-for-user"><span>{{ app.user.username }}</span>&nbsp;<span class="surname-for-user">{{ app.user.name }}</span></p>
-            <!--<p class="text-center">22 ans</p>-->
             <div style="margin-left: 15%">
-                <br><span class="glyphicon glyphicon-book" style="font-size: 18px"></span><a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;&nbsp;Compétences</a></br>
-                <br><span class="glyphicon glyphicon-user" style="font-size: 18px"> </span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Follower</a></br>
-                <br><span class="glyphicon glyphicon-picture" style="font-size: 18px"></span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Photo</a></br>
-                <br><span class="glyphicon glyphicon-calendar" style="font-size: 18px"></span> <a href="#" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Événement</a></br>
+                <br><span class="glyphicon glyphicon-book" style="font-size: 18px"></span><a href="{{ path('quelp_connect_profilepage') }}" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;&nbsp;Profile</a></br>
+                <br><span class="glyphicon glyphicon-user" style="font-size: 18px"> </span> <a href="{{ path('quelp_relation_showall') }}" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Partner</a></br>
+                <br><span class="glyphicon glyphicon-picture" style="font-size: 18px"></span> <a href="{{ path('quelp_image_albumspage') }}" style="color: rgba(0, 0, 0, 0.8);font-size: 15px;font-weight: 300">&nbsp;Photo</a></br>
             </div>
         </div>
     </div>
@@ -27,16 +25,11 @@
         <div class="boder">
 
             <p class="text-center">
-                <!--        <button type="button" class="btn btn-default btn-msg">
 
-                Nouveau message
-                <span class="glyphicon glyphicon-edit"></span>
-            </a>
-        </button>-->
                 <a href="{{  path('quelp_message_homepage') }}">
                     <button type="button" class="btn btn-default btn-msg">Message reçu <span class="glyphicon glyphicon-envelope"></span></button>
                 </a>
-                <!--        <button type="button" class="btn btn-default btn-msg">Archive <span class="glyphicon glyphicon-folder-open"></span></button>-->
+
             </p>
             <!-- Modal pour nouveau message -->
             <div class="modal fade" id="myModalnewMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -65,13 +58,13 @@
                             {% if row.sender == app.user.username  %}
                                 {% if row.sender != row.receiver %}
                                     <li class="left clearfix">
-                       <span class="chat-img pull-left">
-                              <img src="{{ asset('bundles/front/img/tim.jpg') }}" alt="User Avatar" class="img-circle" height="50px"/>
-                       </span>
+                                       <span class="chat-img pull-left">
+                                          <img src="{{ asset('bundles/front/img/default-avatar.png') }}" alt="User Avatar" class="img-circle" height="50px"/>
+                                       </span>
                                         <div class="chat-body clearfix">
                                             <div class="header">
                                                 <span class="primary-font" style="font-weight: 500;padding-left: 10px;">{{ row.sender }}</span> <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>{{ row.editDate|date('d-m-Y') }} <span>at</span> {{  row.editDate|date('H:i') }}</small>
+                                                <span class="glyphicon glyphicon-time"></span>{{ row.editDate|date('d-m-Y') }} <span>at</span> {{  row.editDate|date('H:i') }}</small>
                                             </div>
                                             <div style="padding-left: 10px;margin-left: 20px;overflow: auto">
                                                 <p style="font-weight: 300;">{{ row.subject }}</p>
@@ -80,19 +73,19 @@
                                     </li>
                                 {% endif %}
                             {% else %}
-                                <li class="right clearfix">
-                        <span class="chat-img pull-right">
-                             <img src="{{ asset('bundles/front/img/gatien.jpg') }}" height="50px" alt="User Avatar" class="img-circle" />
-                        </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ row.editDate|date('d-m-Y') }} <span>at</span> {{  row.editDate|date('H:i') }}</small>
-                                            <strong class="pull-right primary-font" style="font-weight: 500;padding-right: 30px">{{ name_user_message }}</strong>
-                                        </div>
-                                        <p style="font-weight: 300">{{ row.subject }}</p>
+                            <li class="right clearfix">
+                                <span class="chat-img pull-right">
+                                     <img src="{{ asset('bundles/front/img/default-avatar.png') }}" height="50px" alt="User Avatar" class="img-circle" />
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ row.editDate|date('d-m-Y') }} <span>at</span> {{  row.editDate|date('H:i') }}</small>
+                                        <strong class="pull-right primary-font" style="font-weight: 500;padding-right: 30px">{{ name_user_message }}</strong>
                                     </div>
-                                </li>
-                            {% endif %}
+                                    <p style="font-weight: 300">{{ row.subject }}</p>
+                                </div>
+                            </li>
+                          {% endif %}
                         {% endfor %}
                     </ul>
 
@@ -104,31 +97,13 @@
 
             </div>
             <div class="modal-footer for-message">
-
                 {{ form(form) }}
-                <!--            <div class="col-xs-11">
-                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
             </div>
-            <div id="text">
-                <div id="loading">
-                    <img src="{{ asset('bundles/front/img/ajax-loader.gif') }}" alt="patientez...">
-                </div>
-            </div>
+     </div>
+  </div>
 
-             <span class="input-group-btn">
-                  <button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
-             </span>-->
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="boder" style="margin-bottom: 20px">
             <!-- Begin Tchat -->
-            {% include "QuelpMessageBundle:Tchat:tchat.html.twig" %}
+            {% include 'QuelpConnectBundle:Common:right_bloc_for_message.html.twig'  %}
             <!-- End Tchat -->
-        </div>
-    </div>
 
 {% endblock %}
